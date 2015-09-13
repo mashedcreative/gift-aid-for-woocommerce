@@ -30,46 +30,49 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-/**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-woocommerce-gift-aid-activator.php
- */
-function activate_woocommerce_gift_aid() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-gift-aid-activator.php';
-	WooCommerce_Gift_Aid_Activator::activate();
+// Bootstrap the plugin if WooCommerce is active.
+if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+	/**
+	 * The code that runs during plugin activation.
+	 * This action is documented in includes/class-woocommerce-gift-aid-activator.php
+	 */
+	function activate_woocommerce_gift_aid() {
+		require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-gift-aid-activator.php';
+		WooCommerce_Gift_Aid_Activator::activate();
+	}
+
+	/**
+	 * The code that runs during plugin deactivation.
+	 * This action is documented in includes/class-woocommerce-gift-aid-deactivator.php
+	 */
+	function deactivate_woocommerce_gift_aid() {
+		require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-gift-aid-deactivator.php';
+		WooCommerce_Gift_Aid_Deactivator::deactivate();
+	}
+
+	register_activation_hook( __FILE__, 'activate_woocommerce_gift_aid' );
+	register_deactivation_hook( __FILE__, 'deactivate_woocommerce_gift_aid' );
+
+	/**
+	 * The core plugin class that is used to define internationalization,
+	 * admin-specific hooks, and public-facing site hooks.
+	 */
+	require plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-gift-aid.php';
+
+	/**
+	 * Begins execution of the plugin.
+	 *
+	 * Since everything within the plugin is registered via hooks,
+	 * then kicking off the plugin from this point in the file does
+	 * not affect the page life cycle.
+	 *
+	 * @since    1.0.0
+	 */
+	function run_woocommerce_gift_aid() {
+
+		$plugin = new WooCommerce_Gift_Aid();
+		$plugin->run();
+
+	}
+	run_woocommerce_gift_aid();
 }
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-woocommerce-gift-aid-deactivator.php
- */
-function deactivate_woocommerce_gift_aid() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-gift-aid-deactivator.php';
-	WooCommerce_Gift_Aid_Deactivator::deactivate();
-}
-
-register_activation_hook( __FILE__, 'activate_woocommerce_gift_aid' );
-register_deactivation_hook( __FILE__, 'deactivate_woocommerce_gift_aid' );
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-gift-aid.php';
-
-/**
- * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
- */
-function run_woocommerce_gift_aid() {
-
-	$plugin = new WooCommerce_Gift_Aid();
-	$plugin->run();
-
-}
-run_woocommerce_gift_aid();
