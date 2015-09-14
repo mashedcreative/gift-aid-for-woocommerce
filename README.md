@@ -20,7 +20,8 @@ Due to the fact that WooCommerce core is missing the ability to use either of th
 
 ## Changelog
 
-**1.0.1** - *14.09.2015* - Changed the way the Gift Aid status is added to the email template.
+**1.0.2** - *14.09.2015* - Renamed the meta label for the order column.
+
 **1.0.1** - *14.09.2015* - Changed the way the Gift Aid status is added to the email template.
 
 **1.0.0** - *14.09.2015* - Feature complete. Initial beta release. Needs testing in the wild.
