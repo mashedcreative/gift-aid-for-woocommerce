@@ -170,7 +170,7 @@ class WooCommerce_Gift_Aid {
 		$this->loader->add_action( 'woocommerce_admin_order_data_after_order_details', $plugin_admin, 'add_order_details', 10 );
 
 		// Add the Gift Aid meta to the order confirmation email.
-		$this->loader->add_filter( 'woocommerce_email_order_meta_keys', $plugin_admin, 'add_email_order_meta_keys', 10 );
+		$this->loader->add_action( 'woocommerce_email_before_order_table', $plugin_admin, 'add_order_email_meta', 10, 3 );
 
 		// Add a Gift Aid column to the output of the WooCommerce CSV Export plugin if it is active.
 		if ( in_array( 'woocommerce-customer-order-csv-export/woocommerce-customer-order-csv-export.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {

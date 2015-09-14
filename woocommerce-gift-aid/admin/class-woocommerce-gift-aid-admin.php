@@ -219,7 +219,7 @@ class WooCommerce_Gift_Aid_Admin {
 	 * @since    1.0.0
 	 */
 	public static function add_column_data( $column ) {
-		// Get the Gift Aid post meta.
+		// Get the post meta containing the Gift Aid status.
 		global $post;
 
 		$status = get_post_meta( $post->ID, 'gift_aid_donated', true );
@@ -236,7 +236,7 @@ class WooCommerce_Gift_Aid_Admin {
 	 * @since    1.0.0
 	 */
 	public static function add_order_details( $order ) {
-		// Get the post meta and set the status text accordingly.
+		// Get the post meta containing the Gift Aid status.
 		$gift_aid = get_post_meta( $order->id, 'gift_aid_donated', true );
 
 		?>
@@ -252,14 +252,16 @@ class WooCommerce_Gift_Aid_Admin {
 	}
 
 	/**
-	 * Add the field to order emails
+	 * Add the Gift Aid meta to order emails
 	 * @param array $keys Array of meta fields.
 	 */
-	function add_email_order_meta_keys( $keys ) {
-		// Add a Gift Aid field to the email.
-		$keys['Reclaim Gift Aid?'] = 'gift_aid_donated';
+	function add_order_email_meta( $order, $sent_to_admin, $plain_text ) {
+		// Get the post meta containing the Gift Aid status.
+		$status = get_post_meta( $order->id, 'gift_aid_donated', true );
 
-		return $keys;
+		if ( 'Yes' === $status ) {
+			echo '<p class="gift-aid-order-email"><strong>' . esc_html( __( 'You have chosen to reclaim Gift Aid.', 'woocommerce-gift-aid' ) ) . '</strong></p>';
+		}
 	}
 
 	/**
@@ -284,7 +286,7 @@ class WooCommerce_Gift_Aid_Admin {
 	 * @since    1.0.0
 	 */
 	public static function wc_csv_export_modify_row_data( $order_data, $order, $csv_generator ) {
-		// Get the post meta and set the status text accordingly.
+		// Get the post meta containing the Gift Aid status.
 		$status = get_post_meta( $order->id, 'gift_aid_donated', true );
 
 		// Prepare our data to be added to the column.
