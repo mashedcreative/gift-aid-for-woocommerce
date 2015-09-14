@@ -2,7 +2,7 @@
 
 A plugin for WooCommerce that enables a Gift Aid option at the checkout.
 
-More documentation coming Real Soon Now™.
+More details about what this plugin does are coming Real Soon Now™.
 
 ## Installation
 
