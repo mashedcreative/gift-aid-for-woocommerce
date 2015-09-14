@@ -245,7 +245,7 @@ class WooCommerce_Gift_Aid_Admin {
 	    <div class="order_data_column">
 	        <h4><?php esc_html_e( 'Gift Aid', 'woocommerce-gift-aid' ); ?></h4>
 	        <?php
-	            echo '<p><strong>' . esc_html( __( 'Donated', 'woocommerce-gift-aid' ) ) . ':</strong> ' . esc_html( $gift_aid ) . '</p>';
+	            echo '<p><strong>' . esc_html( __( 'Reclaimed', 'woocommerce-gift-aid' ) ) . ':</strong> ' . esc_html( $gift_aid ) . '</p>';
 	        ?>
 	    </div>
 
