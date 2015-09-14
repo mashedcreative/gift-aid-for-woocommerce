@@ -51,7 +51,6 @@ class WooCommerce_Gift_Aid_Public {
 
 		$this->woocommerce_gift_aid = $woocommerce_gift_aid;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -60,21 +59,7 @@ class WooCommerce_Gift_Aid_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in WooCommerce_Gift_Aid_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The WooCommerce_Gift_Aid_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->woocommerce_gift_aid, plugin_dir_url( __FILE__ ) . 'css/woocommerce-gift-aid-public.css', array(), $this->version, 'all' );
-
 	}
 
 	/**
@@ -83,21 +68,64 @@ class WooCommerce_Gift_Aid_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in WooCommerce_Gift_Aid_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The WooCommerce_Gift_Aid_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_script( $this->woocommerce_gift_aid, plugin_dir_url( __FILE__ ) . 'js/woocommerce-gift-aid-public.js', array( 'jquery' ), $this->version, false );
-
 	}
 
+	/**
+	 * Add a checkbox to choose Gift Aid at the checkout
+	 * @param object $checkout Checkout object.
+	 */
+	function add_to_checkout( $checkout ) {
+
+		// Fetch our settings data.
+		$gift_aid_heading = get_option( 'gift_aid_heading' );
+		$gift_aid_info    = get_option( 'gift_aid_info' );
+		$gift_aid_label   = get_option( 'gift_aid_label' );
+
+		// Create a new section.
+		echo '<section class="gift-aid-section" aria-labelledby="gift-aid-heading" aria-describedby="gift-add-description">';
+
+		// Output the heading.
+		echo '<h3 id="gift-aid-heading">' . esc_html( $gift_aid_heading ) . '</h3>';
+
+		// Output the information.
+		if ( ! empty( $gift_aid_info ) ) {
+			echo '<p id="gift-aid-description">' . esc_html( $gift_aid_info ) . '</p>';
+		}
+
+		// Output the checkbox with label text.
+		woocommerce_form_field( 'gift_aid_donated', array(
+			'type'      => 'checkbox',
+			'class'     => array( 'input-checkbox' ),
+			'label'     => esc_html( $gift_aid_label ),
+			'required'  => false,
+		), $checkout->get_value( 'gift_aid_donated' ) );
+
+		echo '</section>';
+	}
+
+	/**
+	 * Update order post meta if the donor has chosen to reclaim Gift Aid
+	 * @param object $order_id The order ID.
+	 */
+	public static function update_order_meta( $order_id ) {
+		$donated = $_POST['gift_aid_donated'];
+
+		if ( $donated ) {
+			$status = ( '1' === $donated ? __( 'Yes', 'woocommerce-gift-aid' ) : __( 'No', 'woocommerce-gift-aid' ) );
+			update_post_meta( $order_id, 'gift_aid_donated', esc_attr( $status ) );
+		}
+	}
+
+	/**
+	 * Update order post meta if the donor has chosen to reclaim Gift Aid
+	 * @param integer $order_id Order ID.
+	 */
+	public static function add_to_thank_you( $order_id ) {
+		$status = get_post_meta( $order_id, 'gift_aid_donated', true );
+
+		if ( 'Yes' === $status ) {
+			echo '<p class="gift-aid-thank-you"><strong>' . esc_html( __( 'You have chosen to reclaim Gift Aid.', 'woocommerce-gift-aid' ) ) . '</strong></p>';
+		}
+	}
 }

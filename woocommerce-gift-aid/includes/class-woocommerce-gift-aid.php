@@ -75,7 +75,6 @@ class WooCommerce_Gift_Aid {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -120,7 +119,6 @@ class WooCommerce_Gift_Aid {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-woocommerce-gift-aid-public.php';
 
 		$this->loader = new WooCommerce_Gift_Aid_Loader();
-
 	}
 
 	/**
@@ -138,7 +136,6 @@ class WooCommerce_Gift_Aid {
 		$plugin_i18n->set_domain( $this->get_woocommerce_gift_aid() );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
@@ -152,9 +149,34 @@ class WooCommerce_Gift_Aid {
 
 		$plugin_admin = new WooCommerce_Gift_Aid_Admin( $this->get_woocommerce_gift_aid(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		// Enqueue CSS & JS assets.
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles', 10 );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts', 10 );
 
+		// Admin notice hooks.
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'admin_notice', 10 );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'admin_init', 10 );
+
+		// Add a section and populate it with our settings.
+		// TO DO: Change this to a different tab - presuming the tab isn't broken in core!
+		$this->loader->add_filter( 'woocommerce_get_sections_products', $plugin_admin, 'add_section' , 10 );
+		$this->loader->add_filter( 'woocommerce_get_settings_products', $plugin_admin, 'add_settings', 10, 2 );
+
+		// Add a sortable Gift Aid column, populated with the status for each order.
+		$this->loader->add_filter( 'manage_edit-shop_order_columns', $plugin_admin, 'add_orders_column', 10 );
+		$this->loader->add_action( 'manage_shop_order_posts_custom_column', $plugin_admin, 'add_column_data', 10 );
+
+		// Add the Gift Aid meta to the order details screen.
+		$this->loader->add_action( 'woocommerce_admin_order_data_after_order_details', $plugin_admin, 'add_order_details', 10 );
+
+		// Add the Gift Aid meta to the order confirmation email.
+		$this->loader->add_filter( 'woocommerce_email_order_meta_keys', $plugin_admin, 'add_email_order_meta_keys', 10 );
+
+		// Add a Gift Aid column to the output of the WooCommerce CSV Export plugin if it is active.
+		if ( in_array( 'woocommerce-customer-order-csv-export/woocommerce-customer-order-csv-export.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			$this->loader->add_filter( 'wc_customer_order_csv_export_order_headers', $plugin_admin, 'wc_csv_export_modify_column_headers', 10 );
+			$this->loader->add_filter( 'wc_customer_order_csv_export_order_row', $plugin_admin, 'wc_csv_export_modify_row_data', 10, 3 );
+		}
 	}
 
 	/**
@@ -168,9 +190,18 @@ class WooCommerce_Gift_Aid {
 
 		$plugin_public = new WooCommerce_Gift_Aid_Public( $this->get_woocommerce_gift_aid(), $this->get_version() );
 
+		// Enqueue CSS & JS assets.
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		// Add the fields to the checkout.
+		$this->loader->add_action( 'woocommerce_after_order_notes', $plugin_public, 'add_to_checkout', 10 );
+
+		// Update the meta data for the order.
+		$this->loader->add_action( 'woocommerce_checkout_update_order_meta', $plugin_public, 'update_order_meta', 10 );
+
+		// Add the meta data to the thank you page.
+		$this->loader->add_action( 'woocommerce_thankyou', $plugin_public, 'add_to_thank_you', 10 );
 	}
 
 	/**

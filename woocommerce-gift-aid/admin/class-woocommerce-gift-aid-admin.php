@@ -50,9 +50,6 @@ class WooCommerce_Gift_Aid_Admin {
 
 		$this->woocommerce_gift_aid = $woocommerce_gift_aid;
 		$this->version = $version;
-
-		// Let's add our filters.
-		$this->add_hooks();
 	}
 
 	/**
@@ -74,51 +71,52 @@ class WooCommerce_Gift_Aid_Admin {
 	}
 
 	/**
-	 * Add the necessary action and filter hooks
+	 * Output notices on activation
 	 * @since    1.0.0
-	 */
-	public function add_hooks() {
-		// Register our activation hook for the admin notice.
-		register_activation_hook( __FILE__, array( $this, 'add_notice' ) );
+	 **/
+	public static function admin_notice() {
+		if ( $notices = get_option( 'woocommerce_gift_aid_deferred_admin_notices' ) ) {
 
-		// Hook into admin notices action.
-		add_action( 'admin_notices', array( $this, 'add_notice' ) );
+			foreach ( $notices as $notice ) {
+				echo '<div class="updated"><p>' . esc_html( $notice ) . '</p></div>';
+			}
 
-		// Add a section and populate it with our settings.
-		add_filter( 'woocommerce_get_sections_tax', array( $this, 'add_section' ) , 10 );
-		add_filter( 'woocommerce_get_settings_tax',  array( $this, 'add_settings' ), 10 );
-
-		// Add a sortable Gift Aid column, populated with the status for each order.
-		add_filter( 'manage_edit-shop_order_columns', array( $this, 'add_orders_column' ), 10 );
-		add_action( 'manage_shop_order_posts_custom_column', array( $this, 'add_column_data' ), 10 );
-
-		// Add the Gift Aid status to the order details screen.
-		add_action( 'woocommerce_admin_order_data_after_order_details', array( $this, 'add_order_details' ), 10 );
-
-		// Add a Gift Aid column to the output of the WooCommerce CSV Export plugin if it is active.
-		if ( in_array( 'woocommerce-customer-order-csv-export/woocommerce-customer-order-csv-export.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-			add_filter( 'wc_customer_order_csv_export_order_headers', array( $this, 'wc_csv_export_modify_column_headers' ), 10 );
-			add_filter( 'wc_customer_order_csv_export_order_row', array( $this, 'wc_csv_export_modify_row_data' ), 10, 3 );
+			delete_option( 'woocommerce_gift_aid_deferred_admin_notices' );
 		}
 	}
 
 	/**
-	 * Generate an admin notice on activation
+	 * Add an admin notice to the output
 	 * @since    1.0.0
 	 **/
 	public static function add_notice() {
 
-		// Prepare our notice.
-		$notice = apply_filters( 'woocommerce_gift_aid_activation_notice', __( 'WooCommerce Gift Aid has been installed and can be configured in the Tax tab of your WooCommerce settings.' , 'woocommerce-gift-aid' ) );
+		// Retrieve any existing notices.
+	    $notices = get_option( 'woocommerce_gift_aid_deferred_admin_notices', array() );
 
+		// Prepare our notice.
+		$activation = apply_filters( 'woocommerce_gift_aid_activation_notice', __( 'WooCommerce Gift Aid has been installed and can be configured in the Products tab of your WooCommerce settings.' , 'woocommerce-gift-aid' ) );
+
+	    // Add our activation notice to the array.
+	    $notices[] = $activation;
+
+	    // Update the notices setting including our notice.
+	    update_option( 'woocommerce_gift_aid_deferred_admin_notices' , $notices );
+	}
+
+	/**
+	 * Add an activation notice if we haven't already displayed one
+	 * @since    1.0.0
+	 **/
+	public function admin_init() {
 		// Ensure the notice is shown only once.
 		if ( 1 != get_option( 'woocommerce_gift_aid_notice' ) ) {
 
 			// Save the fact the plugin is active in an option.
 			add_option( 'woocommerce_gift_aid_notice', 1 );
 
-			// Output the HTML to create the notice.
-			echo '<div class="updated"><p>' . esc_html( $notice ) . '</p></div>';
+			// Add our activation notice.
+			$this->add_notice();
 		}
 	}
 
@@ -146,32 +144,41 @@ class WooCommerce_Gift_Aid_Admin {
 			$settings_gift_aid = array();
 
 			$settings_gift_aid[] = array(
-				'name' => __( 'Gift Aid', 'woocommerce-gift-aid' ),
-				'type' => 'title',
-				'desc' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum ornare odio non pulvinar! Donec at neque quam.' ),
-				'id'   => 'gift_aid_section_title',
+				'name'  => __( 'Gift Aid', 'woocommerce-gift-aid' ),
+				'type'  => 'title',
+				'desc'  => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vestibulum ornare odio non pulvinar! Donec at neque quam.' ),
+				'id'    => 'gift_aid_section_title',
+				'class' => 'gift-aid-section-title',
 			);
 
 			$settings_gift_aid[] = array(
-				'name' => __( 'Enable Gift Aid', 'woocommerce-gift-aid' ),
-				'type' => 'checkbox',
-				'desc' => __( 'Whether or not to enable Gift Aid at the checkout.', 'woocommerce-gift-aid' ),
-				'id'   => 'gift_aid_checkbox',
+				'name'  => __( 'Enable Gift Aid', 'woocommerce-gift-aid' ),
+				'type'  => 'checkbox',
+				'desc'  => __( 'Whether or not to enable Gift Aid at the checkout.', 'woocommerce-gift-aid' ),
+				'id'    => 'gift_aid_checkbox',
+				'class' => 'gift-aid-checkbox',
 			);
 
 			$settings_gift_aid[] = array(
-				'name'  => __( 'Gift Aid Section Heading', 'woocommerce-gift-aid' ),
+				'name'  => __( 'Checkbox Label', 'woocommerce-gift-aid' ),
+				'type'  => 'text',
+				'id'    => 'gift_aid_label',
+				'class' => 'gift-aid-label',
+			);
+
+			$settings_gift_aid[] = array(
+				'name'  => __( 'Section Heading', 'woocommerce-gift-aid' ),
 				'type'  => 'text',
 				'id'    => 'gift_aid_heading',
-				'class' => 'gift_aid_heading',
+				'class' => 'gift-aid-heading',
 			);
 
 			$settings_gift_aid[] = array(
-				'name'  => __( 'Gift Aid Description', 'woocommerce-gift-aid' ),
+				'name'  => __( 'Description', 'woocommerce-gift-aid' ),
 				'type'  => 'textarea',
 				'desc'  => __( 'Text explaining Gift Aid to the donor.', 'woocommerce-gift-aid' ),
 				'id'    => 'gift_aid_info',
-				'class' => 'gift_aid_text',
+				'class' => 'gift-aid-info',
 			);
 
 			$settings_gift_aid[] = array(
@@ -214,11 +221,12 @@ class WooCommerce_Gift_Aid_Admin {
 	public static function add_column_data( $column ) {
 		// Get the Gift Aid post meta.
 		global $post;
-		$status = get_post_meta( $post->ID, 'gift_aid_enabled', true );
+
+		$status = get_post_meta( $post->ID, 'gift_aid_donated', true );
 
 		// Output the Gift Aid status in our column.
 		if ( 'gift_aid' === $column  ) {
-			echo esc_html( $status ? __( 'Yes', 'woocommerce-gift-aid' ) : __( 'No', 'woocommerce-gift-aid' ) );
+			echo esc_html( $status );
 		}
 	}
 
@@ -229,19 +237,29 @@ class WooCommerce_Gift_Aid_Admin {
 	 */
 	public static function add_order_details( $order ) {
 		// Get the post meta and set the status text accordingly.
-		$giftaid = ( '1' === get_post_meta( $order->id, 'gift_aid_enabled', true ) ? __( 'Yes', 'woocommerce-gift-aid' ) : __( 'No', 'woocommerce-gift-aid' ) );
+		$gift_aid = get_post_meta( $order->id, 'gift_aid_donated', true );
 
-		// Output the HTML.
 		?>
 
 	    <div class="order_data_column">
 	        <h4><?php esc_html_e( 'Gift Aid', 'woocommerce-gift-aid' ); ?></h4>
 	        <?php
-	            echo '<p><strong>' . esc_html( __( 'Donated', 'woocommerce-gift-aid' ) ) . ':</strong> ' . esc_html( $giftaid ) . '</p>';
+	            echo '<p><strong>' . esc_html( __( 'Donated', 'woocommerce-gift-aid' ) ) . ':</strong> ' . esc_html( $gift_aid ) . '</p>';
 	        ?>
 	    </div>
 
 	<?php
+	}
+
+	/**
+	 * Add the field to order emails
+	 * @param array $keys Array of meta fields.
+	 */
+	function add_email_order_meta_keys( $keys ) {
+		// Add a Gift Aid field to the email.
+		$keys['Reclaim Gift Aid?'] = 'gift_aid_donated';
+
+		return $keys;
 	}
 
 	/**
@@ -250,7 +268,6 @@ class WooCommerce_Gift_Aid_Admin {
 	 * @since    1.0.0
 	 */
 	public static function wc_csv_export_modify_column_headers( $column_headers ) {
-
 		// Add the new Gift Aid column.
 		$new_headers = array(
 			'gift_aid' => 'gift_aid',
@@ -268,11 +285,11 @@ class WooCommerce_Gift_Aid_Admin {
 	 */
 	public static function wc_csv_export_modify_row_data( $order_data, $order, $csv_generator ) {
 		// Get the post meta and set the status text accordingly.
-		$giftaid = ( '1' === get_post_meta( $order->id, 'gift_aid_enabled', true ) ? __( 'Yes', 'woocommerce-gift-aid' ) : __( 'No', 'woocommerce-gift-aid' ) );
+		$status = get_post_meta( $order->id, 'gift_aid_donated', true );
 
 		// Prepare our data to be added to the column.
 		$custom_data = array(
-			'gift_aid' => $giftaid,
+			'gift_aid' => $status,
 		);
 
 		// Merge our data with the existing row data.
@@ -290,5 +307,3 @@ class WooCommerce_Gift_Aid_Admin {
 		return $new_order_data;
 	}
 }
-
-

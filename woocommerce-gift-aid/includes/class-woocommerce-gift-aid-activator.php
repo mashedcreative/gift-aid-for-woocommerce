@@ -29,8 +29,8 @@ class WooCommerce_Gift_Aid_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public function activate() {
-
+	public static function activate() {
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce-gift-aid-admin.php';
 	}
 }
 
