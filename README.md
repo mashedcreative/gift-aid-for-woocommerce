@@ -6,7 +6,7 @@ More documentation coming Real Soon Now™.
 
 ## Installation
 
-1. Upload `woocommerce-gift-aid` to the `/wp-content/plugins/` directory
+1. Upload the `woocommerce-gift-aid` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Configure the plugin in the 'Products' tab of the WooCommerce settings
 
