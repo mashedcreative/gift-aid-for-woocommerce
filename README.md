@@ -20,6 +20,8 @@ Due to the fact that WooCommerce core is missing the ability to use either of th
 
 ## Changelog
 
+**1.0.4** - *14.09.2015* - Added language files (en_GB).
+
 **1.0.3** - *14.09.2015* - Added conditional check for fields added to the check out. Also added a default section heading.
 
 **1.0.2** - *14.09.2015* - Renamed the meta label for the order column.
