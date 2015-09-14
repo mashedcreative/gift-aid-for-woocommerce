@@ -3,6 +3,10 @@
  * included in this file.
  */
 
+.gift_aid_heading {
+  min-width: 350px;
+}
+
 .gift_aid_text {
   min-height: 200px;
   margin-top: 1em;

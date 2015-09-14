@@ -30,7 +30,9 @@ class WooCommerce_Gift_Aid_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
+		// Remove the option we used to prevent the notice showing more than once.
+		if ( get_option( 'woocommerce_gift_aid_notice' ) ) {
+			delete_option( 'woocommerce_gift_aid_notice' );
+		}
 	}
-
 }
