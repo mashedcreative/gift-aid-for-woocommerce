@@ -162,6 +162,7 @@ class WooCommerce_Gift_Aid_Admin {
 			$settings_gift_aid[] = array(
 				'name'  => __( 'Checkbox Label', 'woocommerce-gift-aid' ),
 				'type'  => 'text',
+				'desc'  => __( 'Label for the checkbox. Must be populated in order for the Gift Aid option to appear at the checkout.', 'woocommerce-gift-aid' ),
 				'id'    => 'gift_aid_label',
 				'class' => 'gift-aid-label',
 			);
@@ -176,7 +177,7 @@ class WooCommerce_Gift_Aid_Admin {
 			$settings_gift_aid[] = array(
 				'name'  => __( 'Description', 'woocommerce-gift-aid' ),
 				'type'  => 'textarea',
-				'desc'  => __( 'Text explaining Gift Aid to the donor.', 'woocommerce-gift-aid' ),
+				'desc'  => __( 'Text explaining Gift Aid to the donor. Must be populated in order for the Gift Aid option to appear at the checkout.', 'woocommerce-gift-aid' ),
 				'id'    => 'gift_aid_info',
 				'class' => 'gift-aid-info',
 			);

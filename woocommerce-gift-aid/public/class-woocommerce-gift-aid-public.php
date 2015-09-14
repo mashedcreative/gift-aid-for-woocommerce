@@ -78,30 +78,39 @@ class WooCommerce_Gift_Aid_Public {
 	function add_to_checkout( $checkout ) {
 
 		// Fetch our settings data.
-		$gift_aid_heading = get_option( 'gift_aid_heading' );
-		$gift_aid_info    = get_option( 'gift_aid_info' );
-		$gift_aid_label   = get_option( 'gift_aid_label' );
+		$gift_aid_checkbox = get_option( 'gift_aid_checkbox' );
+		$gift_aid_heading  = get_option( 'gift_aid_heading' );
+		$gift_aid_info     = get_option( 'gift_aid_info' );
+		$gift_aid_label    = get_option( 'gift_aid_label' );
 
-		// Create a new section.
-		echo '<section class="gift-aid-section" aria-labelledby="gift-aid-heading" aria-describedby="gift-add-description">';
+		// If all the settings have been configured.
+		if ( ! empty( $gift_aid_checkbox ) && ! empty( $gift_aid_label ) && ! empty( $gift_aid_info ) ) {
 
-		// Output the heading.
-		echo '<h3 id="gift-aid-heading">' . esc_html( $gift_aid_heading ) . '</h3>';
+			if ( empty( $gift_aid_heading ) ) {
+				$gift_aid_heading = __( 'Reclaim Gift Aid', 'woocommerce-gift-aid' );
+			}
 
-		// Output the information.
-		if ( ! empty( $gift_aid_info ) ) {
-			echo '<p id="gift-aid-description">' . esc_html( $gift_aid_info ) . '</p>';
+			// Create a new section.
+			echo '<section class="gift-aid-section" aria-labelledby="gift-aid-heading" aria-describedby="gift-add-description">';
+
+			// Output the heading.
+			echo '<h3 id="gift-aid-heading">' . esc_html( $gift_aid_heading ) . '</h3>';
+
+			// Output the information.
+			if ( ! empty( $gift_aid_info ) ) {
+				echo '<p id="gift-aid-description">' . esc_html( $gift_aid_info ) . '</p>';
+			}
+
+			// Output the checkbox with label text.
+			woocommerce_form_field( 'gift_aid_donated', array(
+				'type'      => 'checkbox',
+				'class'     => array( 'input-checkbox' ),
+				'label'     => esc_html( $gift_aid_label ),
+				'required'  => false,
+			), $checkout->get_value( 'gift_aid_donated' ) );
+
+			echo '</section>';
 		}
-
-		// Output the checkbox with label text.
-		woocommerce_form_field( 'gift_aid_donated', array(
-			'type'      => 'checkbox',
-			'class'     => array( 'input-checkbox' ),
-			'label'     => esc_html( $gift_aid_label ),
-			'required'  => false,
-		), $checkout->get_value( 'gift_aid_donated' ) );
-
-		echo '</section>';
 	}
 
 	/**
