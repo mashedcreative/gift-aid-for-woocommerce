@@ -12,7 +12,7 @@ More documentation coming Real Soon Now™.
 
 ## Known Issues
 
-Due to the fact that WooCommerce core is missing the ability to use either of the following to populate a more appropriate tab with our settings we're having to put them in the *Products* tab for now.
+Due to the fact that WooCommerce core is missing the ability to use either of the following to populate a more appropriate tab with our settings we're having to put them in the *Products* tab for now. It's unlikely that a workaround will be implemented in the meantime.
 
 `woocommerce_get_settings_checkout`
 
