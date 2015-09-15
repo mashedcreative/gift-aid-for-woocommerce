@@ -33,16 +33,12 @@ WooCommerce Gift Aid requires at least WooCommerce 2.2.3 to function correctly.
 
 ## Known Issues
 
-Due to the fact that WooCommerce core is missing the ability to use the `woocommerce_get_settings_` filter to add settings to either the *checkout* or *tax* tabs we're having to put them in the *Products* tab for now. It's unlikely that a workaround will be implemented in the meantime.
+Due to the fact that WooCommerce core is missing the ability to use the `woocommerce_get_settings_` filter to add settings to either the *checkout* or *tax* tabs we're having to put them in the *Products* tab for now. 
+
+Adding a dedicated tab just for this plugin's settings is overkill, so it's unlikely that this particular workaround will be implemented in the meantime.
+
+Any future update to the plugin that changes the tab in which the settings can be found will have no impact on your saved settings or any of the advertised functionality.
 
 ## Changelog
 
-**1.0.4** - Added language files (en_GB).
-
-**1.0.3** - Added conditional check for fields added to the check out. Also added a default section heading.
-
-**1.0.2** - Renamed the meta label for the order column.
-
-**1.0.1** - Changed the way the Gift Aid status is added to the email template.
-
-**1.0.0** - Feature complete. Initial beta release. Needs testing in the wild.
+**1.0.0** - First stable release.
