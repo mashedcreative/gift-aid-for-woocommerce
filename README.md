@@ -21,6 +21,10 @@ WooCommerce Gift Aid removes the need for any bespoke development to add this fe
 
 WooCommerce Gift Aid is also fully translatable (both the admin area and front-end) and comes complete with the necessary language files (en_GB).
 
+## Requirements
+
+WooCommerce Gift Aid requires at least WooCommerce 2.2.3 to function correctly.
+
 ## Installation
 
 1. Upload the `woocommerce-gift-aid` folder to the `/wp-content/plugins/` directory
