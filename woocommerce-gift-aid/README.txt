@@ -22,19 +22,4 @@ WooCommerce Gift Aid requires at least WooCommerce 2.2.3 to function correctly.
 == Changelog ==
 
 = 1.0.0 =
-* Feature complete. Initial beta release. Needs testing in the wild.
-
-= 1.0.4 =
-* Added language files (en_GB).
-
-= 1.0.3 = 
-* Added conditional check for fields added to the check out. Also added a default section heading.
-
-= 1.0.2 =
-* Renamed the meta label for the order column.
-
-= 1.0.1 = 
-* Changed the way the Gift Aid status is added to the email template.
-
-= 1.0.0 = 
-* Feature complete. Initial beta release. Needs testing in the wild.
+* First stable release.
