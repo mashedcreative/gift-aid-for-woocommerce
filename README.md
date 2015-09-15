@@ -1,6 +1,6 @@
 # WooCommerce 'Gift Aid' plugin
 
-A plugin for WooCommerce that enables a Gift Aid option at the checkout.
+A plugin for WooCommerce that adds the option for donors to reclaim Gift Aid at the checkout.
 
 ## About
 
