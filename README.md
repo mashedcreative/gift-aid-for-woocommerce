@@ -33,7 +33,9 @@ WooCommerce Gift Aid requires at least WooCommerce 2.2.3 to function correctly.
 
 ## Known Issues
 
-Due to the fact that WooCommerce core is missing the ability to use the `woocommerce_get_settings_` filter to add settings to either the *checkout* or *tax* tabs we're having to put them in the *Products* tab for now. It's unlikely that a workaround will be implemented in the meantime.
+Due to the fact that WooCommerce core is missing the ability to use the `woocommerce_get_settings_` filter to add settings to either the *checkout* or *tax* tabs we're having to put them in the *Products* tab for now. 
+
+Adding a dedicated tab just for this plugin's settings is overkill, so it's unlikely that this particular workaround will be implemented in the meantime.
 
 ## Changelog
 
