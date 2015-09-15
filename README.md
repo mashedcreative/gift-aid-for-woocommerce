@@ -15,8 +15,8 @@ WooCommerce Gift Aid removes the need for any bespoke development to add this fe
     - Label for the checkbox e.g. 'Click here to reclaim Gift Aid'
     - Heading field for the Gift Aid section at the checkout (optional, defaults to 'Reclaim Gift Aid')
     - Description field to provide an explanation of what Gift Aid is to help the donor make a choice.
-- Gift Aid column added to the *Orders* screen containing a simple Yes/No to reflect the donor's choice.
-- The donor's Gift Aid choice will also be added to the order details section of the *Edit Order* screen.
+- Gift Aid column added to the *Orders* screen with a simple Yes/No to reflect the donor's choice.
+- The donor's Gift Aid choice will be added to the order details section of the *Edit Order* screen.
 - Gift Aid column and associated data will automatically be added to CSV files exported using the WooCommerce [Order/Customer CSV Export](http://www.woothemes.com/products/ordercustomer-csv-export/) plugin.
 
 ## Installation
