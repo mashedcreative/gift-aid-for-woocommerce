@@ -12,11 +12,7 @@ More details about what this plugin does are coming Real Soon Now™.
 
 ## Known Issues
 
-Due to the fact that WooCommerce core is missing the ability to use either of the following to populate a more appropriate tab with our settings we're having to put them in the *Products* tab for now. It's unlikely that a workaround will be implemented in the meantime.
-
-`woocommerce_get_settings_checkout`
-
-`woocommerce_get_settings_tax`
+Due to the fact that WooCommerce core is missing the ability to use the `woocommerce_get_settings_` filter to add settings to either the *checkout* or *tax* tabs we're having to put them in the *Products* tab for now. It's unlikely that a workaround will be implemented in the meantime.
 
 ## Changelog
 
