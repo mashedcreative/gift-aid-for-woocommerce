@@ -9,15 +9,21 @@ If you're a charitable organisation based in the UK using WooCommerce to accept 
 WooCommerce Gift Aid removes the need for any bespoke development to add this feature. Once installed, the plugin offers the following functionality:
 
 - A new section is added to the checkout with a customisable Gift Aid explanation and accompanying checkbox empowering the donor to reclaim Gift Aid on their donation.
-- If the donor elects to reclaim Gift Aid, confirmation of this will be added to both the thank you page and to the order confirmation email.
+- If the donor elects to reclaim Gift Aid, confirmation of this will be added to both the order confirmation/thank you page and to the order confirmation email.
 - Configurable settings added to the *Products* tab in the WooCommerce settings:
     - Checkbox to enable/disable the feature
     - Label for the checkbox e.g. 'Click here to reclaim Gift Aid'
     - Heading field for the Gift Aid section at the checkout (optional, defaults to 'Reclaim Gift Aid')
-    - Description field to provide an explanation of what Gift Aid is to help the donor make a choice.
-- Gift Aid column added to the *Orders* screen containing a simple Yes/No to reflect the donor's choice.
-- The donor's Gift Aid choice will also be added to the order details section of the *Edit Order* screen.
-- Gift Aid column and associated data will automatically be added to CSV files exported using the WooCommerce [Order/Customer CSV Export](http://www.woothemes.com/products/ordercustomer-csv-export/) plugin.
+    - Description field to explain Gift Aid to the donor so that they can make a choice.
+- Gift Aid column added to the *Orders* screen with a simple Yes/No to reflect the donor's choice.
+- The donor's Gift Aid choice will be added to the order details section of the *Edit Order* screen.
+- Gift Aid column and associated data will be added automatically to CSV files exported using the WooCommerce [Order/Customer CSV Export](http://www.woothemes.com/products/ordercustomer-csv-export/) plugin.
+
+WooCommerce Gift Aid is also fully translatable (both the admin area and front-end) and comes complete with the necessary language files (en_GB).
+
+## Requirements
+
+WooCommerce Gift Aid requires at least WooCommerce 2.2.3 to function correctly.
 
 ## Installation
 
