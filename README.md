@@ -2,7 +2,22 @@
 
 A plugin for WooCommerce that enables a Gift Aid option at the checkout.
 
-More details about what this plugin does are coming Real Soon Now™.
+## About
+
+If you're a charitable organisation based in the UK using WooCommerce to accept donations, it is highly likely that you need to give your donors the option to reclaim [Gift Aid](https://www.gov.uk/donating-to-charity/gift-aid) so that you can claim an extra 25p for every £1 they give.
+
+WooCommerce Gift Aid removes the need for any bespoke development to add this feature. Once installed, the plugin offers the following functionality:
+
+- A new section is added to the checkout with a customisable Gift Aid explanation and accompanying checkbox empowering the donor to reclaim Gift Aid on their donation.
+- If the donor elects to reclaim Gift Aid, confirmation of this will be added to both the thank you page and to the order confirmation email.
+- Configurable settings added to the *Products* tab in the WooCommerce settings:
+    - Checkbox to enable/disable the feature
+    - Label for the checkbox e.g. 'Click here to reclaim Gift Aid'
+    - Heading field for the Gift Aid section at the checkout (optional, defaults to 'Reclaim Gift Aid')
+    - Description field to provide an explanation of what Gift Aid is to help the donor make a choice.
+- Gift Aid column added to the *Orders* screen containing a simple Yes/No to reflect the donor's choice.
+- The donor's Gift Aid choice will also be added to the order details section of the *Edit Order* screen.
+- Gift Aid column and associated data will automatically be added to CSV files exported using the WooCommerce [Order/Customer CSV Export](http://www.woothemes.com/products/ordercustomer-csv-export/) plugin.
 
 ## Installation
 
@@ -16,12 +31,12 @@ Due to the fact that WooCommerce core is missing the ability to use the `woocomm
 
 ## Changelog
 
-**1.0.4** - *14.09.2015* - Added language files (en_GB).
+**1.0.4** - Added language files (en_GB).
 
-**1.0.3** - *14.09.2015* - Added conditional check for fields added to the check out. Also added a default section heading.
+**1.0.3** - Added conditional check for fields added to the check out. Also added a default section heading.
 
-**1.0.2** - *14.09.2015* - Renamed the meta label for the order column.
+**1.0.2** - Renamed the meta label for the order column.
 
-**1.0.1** - *14.09.2015* - Changed the way the Gift Aid status is added to the email template.
+**1.0.1** - Changed the way the Gift Aid status is added to the email template.
 
-**1.0.0** - *14.09.2015* - Feature complete. Initial beta release. Needs testing in the wild.
+**1.0.0** - Feature complete. Initial beta release. Needs testing in the wild.
