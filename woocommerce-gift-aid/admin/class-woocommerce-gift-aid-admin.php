@@ -162,19 +162,19 @@ class WooCommerce_Gift_Aid_Admin {
 			);
 
 			$settings_gift_aid[] = array(
-				'name'  => __( 'Checkbox Label', 'woocommerce-gift-aid' ),
-				'type'  => 'text',
-				'desc'  => __( 'Label for the checkbox. Must be populated in order for the Gift Aid option to appear at the checkout.', 'woocommerce-gift-aid' ),
-				'id'    => 'gift_aid_label',
-				'class' => 'gift-aid-label',
-			);
-
-			$settings_gift_aid[] = array(
 				'name'  => __( 'Section Heading', 'woocommerce-gift-aid' ),
 				'type'  => 'text',
 				'desc'  => __( 'Optional heading for the Gift Aid section at the checkout. Defaults to "Reclaim Gift Aid".', 'woocommerce-gift-aid' ),
 				'id'    => 'gift_aid_heading',
 				'class' => 'gift-aid-heading',
+			);
+
+			$settings_gift_aid[] = array(
+				'name'  => __( 'Checkbox Label', 'woocommerce-gift-aid' ),
+				'type'  => 'text',
+				'desc'  => __( 'Label for the checkbox. Must be populated in order for the Gift Aid option to appear at the checkout.', 'woocommerce-gift-aid' ),
+				'id'    => 'gift_aid_label',
+				'class' => 'gift-aid-label',
 			);
 
 			$settings_gift_aid[] = array(
@@ -218,7 +218,7 @@ class WooCommerce_Gift_Aid_Admin {
 	}
 
 	/**
-	 * Add a Gift Aid column to the shop orders screen
+	 * Populate the Gift Aid column with the post meta.
 	 * @param string $column Column name.
 	 * @since    1.0.0
 	 */
@@ -227,6 +227,9 @@ class WooCommerce_Gift_Aid_Admin {
 		global $post;
 
 		$status = get_post_meta( $post->ID, 'gift_aid_reclaimed', true );
+
+		// Add a fallback of "No" if no source is available.
+		$status = ( ! empty( $status ) ? $status : __( 'No', 'woocommerce-gift-aid' ) );
 
 		// Output the Gift Aid status in our column.
 		if ( 'gift_aid' === $column  ) {
@@ -242,6 +245,9 @@ class WooCommerce_Gift_Aid_Admin {
 	public static function add_order_details( $order ) {
 		// Get the post meta containing the Gift Aid status.
 		$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
+
+		// Add a fallback of "No" if no source is available.
+		$status = ( ! empty( $status ) ? $status : __( 'No', 'woocommerce-gift-aid' ) );
 		?>
 
 	    <div class="order_data_column">
@@ -261,12 +267,15 @@ class WooCommerce_Gift_Aid_Admin {
 	 * @param boolean $plain_text Whether the email is plain text.
 	 */
 	function add_order_email_meta( $order, $sent_to_admin, $plain_text ) {
-		// Get the post meta containing the Gift Aid status.
-		$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
 
-		// If Gift Aid is to be reclaimed, confirm this in the email.
-		if ( 'Yes' === $status ) {
-			echo '<p class="gift-aid-order-email"><strong>' . esc_html( __( 'You have chosen to reclaim Gift Aid.', 'woocommerce-gift-aid' ) ) . '</strong></p>';
+		if ( ! $sent_to_admin ) {
+			// Get the post meta containing the Gift Aid status.
+			$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
+
+			// If Gift Aid is to be reclaimed, confirm this in the email.
+			if ( 'Yes' === $status ) {
+				echo '<p class="gift-aid-order-email"><strong>' . esc_html( __( 'You have chosen to reclaim Gift Aid.', 'woocommerce-gift-aid' ) ) . '</strong></p>';
+			}
 		}
 	}
 
@@ -285,7 +294,7 @@ class WooCommerce_Gift_Aid_Admin {
 	}
 
 	/**
-	 * Populate the WooCommerce Customer/Order CSV Export column with the Gift Aid status.
+	 * Populate the WooCommerce Customer/Order CSV Export column with the Gift Aid status
 	 * @param array  $order_data Array of column headers.
 	 * @param array  $order Array of column headers.
 	 * @param object $csv_generator Array of column headers.
@@ -294,6 +303,9 @@ class WooCommerce_Gift_Aid_Admin {
 	public static function wc_csv_export_modify_row_data( $order_data, $order, $csv_generator ) {
 		// Get the post meta containing the Gift Aid status.
 		$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
+
+		// Add a fallback of "No" if no source is available.
+		$status = ( ! empty( $status ) ? $status : __( 'No', 'woocommerce-gift-aid' ) );
 
 		// Prepare our data to be added to the column.
 		$custom_data = array(

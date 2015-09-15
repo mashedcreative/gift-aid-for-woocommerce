@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       WooCommerce Gift Aid
  * Plugin URI:        https://github.com/mkdo/woocommerce-gift-aid/
- * Description:       Adds the option for donors to reclaim Gift Aid at the checkout.
+ * Description:       Ask your donors to reclaim Gift Aid at the checkout, and view that data in the admin area.
  * Version:           1.0.0
  * Author:            Make Do <hello@makedo.in>
  * Author URI:        http://www.makedo.in
