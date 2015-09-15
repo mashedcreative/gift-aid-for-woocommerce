@@ -41,16 +41,4 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 ## Changelog
 
-**1.0.0** - First stable release. Includes refactoring, variable renaming and changes to wording.
-
-**0.4.1** - Added missing .pot file.
-
-**0.4.0** - Added language files (en_GB).
-
-**0.3.0** - Added conditional check for fields added to the check out. Also added a default section heading.
-
-**0.2.1** - Renamed the meta label for the order column.
-
-**0.2.0** - Changed the way the Gift Aid status is added to the email template.
-
-**0.1.0** - Feature complete. Initial beta release. Needs testing in the wild.
+**1.0.0** - First stable release.
