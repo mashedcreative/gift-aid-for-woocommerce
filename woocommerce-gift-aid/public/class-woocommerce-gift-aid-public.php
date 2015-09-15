@@ -78,14 +78,15 @@ class WooCommerce_Gift_Aid_Public {
 	function add_to_checkout( $checkout ) {
 
 		// Fetch our settings data.
-		$gift_aid_checkbox = get_option( 'gift_aid_checkbox' );
-		$gift_aid_heading  = get_option( 'gift_aid_heading' );
-		$gift_aid_info     = get_option( 'gift_aid_info' );
-		$gift_aid_label    = get_option( 'gift_aid_label' );
+		$gift_aid_checkbox    = get_option( 'gift_aid_checkbox' );
+		$gift_aid_heading     = get_option( 'gift_aid_heading' );
+		$gift_aid_description = get_option( 'gift_aid_info' );
+		$gift_aid_label       = get_option( 'gift_aid_label' );
 
 		// If all the settings have been configured.
-		if ( ! empty( $gift_aid_checkbox ) && ! empty( $gift_aid_label ) && ! empty( $gift_aid_info ) ) {
+		if ( ! empty( $gift_aid_checkbox ) && ! empty( $gift_aid_label ) && ! empty( $gift_aid_description ) ) {
 
+			// If no heading has been set, we'll need a sensible default.
 			if ( empty( $gift_aid_heading ) ) {
 				$gift_aid_heading = __( 'Reclaim Gift Aid', 'woocommerce-gift-aid' );
 			}
@@ -97,17 +98,17 @@ class WooCommerce_Gift_Aid_Public {
 			echo '<h3 id="gift-aid-heading">' . esc_html( $gift_aid_heading ) . '</h3>';
 
 			// Output the information.
-			if ( ! empty( $gift_aid_info ) ) {
-				echo '<p id="gift-aid-description">' . esc_html( $gift_aid_info ) . '</p>';
+			if ( ! empty( $gift_aid_description ) ) {
+				echo '<p id="gift-aid-description">' . esc_html( $gift_aid_description ) . '</p>';
 			}
 
 			// Output the checkbox with label text.
-			woocommerce_form_field( 'gift_aid_donated', array(
+			woocommerce_form_field( 'gift_aid_reclaimed', array(
 				'type'      => 'checkbox',
 				'class'     => array( 'input-checkbox' ),
 				'label'     => esc_html( $gift_aid_label ),
 				'required'  => false,
-			), $checkout->get_value( 'gift_aid_donated' ) );
+			), $checkout->get_value( 'gift_aid_reclaimed' ) );
 
 			echo '</section>';
 		}
@@ -118,21 +119,27 @@ class WooCommerce_Gift_Aid_Public {
 	 * @param object $order_id The order ID.
 	 */
 	public static function update_order_meta( $order_id ) {
-		$donated = $_POST['gift_aid_donated'];
+		// Get our checkbox value.
+		$reclaimed = sanitize_text_field( wp_unslash( $_POST['gift_aid_reclaimed'] ) );
 
-		if ( $donated ) {
-			$status = ( '1' === $donated ? __( 'Yes', 'woocommerce-gift-aid' ) : __( 'No', 'woocommerce-gift-aid' ) );
-			update_post_meta( $order_id, 'gift_aid_donated', esc_attr( $status ) );
+		if ( $reclaimed ) {
+			// Convert the default checkbox value to something more readable.
+			$status = ( '1' === $reclaimed ? __( 'Yes', 'woocommerce-gift-aid' ) : __( 'No', 'woocommerce-gift-aid' ) );
+
+			// Update the order post meta.
+			update_post_meta( $order_id, 'gift_aid_reclaimed', esc_attr( $status ) );
 		}
 	}
 
 	/**
-	 * Update order post meta if the donor has chosen to reclaim Gift Aid
+	 * Add confirmation of the donor's choice to reclaim Gift Aid to the thank you page.
 	 * @param integer $order_id Order ID.
 	 */
 	public static function add_to_thank_you( $order_id ) {
-		$status = get_post_meta( $order_id, 'gift_aid_donated', true );
+		// Get the post meta containing the Gift Aid status.
+		$status = get_post_meta( $order_id, 'gift_aid_reclaimed', true );
 
+		// If Gift Aid is to be reclaimed, confirm this at the top of the page.
 		if ( 'Yes' === $status ) {
 			echo '<p class="gift-aid-thank-you"><strong>' . esc_html( __( 'You have chosen to reclaim Gift Aid.', 'woocommerce-gift-aid' ) ) . '</strong></p>';
 		}

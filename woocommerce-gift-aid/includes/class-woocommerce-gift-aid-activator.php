@@ -23,10 +23,7 @@
 class WooCommerce_Gift_Aid_Activator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
-	 *
+	 * Activate
 	 * @since    1.0.0
 	 */
 	public static function activate() {

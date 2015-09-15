@@ -23,10 +23,7 @@
 class WooCommerce_Gift_Aid_Deactivator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
-	 *
+	 * Deactivate
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {

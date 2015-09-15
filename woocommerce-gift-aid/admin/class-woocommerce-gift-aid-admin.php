@@ -75,12 +75,15 @@ class WooCommerce_Gift_Aid_Admin {
 	 * @since    1.0.0
 	 **/
 	public static function admin_notice() {
+		// If we have notices.
 		if ( $notices = get_option( 'woocommerce_gift_aid_deferred_admin_notices' ) ) {
 
+			// Loop through the array and generate the notices.
 			foreach ( $notices as $notice ) {
 				echo '<div class="updated"><p>' . esc_html( $notice ) . '</p></div>';
 			}
 
+			// Clear out our notices option.
 			delete_option( 'woocommerce_gift_aid_deferred_admin_notices' );
 		}
 	}
@@ -148,7 +151,6 @@ class WooCommerce_Gift_Aid_Admin {
 				'type'  => 'title',
 				'desc'  => __( 'If you\'re a charitable organisation based in the UK using WooCommerce to accept donations, it is highly likely that you need to give your donors the option to reclaim Gift Aid so that you can claim an extra 25p for every £1 they give. Once configured, this plugin will empower your donors to reclaim Gift Aid on their donations.' ),
 				'id'    => 'gift_aid_section_title',
-				'class' => 'gift-aid-section-title',
 			);
 
 			$settings_gift_aid[] = array(
@@ -170,6 +172,7 @@ class WooCommerce_Gift_Aid_Admin {
 			$settings_gift_aid[] = array(
 				'name'  => __( 'Section Heading', 'woocommerce-gift-aid' ),
 				'type'  => 'text',
+				'desc'  => __( 'Optional heading for the Gift Aid section at the checkout. Defaults to "Reclaim Gift Aid".', 'woocommerce-gift-aid' ),
 				'id'    => 'gift_aid_heading',
 				'class' => 'gift-aid-heading',
 			);
@@ -206,7 +209,7 @@ class WooCommerce_Gift_Aid_Admin {
 		unset( $new_columns['order_actions'] );
 
 		// Create our column.
-		$new_columns['gift_aid'] = apply_filters( 'woocommerce_gift_aid_orders_column_name', __( 'Gift Aid', 'woocommerce-gift-aid' ) );
+		$new_columns['gift_aid'] = apply_filters( 'woocommerce_gift_aid_orders_column_name', __( 'Reclaim Gift Aid?', 'woocommerce-gift-aid' ) );
 
 		// Put the order actions column back.
 		$new_columns['order_actions'] = $columns['order_actions'];
@@ -223,7 +226,7 @@ class WooCommerce_Gift_Aid_Admin {
 		// Get the post meta containing the Gift Aid status.
 		global $post;
 
-		$status = get_post_meta( $post->ID, 'gift_aid_donated', true );
+		$status = get_post_meta( $post->ID, 'gift_aid_reclaimed', true );
 
 		// Output the Gift Aid status in our column.
 		if ( 'gift_aid' === $column  ) {
@@ -238,14 +241,13 @@ class WooCommerce_Gift_Aid_Admin {
 	 */
 	public static function add_order_details( $order ) {
 		// Get the post meta containing the Gift Aid status.
-		$gift_aid = get_post_meta( $order->id, 'gift_aid_donated', true );
-
+		$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
 		?>
 
 	    <div class="order_data_column">
-	        <h4><?php esc_html_e( 'Gift Aid', 'woocommerce-gift-aid' ); ?></h4>
+	        <h4><?php esc_html_e( 'Gift Aid Details', 'woocommerce-gift-aid' ); ?></h4>
 	        <?php
-	            echo '<p><strong>' . esc_html( __( 'Reclaimed', 'woocommerce-gift-aid' ) ) . ':</strong> ' . esc_html( $gift_aid ) . '</p>';
+	            echo '<p><strong>' . esc_html( __( 'Reclaim', 'woocommerce-gift-aid' ) ) . ':</strong> ' . esc_html( $status ) . '</p>';
 	        ?>
 	    </div>
 
@@ -254,33 +256,36 @@ class WooCommerce_Gift_Aid_Admin {
 
 	/**
 	 * Add the Gift Aid meta to order emails
-	 * @param array $keys Array of meta fields.
+	 * @param object  $order The order object.
+	 * @param boolean $sent_to_admin Whether the email is for the admin.
+	 * @param boolean $plain_text Whether the email is plain text.
 	 */
 	function add_order_email_meta( $order, $sent_to_admin, $plain_text ) {
 		// Get the post meta containing the Gift Aid status.
-		$status = get_post_meta( $order->id, 'gift_aid_donated', true );
+		$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
 
+		// If Gift Aid is to be reclaimed, confirm this in the email.
 		if ( 'Yes' === $status ) {
 			echo '<p class="gift-aid-order-email"><strong>' . esc_html( __( 'You have chosen to reclaim Gift Aid.', 'woocommerce-gift-aid' ) ) . '</strong></p>';
 		}
 	}
 
 	/**
-	 * Create a CSV column for the Gift Aid status
+	 * Create a WooCommerce Customer/Order CSV Export column for the Gift Aid status
 	 * @param array $column_headers Array of column headers.
 	 * @since    1.0.0
 	 */
 	public static function wc_csv_export_modify_column_headers( $column_headers ) {
 		// Add the new Gift Aid column.
 		$new_headers = array(
-			'gift_aid' => 'gift_aid',
+			'reclaim_gift_aid' => 'reclaim_gift_aid',
 		);
 
 		return array_merge( $column_headers, $new_headers );
 	}
 
 	/**
-	 * Populate the CSV column with the Gift Aid status.
+	 * Populate the WooCommerce Customer/Order CSV Export column with the Gift Aid status.
 	 * @param array  $order_data Array of column headers.
 	 * @param array  $order Array of column headers.
 	 * @param object $csv_generator Array of column headers.
@@ -288,11 +293,11 @@ class WooCommerce_Gift_Aid_Admin {
 	 */
 	public static function wc_csv_export_modify_row_data( $order_data, $order, $csv_generator ) {
 		// Get the post meta containing the Gift Aid status.
-		$status = get_post_meta( $order->id, 'gift_aid_donated', true );
+		$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
 
 		// Prepare our data to be added to the column.
 		$custom_data = array(
-			'gift_aid' => $status,
+			'reclaim_gift_aid' => $status,
 		);
 
 		// Merge our data with the existing row data.
