@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== WooCommerce Gift Aid ===
 Contributors: davetgreen
 Tags: woocommerce, gift aid, charity, donations
 Requires at least: 4.3
