@@ -37,6 +37,8 @@ Due to the fact that WooCommerce core is missing the ability to use the `woocomm
 
 Adding a dedicated tab just for this plugin's settings is overkill, so it's unlikely that this particular workaround will be implemented in the meantime.
 
+Any future update to the plugin that changes the tab in which the settings can be found will have no impact on your saved settings or any of the advertised functionality.
+
 ## Changelog
 
 **1.0.0** - First stable release. Includes refactoring, variable renaming and changes to wording.
