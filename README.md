@@ -41,4 +41,4 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 ## Changelog
 
-**1.0.0** - First stable release.
+**1.0.0** - *14.09.2015* - First stable release.
