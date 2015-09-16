@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Gift Aid\n"
-"POT-Creation-Date: 2015-09-15 13:34+0100\n"
-"PO-Revision-Date: 2015-09-15 13:34+0100\n"
+"POT-Creation-Date: 2015-09-16 13:38+0100\n"
+"PO-Revision-Date: 2015-09-16 13:38+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -49,23 +49,23 @@ msgid "Whether or not to enable Gift Aid at the checkout."
 msgstr ""
 
 #: admin/class-woocommerce-gift-aid-admin.php:165
-msgid "Checkbox Label"
+msgid "Section Heading"
 msgstr ""
 
 #: admin/class-woocommerce-gift-aid-admin.php:167
 msgid ""
-"Label for the checkbox. Must be populated in order for the Gift Aid option "
-"to appear at the checkout."
+"Optional heading for the Gift Aid section at the checkout. Defaults to "
+"\"Reclaim Gift Aid\"."
 msgstr ""
 
 #: admin/class-woocommerce-gift-aid-admin.php:173
-msgid "Section Heading"
+msgid "Checkbox Label"
 msgstr ""
 
 #: admin/class-woocommerce-gift-aid-admin.php:175
 msgid ""
-"Optional heading for the Gift Aid section at the checkout. Defaults to "
-"\"Reclaim Gift Aid\"."
+"Label for the checkbox. Must be populated in order for the Gift Aid option "
+"to appear at the checkout."
 msgstr ""
 
 #: admin/class-woocommerce-gift-aid-admin.php:181
@@ -82,15 +82,22 @@ msgstr ""
 msgid "Reclaim Gift Aid?"
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:248
+#: admin/class-woocommerce-gift-aid-admin.php:232
+#: admin/class-woocommerce-gift-aid-admin.php:250
+#: admin/class-woocommerce-gift-aid-admin.php:308
+#: public/class-woocommerce-gift-aid-public.php:127
+msgid "No"
+msgstr ""
+
+#: admin/class-woocommerce-gift-aid-admin.php:254
 msgid "Gift Aid Details"
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:250
+#: admin/class-woocommerce-gift-aid-admin.php:256
 msgid "Reclaim"
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:269
+#: admin/class-woocommerce-gift-aid-admin.php:277
 #: public/class-woocommerce-gift-aid-public.php:144
 msgid "You have chosen to reclaim Gift Aid."
 msgstr ""
@@ -103,10 +110,6 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: public/class-woocommerce-gift-aid-public.php:127
-msgid "No"
-msgstr ""
-
 #. Plugin Name of the plugin/theme
 msgid "WooCommerce Gift Aid"
 msgstr ""
@@ -116,7 +119,9 @@ msgid "https://github.com/mkdo/woocommerce-gift-aid/"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Adds the option for donors to reclaim Gift Aid at the checkout."
+msgid ""
+"Ask your donors to reclaim Gift Aid at the checkout, and view that data in "
+"the admin area."
 msgstr ""
 
 #. Author of the plugin/theme
