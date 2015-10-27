@@ -149,7 +149,7 @@ class WooCommerce_Gift_Aid_Admin {
 			$settings_gift_aid[] = array(
 				'name'  => __( 'Gift Aid', 'woocommerce-gift-aid' ),
 				'type'  => 'title',
-				'desc'  => __( 'If you\'re a charitable organisation based in the UK using WooCommerce to accept donations, it is highly likely that you need to give your donors the option to reclaim Gift Aid so that you can claim an extra 25p for every £1 they give. Once configured, this plugin will empower your donors to reclaim Gift Aid on their donations.' ),
+				'desc'  => __( 'If you\'re a charitable organisation based in the UK using WooCommerce to accept donations, it is highly likely that you need to give your donors the option to reclaim Gift Aid so that you can claim an extra 25p for every £1 they give. Once configured, this plugin will empower your donors to reclaim Gift Aid on their donations.', 'woocommerce-gift-aid' ),
 				'id'    => 'gift_aid_section_title',
 			);
 
