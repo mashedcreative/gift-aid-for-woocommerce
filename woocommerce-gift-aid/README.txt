@@ -1,5 +1,5 @@
 === WooCommerce Gift Aid ===
-Contributors: davetgreen
+Contributors: davetgreen, mkdo
 Tags: woocommerce, gift aid, charity, donations
 Requires at least: 4.3
 Tested up to: 4.3
