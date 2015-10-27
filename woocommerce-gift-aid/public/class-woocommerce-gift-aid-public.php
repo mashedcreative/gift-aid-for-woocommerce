@@ -77,14 +77,17 @@ class WooCommerce_Gift_Aid_Public {
 	 */
 	function add_to_checkout( $checkout ) {
 
+		// Fetch the selected country from the checkout object.
+		$country = $checkout->get_value( 'billing_country' );
+
 		// Fetch our settings data.
 		$gift_aid_checkbox    = get_option( 'gift_aid_checkbox' );
 		$gift_aid_heading     = get_option( 'gift_aid_heading' );
 		$gift_aid_description = get_option( 'gift_aid_info' );
 		$gift_aid_label       = get_option( 'gift_aid_label' );
 
-		// If all the settings have been configured.
-		if ( ! empty( $gift_aid_checkbox ) && ! empty( $gift_aid_label ) && ! empty( $gift_aid_description ) ) {
+		// If the country code is 'GB' and all the settings have been configured.
+		if ( 'GB' === $country && ! empty( $gift_aid_checkbox ) && ! empty( $gift_aid_label ) && ! empty( $gift_aid_description ) ) {
 
 			// If no heading has been set, we'll need a sensible default.
 			if ( empty( $gift_aid_heading ) ) {

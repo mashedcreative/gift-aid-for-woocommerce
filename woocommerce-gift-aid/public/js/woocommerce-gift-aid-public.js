@@ -1,6 +1,4 @@
 ( function( $ ) {
-  'use strict';
-
-  // JS here
+	'use strict';
 
 } )( jQuery );
