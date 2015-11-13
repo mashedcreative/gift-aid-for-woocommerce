@@ -95,7 +95,7 @@ class WooCommerce_Gift_Aid_Public {
 			}
 
 			// Create a new section.
-			echo '<section class="gift-aid-section" aria-labelledby="gift-aid-heading" aria-describedby="gift-add-description">';
+			echo '<section class="gift-aid-section" aria-labelledby="gift-aid-heading" aria-describedby="gift-aid-description">';
 
 			// Output the heading.
 			echo '<h3 id="gift-aid-heading">' . esc_html( $gift_aid_heading ) . '</h3>';
