@@ -9,7 +9,7 @@ If you're a charitable organisation based in the UK using WooCommerce to accept 
 WooCommerce Gift Aid removes the need for any bespoke development to add this feature. Once installed, the plugin offers the following functionality:
 
 - A new section is added to the checkout with a customisable Gift Aid explanation and accompanying checkbox empowering the donor to reclaim Gift Aid on their donation.
-- Gift Aid markup is inserted via AJAX if the user switches from a non-UK country to the United Kingdom.
+- Gift Aid markup is inserted via AJAX if the user switches from a non-UK country to the UK.
 - If the donor elects to reclaim Gift Aid, confirmation of this will be added to both the order confirmation/thank you page and to the order confirmation email.
 - Configurable settings added to the *Products* tab in the WooCommerce settings:
     - Checkbox to enable/disable the feature
