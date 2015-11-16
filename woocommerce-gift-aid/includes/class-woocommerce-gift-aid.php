@@ -202,6 +202,10 @@ class WooCommerce_Gift_Aid {
 
 		// Add the meta data to the thank you page.
 		$this->loader->add_action( 'woocommerce_thankyou', $plugin_public, 'add_to_thank_you', 10 );
+
+		// AJAX hooks for front-end HTML generation.
+		$this->loader->add_action( 'wp_ajax_gift_aid_html', $plugin_public, 'add_to_checkout', 10 );
+		$this->loader->add_action( 'wp_ajax_nopriv_gift_aid_html', $plugin_public, 'add_to_checkout', 10 );
 	}
 
 	/**

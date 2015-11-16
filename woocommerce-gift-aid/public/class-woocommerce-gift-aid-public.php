@@ -68,14 +68,16 @@ class WooCommerce_Gift_Aid_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->woocommerce_gift_aid, plugin_dir_url( __FILE__ ) . 'js/woocommerce-gift-aid-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->woocommerce_gift_aid, plugin_dir_url( __FILE__ ) . 'js/woocommerce-gift-aid-public.js', array( 'jquery' ), $this->version, true );
+		wp_localize_script( $this->woocommerce_gift_aid, 'giftaidhtml', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'security' => wp_create_nonce( 'giftaidnonce' ) ) );
 	}
 
 	/**
 	 * Add a checkbox to choose Gift Aid at the checkout
-	 * @param object $checkout Checkout object.
 	 */
-	function add_to_checkout( $checkout ) {
+	function add_to_checkout() {
+
+		$checkout = WC()->checkout();
 
 		// Fetch the selected country from the checkout object.
 		$country = $checkout->get_value( 'billing_country' );
@@ -95,7 +97,7 @@ class WooCommerce_Gift_Aid_Public {
 			}
 
 			// Create a new section.
-			echo '<section class="gift-aid-section" aria-labelledby="gift-aid-heading" aria-describedby="gift-aid-description">';
+			echo '<section id="woocommerce-gift-aid" class="gift-aid-section" aria-labelledby="gift-aid-heading" aria-describedby="gift-aid-description">';
 
 			// Output the heading.
 			echo '<h3 id="gift-aid-heading">' . esc_html( $gift_aid_heading ) . '</h3>';
@@ -105,7 +107,7 @@ class WooCommerce_Gift_Aid_Public {
 				echo '<p id="gift-aid-description">' . esc_html( $gift_aid_description ) . '</p>';
 			}
 
-			// Output the checkbox with label text.
+			// Echo the checkbox field with label text.
 			woocommerce_form_field( 'gift_aid_reclaimed', array(
 				'type'      => 'checkbox',
 				'class'     => array( 'input-checkbox' ),
@@ -114,6 +116,15 @@ class WooCommerce_Gift_Aid_Public {
 			), $checkout->get_value( 'gift_aid_reclaimed' ) );
 
 			echo '</section>';
+
+			// Check the nonce.
+			$nonce = check_ajax_referer( 'giftaidnonce', 'security', false );
+
+			// If the nonce exists, it's an AJAX call
+			// and therefore we need to exit.
+			if ( $nonce ) {
+				exit();
+			}
 		}
 	}
 
