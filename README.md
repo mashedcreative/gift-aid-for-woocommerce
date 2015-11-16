@@ -22,7 +22,7 @@ WooCommerce Gift Aid removes the need for any bespoke development to add this fe
 
 WooCommerce Gift Aid is also fully translatable (both the admin area and front-end) and comes complete with the necessary language files (en_GB).
 
-![Example of the Gift Aid plugin in use](/gift-aid.png?raw=true)
+![Example of the Gift Aid plugin in use](gift-aid.png?raw=true)
 
 ## Requirements
 
