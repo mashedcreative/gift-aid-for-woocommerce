@@ -18,6 +18,7 @@ WooCommerce Gift Aid removes the need for any bespoke development to add this fe
 - Gift Aid column added to the *Orders* screen with a simple Yes/No to reflect the donor's choice.
 - The donor's Gift Aid choice will be added to the order details section of the *Edit Order* screen.
 - Gift Aid column and associated data will be added automatically to CSV files exported using the WooCommerce [Order/Customer CSV Export](http://www.woothemes.com/products/ordercustomer-csv-export/) plugin.
+- Gift Aid markup is inserted via AJAX if the user switches from a non-UK country to the United Kingdom.
 
 WooCommerce Gift Aid is also fully translatable (both the admin area and front-end) and comes complete with the necessary language files (en_GB).
 
@@ -41,4 +42,5 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 ## Changelog
 
+**1.1.0** - *16.11.2015* - Gift Aid markup inserted via AJAX if switching to the UK from another country.
 **1.0.0** - *14.09.2015* - First stable release.
