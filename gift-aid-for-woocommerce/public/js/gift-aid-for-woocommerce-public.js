@@ -28,7 +28,7 @@
 				// is GB and the container doesn't exist.
 				var data = {
 					action: 'gift_aid_html', // WP action suffix.
-					security: giftaidhtml.security // Nonce string.
+					security: giftaidhtml.giftaid_ajax_security // Nonce string.
 				};
 
 				$.post(

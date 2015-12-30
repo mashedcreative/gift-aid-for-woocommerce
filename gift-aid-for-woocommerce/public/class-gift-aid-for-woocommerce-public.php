@@ -115,12 +115,12 @@ class Gift_Aid_for_WooCommerce_Public {
 			), $checkout->get_value( 'gift_aid_reclaimed' ) );
 
 			// Create a nonce that we can use in update_order_meta().
-			wp_nonce_field( 'giftaidnonce_order', 'giftaid_security' );
+			wp_nonce_field( 'giftaidnonce_order', 'giftaid_order_security' );
 
 			echo '</section>';
 
 			// Check the nonce.
-			$nonce = check_ajax_referer( 'giftaidnonce', 'security', false );
+			$nonce = check_ajax_referer( 'giftaidnonce', 'giftaid_ajax_security', false );
 
 			// If the nonce exists, it's an AJAX call
 			// and therefore we need to exit.
@@ -137,7 +137,7 @@ class Gift_Aid_for_WooCommerce_Public {
 	 */
 	public static function update_order_meta( $order_id ) {
 		// Check for our nonce to ensure we're processing a valid order submission.
-		$nonce = check_ajax_referer( 'giftaidnonce_order', 'security_order', false );
+		$nonce = check_ajax_referer( 'giftaidnonce_order', 'giftaid_order_security', false );
 
 		if ( isset( $_POST['gift_aid_reclaimed'] ) && $nonce ) {
 
