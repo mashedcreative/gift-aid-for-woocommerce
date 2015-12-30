@@ -68,7 +68,7 @@ class WooCommerce_Gift_Aid {
 	 */
 	public function __construct() {
 
-		$this->woocommerce_gift_aid = 'woocommerce-gift-aid';
+		$this->woocommerce_gift_aid = WC_GIFTAID_TEXTDOMAIN;
 		$this->version = '1.0.0';
 
 		$this->load_dependencies();

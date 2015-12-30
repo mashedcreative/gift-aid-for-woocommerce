@@ -93,7 +93,7 @@ class WooCommerce_Gift_Aid_Public {
 
 			// If no heading has been set, we'll need a sensible default.
 			if ( empty( $gift_aid_heading ) ) {
-				$gift_aid_heading = __( 'Reclaim Gift Aid', 'woocommerce-gift-aid' );
+				$gift_aid_heading = __( 'Reclaim Gift Aid', WC_GIFTAID_TEXTDOMAIN );
 			}
 
 			// Create a new section.
@@ -146,7 +146,7 @@ class WooCommerce_Gift_Aid_Public {
 
 			if ( $reclaimed ) {
 				// Convert the default checkbox value to something more readable.
-				$status = ( '1' === $reclaimed ? __( 'Yes', 'woocommerce-gift-aid' ) : __( 'No', 'woocommerce-gift-aid' ) );
+				$status = ( '1' === $reclaimed ? __( 'Yes', WC_GIFTAID_TEXTDOMAIN ) : __( 'No', WC_GIFTAID_TEXTDOMAIN ) );
 
 				// Update the order post meta.
 				update_post_meta( $order_id, 'gift_aid_reclaimed', esc_attr( $status ) );
@@ -164,7 +164,7 @@ class WooCommerce_Gift_Aid_Public {
 
 		// If Gift Aid is to be reclaimed, confirm this at the top of the page.
 		if ( 'Yes' === $status ) {
-			echo '<p class="gift-aid-thank-you"><strong>' . esc_html__( 'You have chosen to reclaim Gift Aid.', 'woocommerce-gift-aid' ) . '</strong></p>';
+			echo '<p class="gift-aid-thank-you"><strong>' . esc_html__( 'You have chosen to reclaim Gift Aid.', WC_GIFTAID_TEXTDOMAIN ) . '</strong></p>';
 		}
 	}
 }

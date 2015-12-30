@@ -30,6 +30,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'WC_GIFTAID_TEXTDOMAIN', 'woocommerce-gift-aid' );
+
 // Bootstrap the plugin if WooCommerce is active.
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 	/**

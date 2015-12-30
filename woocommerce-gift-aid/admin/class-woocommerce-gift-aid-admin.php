@@ -95,7 +95,7 @@ class WooCommerce_Gift_Aid_Admin {
 		$notices = get_option( 'woocommerce_gift_aid_deferred_admin_notices', array() );
 
 		// Prepare our notice.
-		$activation = apply_filters( 'woocommerce_gift_aid_activation_notice', __( 'WooCommerce Gift Aid has been installed and can be configured in the Products tab of your WooCommerce settings.' , 'woocommerce-gift-aid' ) );
+		$activation = apply_filters( 'woocommerce_gift_aid_activation_notice', __( 'WooCommerce Gift Aid has been installed and can be configured in the Products tab of your WooCommerce settings.' , WC_GIFTAID_TEXTDOMAIN ) );
 
 		// Add our activation notice to the array.
 		$notices[] = $activation;
@@ -126,7 +126,7 @@ class WooCommerce_Gift_Aid_Admin {
 	 * @since    1.0.0
 	 **/
 	public static function add_section( $sections ) {
-		$sections['gift_aid'] = apply_filters( 'woocommerce_gift_aid_section_name', __( 'Gift Aid', 'woocommerce-gift-aid' ) );
+		$sections['gift_aid'] = apply_filters( 'woocommerce_gift_aid_section_name', __( 'Gift Aid', WC_GIFTAID_TEXTDOMAIN ) );
 
 		return $sections;
 	}
@@ -144,40 +144,40 @@ class WooCommerce_Gift_Aid_Admin {
 			$settings_gift_aid = array();
 
 			$settings_gift_aid[] = array(
-				'name'  => __( 'Gift Aid', 'woocommerce-gift-aid' ),
+				'name'  => __( 'Gift Aid', WC_GIFTAID_TEXTDOMAIN ),
 				'type'  => 'title',
-				'desc'  => __( 'If you\'re a charitable organisation based in the UK using WooCommerce to accept donations, it is highly likely that you need to give your donors the option to reclaim Gift Aid so that you can claim an extra 25p for every £1 they give. Once configured, this plugin will empower your donors to reclaim Gift Aid on their donations.', 'woocommerce-gift-aid' ),
+				'desc'  => __( 'If you\'re a charitable organisation based in the UK using WooCommerce to accept donations, it is highly likely that you need to give your donors the option to reclaim Gift Aid so that you can claim an extra 25p for every £1 they give. Once configured, this plugin will empower your donors to reclaim Gift Aid on their donations.', WC_GIFTAID_TEXTDOMAIN ),
 				'id'    => 'gift_aid_section_title',
 			);
 
 			$settings_gift_aid[] = array(
-				'name'  => __( 'Enable Gift Aid', 'woocommerce-gift-aid' ),
+				'name'  => __( 'Enable Gift Aid', WC_GIFTAID_TEXTDOMAIN ),
 				'type'  => 'checkbox',
-				'desc'  => __( 'Whether or not to enable Gift Aid at the checkout.', 'woocommerce-gift-aid' ),
+				'desc'  => __( 'Whether or not to enable Gift Aid at the checkout.', WC_GIFTAID_TEXTDOMAIN ),
 				'id'    => 'gift_aid_checkbox',
 				'class' => 'gift-aid-checkbox',
 			);
 
 			$settings_gift_aid[] = array(
-				'name'  => __( 'Section Heading', 'woocommerce-gift-aid' ),
+				'name'  => __( 'Section Heading', WC_GIFTAID_TEXTDOMAIN ),
 				'type'  => 'text',
-				'desc'  => __( 'Optional heading for the Gift Aid section at the checkout. Defaults to "Reclaim Gift Aid".', 'woocommerce-gift-aid' ),
+				'desc'  => __( 'Optional heading for the Gift Aid section at the checkout. Defaults to "Reclaim Gift Aid".', WC_GIFTAID_TEXTDOMAIN ),
 				'id'    => 'gift_aid_heading',
 				'class' => 'gift-aid-heading',
 			);
 
 			$settings_gift_aid[] = array(
-				'name'  => __( 'Checkbox Label', 'woocommerce-gift-aid' ),
+				'name'  => __( 'Checkbox Label', WC_GIFTAID_TEXTDOMAIN ),
 				'type'  => 'text',
-				'desc'  => __( 'Label for the checkbox. Must be populated in order for the Gift Aid option to appear at the checkout.', 'woocommerce-gift-aid' ),
+				'desc'  => __( 'Label for the checkbox. Must be populated in order for the Gift Aid option to appear at the checkout.', WC_GIFTAID_TEXTDOMAIN ),
 				'id'    => 'gift_aid_label',
 				'class' => 'gift-aid-label',
 			);
 
 			$settings_gift_aid[] = array(
-				'name'  => __( 'Description', 'woocommerce-gift-aid' ),
+				'name'  => __( 'Description', WC_GIFTAID_TEXTDOMAIN ),
 				'type'  => 'textarea',
-				'desc'  => __( 'Text explaining Gift Aid to the donor. Must be populated in order for the Gift Aid option to appear at the checkout.', 'woocommerce-gift-aid' ),
+				'desc'  => __( 'Text explaining Gift Aid to the donor. Must be populated in order for the Gift Aid option to appear at the checkout.', WC_GIFTAID_TEXTDOMAIN ),
 				'id'    => 'gift_aid_info',
 				'class' => 'gift-aid-info',
 			);
@@ -206,7 +206,7 @@ class WooCommerce_Gift_Aid_Admin {
 		unset( $new_columns['order_actions'] );
 
 		// Create our column.
-		$new_columns['gift_aid'] = apply_filters( 'woocommerce_gift_aid_orders_column_name', __( 'Reclaim Gift Aid?', 'woocommerce-gift-aid' ) );
+		$new_columns['gift_aid'] = apply_filters( 'woocommerce_gift_aid_orders_column_name', __( 'Reclaim Gift Aid?', WC_GIFTAID_TEXTDOMAIN ) );
 
 		// Put the order actions column back.
 		$new_columns['order_actions'] = $columns['order_actions'];
@@ -226,7 +226,7 @@ class WooCommerce_Gift_Aid_Admin {
 		$status = get_post_meta( $post->ID, 'gift_aid_reclaimed', true );
 
 		// Add a fallback of "No" if no source is available.
-		$status = ( ! empty( $status ) ? $status : __( 'No', 'woocommerce-gift-aid' ) );
+		$status = ( ! empty( $status ) ? $status : __( 'No', WC_GIFTAID_TEXTDOMAIN ) );
 
 		// Output the Gift Aid status in our column.
 		if ( 'gift_aid' === $column  ) {
@@ -244,13 +244,13 @@ class WooCommerce_Gift_Aid_Admin {
 		$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
 
 		// Add a fallback of "No" if no source is available.
-		$status = ( ! empty( $status ) ? $status : __( 'No', 'woocommerce-gift-aid' ) );
+		$status = ( ! empty( $status ) ? $status : __( 'No', WC_GIFTAID_TEXTDOMAIN ) );
 		?>
 
 		<div class="order_data_column">
-			<h4><?php esc_html_e( 'Gift Aid Details', 'woocommerce-gift-aid' ); ?></h4>
+			<h4><?php esc_html_e( 'Gift Aid Details', WC_GIFTAID_TEXTDOMAIN ); ?></h4>
 			<?php
-				echo '<p><strong>' . esc_html( __( 'Reclaim', 'woocommerce-gift-aid' ) ) . ':</strong> ' . esc_html( $status ) . '</p>';
+				echo '<p><strong>' . esc_html( __( 'Reclaim', WC_GIFTAID_TEXTDOMAIN ) ) . ':</strong> ' . esc_html( $status ) . '</p>';
 			?>
 		</div>
 
@@ -271,7 +271,7 @@ class WooCommerce_Gift_Aid_Admin {
 
 			// If Gift Aid is to be reclaimed, confirm this in the email.
 			if ( 'Yes' === $status ) {
-				echo '<p class="gift-aid-order-email"><strong>' . esc_html__( 'You have chosen to reclaim Gift Aid.', 'woocommerce-gift-aid' ) . '</strong></p>';
+				echo '<p class="gift-aid-order-email"><strong>' . esc_html__( 'You have chosen to reclaim Gift Aid.', WC_GIFTAID_TEXTDOMAIN ) . '</strong></p>';
 			}
 		}
 	}
@@ -302,7 +302,7 @@ class WooCommerce_Gift_Aid_Admin {
 		$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
 
 		// Add a fallback of "No" if no source is available.
-		$status = ( ! empty( $status ) ? $status : __( 'No', 'woocommerce-gift-aid' ) );
+		$status = ( ! empty( $status ) ? $status : __( 'No', WC_GIFTAID_TEXTDOMAIN ) );
 
 		// Prepare our data to be added to the column.
 		$custom_data = array(
