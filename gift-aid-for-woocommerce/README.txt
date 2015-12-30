@@ -27,7 +27,7 @@ Gift Aid for WooCommerce removes the need for any bespoke development to add thi
 - The donor's Gift Aid choice will be added to the order details section of the *Edit Order* screen.
 - A Gift Aid column containing a simple Yes/No will be added automatically to CSV files exported using the WooCommerce [Order/Customer CSV Export](http://www.woothemes.com/products/ordercustomer-csv-export/) plugin.
 
-Gift Aid for WooCommerce is also fully translatable (both the admin area and front-end) and comes complete with the necessary language files (en_GB).
+Gift Aid for WooCommerce is also fully translatable in both the admin area and on the front-end.
 
 == Requirements ==
 
