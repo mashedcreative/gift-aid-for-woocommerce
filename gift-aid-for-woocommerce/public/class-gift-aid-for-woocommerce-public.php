@@ -115,7 +115,7 @@ class Gift_Aid_for_WooCommerce_Public {
 			), $checkout->get_value( 'gift_aid_reclaimed' ) );
 
 			// Create a nonce that we can use in update_order_meta().
-			wp_nonce_field( 'giftaidnonce_order', 'security_order' );
+			wp_nonce_field( 'giftaidnonce_order', 'giftaid_security' );
 
 			echo '</section>';
 
