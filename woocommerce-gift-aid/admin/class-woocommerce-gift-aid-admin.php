@@ -12,9 +12,6 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
- *
  * @package    WooCommerce_Gift_Aid
  * @subpackage WooCommerce_Gift_Aid/admin
  * @author     Make Do <hello@makedo.in>
@@ -95,16 +92,16 @@ class WooCommerce_Gift_Aid_Admin {
 	public static function add_notice() {
 
 		// Retrieve any existing notices.
-	    $notices = get_option( 'woocommerce_gift_aid_deferred_admin_notices', array() );
+		$notices = get_option( 'woocommerce_gift_aid_deferred_admin_notices', array() );
 
 		// Prepare our notice.
 		$activation = apply_filters( 'woocommerce_gift_aid_activation_notice', __( 'WooCommerce Gift Aid has been installed and can be configured in the Products tab of your WooCommerce settings.' , 'woocommerce-gift-aid' ) );
 
-	    // Add our activation notice to the array.
-	    $notices[] = $activation;
+		// Add our activation notice to the array.
+		$notices[] = $activation;
 
-	    // Update the notices setting including our notice.
-	    update_option( 'woocommerce_gift_aid_deferred_admin_notices' , $notices );
+		// Update the notices setting including our notice.
+		update_option( 'woocommerce_gift_aid_deferred_admin_notices' , $notices );
 	}
 
 	/**
@@ -250,12 +247,12 @@ class WooCommerce_Gift_Aid_Admin {
 		$status = ( ! empty( $status ) ? $status : __( 'No', 'woocommerce-gift-aid' ) );
 		?>
 
-	    <div class="order_data_column">
-	        <h4><?php esc_html_e( 'Gift Aid Details', 'woocommerce-gift-aid' ); ?></h4>
-	        <?php
-	            echo '<p><strong>' . esc_html( __( 'Reclaim', 'woocommerce-gift-aid' ) ) . ':</strong> ' . esc_html( $status ) . '</p>';
-	        ?>
-	    </div>
+		<div class="order_data_column">
+			<h4><?php esc_html_e( 'Gift Aid Details', 'woocommerce-gift-aid' ); ?></h4>
+			<?php
+				echo '<p><strong>' . esc_html( __( 'Reclaim', 'woocommerce-gift-aid' ) ) . ':</strong> ' . esc_html( $status ) . '</p>';
+			?>
+		</div>
 
 	<?php
 	}
@@ -274,7 +271,7 @@ class WooCommerce_Gift_Aid_Admin {
 
 			// If Gift Aid is to be reclaimed, confirm this in the email.
 			if ( 'Yes' === $status ) {
-				echo '<p class="gift-aid-order-email"><strong>' . esc_html( __( 'You have chosen to reclaim Gift Aid.', 'woocommerce-gift-aid' ) ) . '</strong></p>';
+				echo '<p class="gift-aid-order-email"><strong>' . esc_html__( 'You have chosen to reclaim Gift Aid.', 'woocommerce-gift-aid' ) . '</strong></p>';
 			}
 		}
 	}

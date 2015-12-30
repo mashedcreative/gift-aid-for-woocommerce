@@ -115,6 +115,9 @@ class WooCommerce_Gift_Aid_Public {
 				'required'  => false,
 			), $checkout->get_value( 'gift_aid_reclaimed' ) );
 
+			// Create a nonce that we can use in update_order_meta().
+			wp_nonce_field( 'giftaidnonce_order', 'security_order' );
+
 			echo '</section>';
 
 			// Check the nonce.
@@ -133,15 +136,21 @@ class WooCommerce_Gift_Aid_Public {
 	 * @param object $order_id The order ID.
 	 */
 	public static function update_order_meta( $order_id ) {
-		// Get our checkbox value.
-		$reclaimed = sanitize_text_field( wp_unslash( $_POST['gift_aid_reclaimed'] ) );
 
-		if ( $reclaimed ) {
-			// Convert the default checkbox value to something more readable.
-			$status = ( '1' === $reclaimed ? __( 'Yes', 'woocommerce-gift-aid' ) : __( 'No', 'woocommerce-gift-aid' ) );
+		$nonce = check_ajax_referer( 'giftaidnonce_order', 'security_order', false );
 
-			// Update the order post meta.
-			update_post_meta( $order_id, 'gift_aid_reclaimed', esc_attr( $status ) );
+		if ( isset( $_POST['gift_aid_reclaimed'] ) && $nonce ) {
+
+			// Get our checkbox value.
+			$reclaimed = sanitize_text_field( wp_unslash( $_POST['gift_aid_reclaimed'] ) );
+
+			if ( $reclaimed ) {
+				// Convert the default checkbox value to something more readable.
+				$status = ( '1' === $reclaimed ? __( 'Yes', 'woocommerce-gift-aid' ) : __( 'No', 'woocommerce-gift-aid' ) );
+
+				// Update the order post meta.
+				update_post_meta( $order_id, 'gift_aid_reclaimed', esc_attr( $status ) );
+			}
 		}
 	}
 
@@ -155,7 +164,7 @@ class WooCommerce_Gift_Aid_Public {
 
 		// If Gift Aid is to be reclaimed, confirm this at the top of the page.
 		if ( 'Yes' === $status ) {
-			echo '<p class="gift-aid-thank-you"><strong>' . esc_html( __( 'You have chosen to reclaim Gift Aid.', 'woocommerce-gift-aid' ) ) . '</strong></p>';
+			echo '<p class="gift-aid-thank-you"><strong>' . esc_html__( 'You have chosen to reclaim Gift Aid.', 'woocommerce-gift-aid' ) . '</strong></p>';
 		}
 	}
 }

@@ -30,5 +30,3 @@ class WooCommerce_Gift_Aid_Activator {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce-gift-aid-admin.php';
 	}
 }
-
-
