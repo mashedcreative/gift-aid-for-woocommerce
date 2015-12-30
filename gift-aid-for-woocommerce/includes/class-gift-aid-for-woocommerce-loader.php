@@ -6,8 +6,8 @@
  * @link       https://github.com/mkdo/woocommerce-gift-aid
  * @since      1.0.0
  *
- * @package    WooCommerce_Gift_Aid
- * @subpackage WooCommerce_Gift_Aid/includes
+ * @package    Gift_Aid_for_WooCommerce
+ * @subpackage Gift_Aid_for_WooCommerce/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    WooCommerce_Gift_Aid
- * @subpackage WooCommerce_Gift_Aid/includes
+ * @package    Gift_Aid_for_WooCommerce
+ * @subpackage Gift_Aid_for_WooCommerce/includes
  * @author     Make Do <hello@makedo.in>
  */
-class WooCommerce_Gift_Aid_Loader {
+class Gift_Aid_for_WooCommerce_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

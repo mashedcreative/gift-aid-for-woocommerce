@@ -5,27 +5,27 @@
  * @link       https://github.com/mkdo/woocommerce-gift-aid
  * @since      1.0.0
  *
- * @package    WooCommerce_Gift_Aid
- * @subpackage WooCommerce_Gift_Aid/admin
+ * @package    Gift_Aid_for_WooCommerce
+ * @subpackage Gift_Aid_for_WooCommerce/admin
  */
 
 /**
  * The admin-specific functionality of the plugin.
  *
- * @package    WooCommerce_Gift_Aid
- * @subpackage WooCommerce_Gift_Aid/admin
+ * @package    Gift_Aid_for_WooCommerce
+ * @subpackage Gift_Aid_for_WooCommerce/admin
  * @author     Make Do <hello@makedo.in>
  */
-class WooCommerce_Gift_Aid_Admin {
+class Gift_Aid_for_WooCommerce_Admin {
 
 	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $woocommerce_gift_aid    The ID of this plugin.
+	 * @var      string    $gift_aid_for_woocommerce    The ID of this plugin.
 	 */
-	private $woocommerce_gift_aid;
+	private $gift_aid_for_woocommerce;
 
 	/**
 	 * The version of this plugin.
@@ -40,12 +40,12 @@ class WooCommerce_Gift_Aid_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string $woocommerce_gift_aid       The name of this plugin.
+	 * @param      string $gift_aid_for_woocommerce       The name of this plugin.
 	 * @param      string $version    The version of this plugin.
 	 */
-	public function __construct( $woocommerce_gift_aid, $version ) {
+	public function __construct( $gift_aid_for_woocommerce, $version ) {
 
-		$this->woocommerce_gift_aid = $woocommerce_gift_aid;
+		$this->gift_aid_for_woocommerce = $gift_aid_for_woocommerce;
 		$this->version = $version;
 	}
 
@@ -55,7 +55,7 @@ class WooCommerce_Gift_Aid_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->woocommerce_gift_aid, plugin_dir_url( __FILE__ ) . 'css/woocommerce-gift-aid-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->gift_aid_for_woocommerce, plugin_dir_url( __FILE__ ) . 'css/woocommerce-gift-aid-admin.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -64,7 +64,7 @@ class WooCommerce_Gift_Aid_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->woocommerce_gift_aid, plugin_dir_url( __FILE__ ) . 'js/woocommerce-gift-aid-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->gift_aid_for_woocommerce, plugin_dir_url( __FILE__ ) . 'js/woocommerce-gift-aid-admin.js', array( 'jquery' ), $this->version, false );
 	}
 
 	/**
@@ -73,7 +73,7 @@ class WooCommerce_Gift_Aid_Admin {
 	 **/
 	public static function admin_notice() {
 		// If we have notices.
-		if ( $notices = get_option( 'woocommerce_gift_aid_deferred_admin_notices' ) ) {
+		if ( $notices = get_option( 'gift_aid_for_woocommerce_deferred_admin_notices' ) ) {
 
 			// Loop through the array and generate the notices.
 			foreach ( $notices as $notice ) {
@@ -81,7 +81,7 @@ class WooCommerce_Gift_Aid_Admin {
 			}
 
 			// Clear out our notices option.
-			delete_option( 'woocommerce_gift_aid_deferred_admin_notices' );
+			delete_option( 'gift_aid_for_woocommerce_deferred_admin_notices' );
 		}
 	}
 
@@ -92,16 +92,16 @@ class WooCommerce_Gift_Aid_Admin {
 	public static function add_notice() {
 
 		// Retrieve any existing notices.
-		$notices = get_option( 'woocommerce_gift_aid_deferred_admin_notices', array() );
+		$notices = get_option( 'gift_aid_for_woocommerce_deferred_admin_notices', array() );
 
 		// Prepare our notice.
-		$activation = apply_filters( 'woocommerce_gift_aid_activation_notice', __( 'WooCommerce Gift Aid has been installed and can be configured in the Products tab of your WooCommerce settings.' , WC_GIFTAID_TEXTDOMAIN ) );
+		$activation = apply_filters( 'gift_aid_for_woocommerce_activation_notice', __( 'WooCommerce Gift Aid has been installed and can be configured in the Products tab of your WooCommerce settings.' , WC_GIFTAID_TEXTDOMAIN ) );
 
 		// Add our activation notice to the array.
 		$notices[] = $activation;
 
 		// Update the notices setting including our notice.
-		update_option( 'woocommerce_gift_aid_deferred_admin_notices' , $notices );
+		update_option( 'gift_aid_for_woocommerce_deferred_admin_notices' , $notices );
 	}
 
 	/**
@@ -110,10 +110,10 @@ class WooCommerce_Gift_Aid_Admin {
 	 **/
 	public function admin_init() {
 		// Ensure the notice is shown only once.
-		if ( 1 != get_option( 'woocommerce_gift_aid_notice' ) ) {
+		if ( 1 != get_option( 'gift_aid_for_woocommerce_notice' ) ) {
 
 			// Save the fact the plugin is active in an option.
-			add_option( 'woocommerce_gift_aid_notice', 1 );
+			add_option( 'gift_aid_for_woocommerce_notice', 1 );
 
 			// Add our activation notice.
 			$this->add_notice();
@@ -126,7 +126,7 @@ class WooCommerce_Gift_Aid_Admin {
 	 * @since    1.0.0
 	 **/
 	public static function add_section( $sections ) {
-		$sections['gift_aid'] = apply_filters( 'woocommerce_gift_aid_section_name', __( 'Gift Aid', WC_GIFTAID_TEXTDOMAIN ) );
+		$sections['gift_aid'] = apply_filters( 'gift_aid_for_woocommerce_section_name', __( 'Gift Aid', WC_GIFTAID_TEXTDOMAIN ) );
 
 		return $sections;
 	}
@@ -187,9 +187,9 @@ class WooCommerce_Gift_Aid_Admin {
 				'id'   => 'gift_aid_section_end',
 			);
 
-			return apply_filters( 'woocommerce_gift_aid_settings', $settings_gift_aid );
+			return apply_filters( 'gift_aid_for_woocommerce_settings', $settings_gift_aid );
 		} else {
-			return apply_filters( 'woocommerce_gift_aid_settings', $settings );
+			return apply_filters( 'gift_aid_for_woocommerce_settings', $settings );
 		}
 	}
 
@@ -206,7 +206,7 @@ class WooCommerce_Gift_Aid_Admin {
 		unset( $new_columns['order_actions'] );
 
 		// Create our column.
-		$new_columns['gift_aid'] = apply_filters( 'woocommerce_gift_aid_orders_column_name', __( 'Reclaim Gift Aid?', WC_GIFTAID_TEXTDOMAIN ) );
+		$new_columns['gift_aid'] = apply_filters( 'gift_aid_for_woocommerce_orders_column_name', __( 'Reclaim Gift Aid?', WC_GIFTAID_TEXTDOMAIN ) );
 
 		// Put the order actions column back.
 		$new_columns['order_actions'] = $columns['order_actions'];

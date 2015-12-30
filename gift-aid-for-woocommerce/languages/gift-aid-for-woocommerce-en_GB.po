@@ -20,18 +20,18 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: admin/class-woocommerce-gift-aid-admin.php:101
+#: admin/class-gift-aid-for-woocommerce-admin.php:101
 msgid ""
 "WooCommerce Gift Aid has been installed and can be configured in the "
 "Products tab of your WooCommerce settings."
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:132
-#: admin/class-woocommerce-gift-aid-admin.php:150
+#: admin/class-gift-aid-for-woocommerce-admin.php:132
+#: admin/class-gift-aid-for-woocommerce-admin.php:150
 msgid "Gift Aid"
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:152
+#: admin/class-gift-aid-for-woocommerce-admin.php:152
 msgid ""
 "If you're a charitable organisation based in the UK using WooCommerce to "
 "accept donations, it is highly likely that you need to give your donors the "
@@ -40,73 +40,73 @@ msgid ""
 "Gift Aid on their donations."
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:157
+#: admin/class-gift-aid-for-woocommerce-admin.php:157
 msgid "Enable Gift Aid"
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:159
+#: admin/class-gift-aid-for-woocommerce-admin.php:159
 msgid "Whether or not to enable Gift Aid at the checkout."
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:165
+#: admin/class-gift-aid-for-woocommerce-admin.php:165
 msgid "Section Heading"
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:167
+#: admin/class-gift-aid-for-woocommerce-admin.php:167
 msgid ""
 "Optional heading for the Gift Aid section at the checkout. Defaults to "
 "\"Reclaim Gift Aid\"."
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:173
+#: admin/class-gift-aid-for-woocommerce-admin.php:173
 msgid "Checkbox Label"
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:175
+#: admin/class-gift-aid-for-woocommerce-admin.php:175
 msgid ""
 "Label for the checkbox. Must be populated in order for the Gift Aid option "
 "to appear at the checkout."
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:181
+#: admin/class-gift-aid-for-woocommerce-admin.php:181
 msgid "Description"
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:183
+#: admin/class-gift-aid-for-woocommerce-admin.php:183
 msgid ""
 "Text explaining Gift Aid to the donor. Must be populated in order for the "
 "Gift Aid option to appear at the checkout."
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:212
+#: admin/class-gift-aid-for-woocommerce-admin.php:212
 msgid "Reclaim Gift Aid?"
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:232
-#: admin/class-woocommerce-gift-aid-admin.php:250
-#: admin/class-woocommerce-gift-aid-admin.php:308
-#: public/class-woocommerce-gift-aid-public.php:127
+#: admin/class-gift-aid-for-woocommerce-admin.php:232
+#: admin/class-gift-aid-for-woocommerce-admin.php:250
+#: admin/class-gift-aid-for-woocommerce-admin.php:308
+#: public/class-gift-aid-for-woocommerce-public.php:127
 msgid "No"
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:254
+#: admin/class-gift-aid-for-woocommerce-admin.php:254
 msgid "Gift Aid Details"
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:256
+#: admin/class-gift-aid-for-woocommerce-admin.php:256
 msgid "Reclaim"
 msgstr ""
 
-#: admin/class-woocommerce-gift-aid-admin.php:277
-#: public/class-woocommerce-gift-aid-public.php:144
+#: admin/class-gift-aid-for-woocommerce-admin.php:277
+#: public/class-gift-aid-for-woocommerce-public.php:144
 msgid "You have chosen to reclaim Gift Aid."
 msgstr ""
 
-#: public/class-woocommerce-gift-aid-public.php:91
+#: public/class-gift-aid-for-woocommerce-public.php:91
 msgid "Reclaim Gift Aid"
 msgstr ""
 
-#: public/class-woocommerce-gift-aid-public.php:127
+#: public/class-gift-aid-for-woocommerce-public.php:127
 msgid "Yes"
 msgstr ""
 

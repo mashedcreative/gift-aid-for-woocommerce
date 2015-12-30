@@ -8,20 +8,20 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://github.com/mkdo/woocommerce-gift-aid
+ * @link              https://github.com/mkdo/gift-aid-for-woocommerce
  * @since             1.0.0
- * @package           WooCommerce_Gift_Aid
+ * @package           Gift_Aid_for_WooCommerce
  *
  * @wordpress-plugin
- * Plugin Name:       WooCommerce Gift Aid
- * Plugin URI:        https://github.com/mkdo/woocommerce-gift-aid/
- * Description:       Ask your donors to reclaim Gift Aid at the checkout, and view that data in the admin area.
- * Version:           1.0.0
+ * Plugin Name:       Gift Aid for WooCommerce
+ * Plugin URI:        https://github.com/mkdo/gift-aid-for-woocommerce/
+ * Description:       A plugin for WooCommerce that empowers donors to elect to reclaim Gift Aid at the checkout.
+ * Version:           1.2.0
  * Author:            Make Do <hello@makedo.in>
  * Author URI:        http://www.makedo.in
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       woocommerce-gift-aid
+ * Text Domain:       gift-aid-for-woocommerce
  * Domain Path:       /languages
  */
 
@@ -36,30 +36,30 @@ define( 'WC_GIFTAID_TEXTDOMAIN', 'woocommerce-gift-aid' );
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 	/**
 	 * The code that runs during plugin activation.
-	 * This action is documented in includes/class-woocommerce-gift-aid-activator.php
+	 * This action is documented in includes/class-gift-aid-for-woocommerce-activator.php
 	 */
-	function activate_woocommerce_gift_aid() {
-		require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-gift-aid-activator.php';
-		WooCommerce_Gift_Aid_Activator::activate();
+	function activate_gift_aid_for_woocommerce() {
+		require_once plugin_dir_path( __FILE__ ) . 'includes/class-gift-aid-for-woocommerce-activator.php';
+		Gift_Aid_for_WooCommerce_Activator::activate();
 	}
 
 	/**
 	 * The code that runs during plugin deactivation.
-	 * This action is documented in includes/class-woocommerce-gift-aid-deactivator.php
+	 * This action is documented in includes/class-gift-aid-for-woocommerce-deactivator.php
 	 */
-	function deactivate_woocommerce_gift_aid() {
-		require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-gift-aid-deactivator.php';
-		WooCommerce_Gift_Aid_Deactivator::deactivate();
+	function deactivate_gift_aid_for_woocommerce() {
+		require_once plugin_dir_path( __FILE__ ) . 'includes/class-gift-aid-for-woocommerce-deactivator.php';
+		Gift_Aid_for_WooCommerce_Deactivator::deactivate();
 	}
 
-	register_activation_hook( __FILE__, 'activate_woocommerce_gift_aid' );
-	register_deactivation_hook( __FILE__, 'deactivate_woocommerce_gift_aid' );
+	register_activation_hook( __FILE__, 'activate_gift_aid_for_woocommerce' );
+	register_deactivation_hook( __FILE__, 'deactivate_gift_aid_for_woocommerce' );
 
 	/**
 	 * The core plugin class that is used to define internationalization,
 	 * admin-specific hooks, and public-facing site hooks.
 	 */
-	require plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-gift-aid.php';
+	require plugin_dir_path( __FILE__ ) . 'includes/class-gift-aid-for-woocommerce.php';
 
 	/**
 	 * Begins execution of the plugin.
@@ -70,11 +70,11 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	 *
 	 * @since    1.0.0
 	 */
-	function run_woocommerce_gift_aid() {
+	function run_gift_aid_for_woocommerce() {
 
-		$plugin = new WooCommerce_Gift_Aid();
+		$plugin = new Gift_Aid_for_WooCommerce();
 		$plugin->run();
 
 	}
-	run_woocommerce_gift_aid();
+	run_gift_aid_for_woocommerce();
 }

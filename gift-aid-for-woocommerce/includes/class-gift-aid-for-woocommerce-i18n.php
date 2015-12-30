@@ -9,8 +9,8 @@
  * @link       https://github.com/mkdo/woocommerce-gift-aid
  * @since      1.0.0
  *
- * @package    WooCommerce_Gift_Aid
- * @subpackage WooCommerce_Gift_Aid/includes
+ * @package    Gift_Aid_for_WooCommerce
+ * @subpackage Gift_Aid_for_WooCommerce/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    WooCommerce_Gift_Aid
- * @subpackage WooCommerce_Gift_Aid/includes
+ * @package    Gift_Aid_for_WooCommerce
+ * @subpackage Gift_Aid_for_WooCommerce/includes
  * @author     Make Do <hello@makedo.in>
  */
-class WooCommerce_Gift_Aid_i18n {
+class Gift_Aid_for_WooCommerce_i18n {
 
 	/**
 	 * The domain specified for this plugin.

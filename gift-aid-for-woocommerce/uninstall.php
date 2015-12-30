@@ -22,7 +22,7 @@
  * @link       https://github.com/mkdo/woocommerce-gift-aid
  * @since      1.0.0
  *
- * @package    WooCommerce_Gift_Aid
+ * @package    Gift_Aid_for_WooCommerce
  */
 
 // If uninstall not called from WordPress, then exit.

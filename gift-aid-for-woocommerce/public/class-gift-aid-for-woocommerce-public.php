@@ -6,8 +6,8 @@
  * @link       https://github.com/mkdo/woocommerce-gift-aid
  * @since      1.0.0
  *
- * @package    WooCommerce_Gift_Aid
- * @subpackage WooCommerce_Gift_Aid/public
+ * @package    Gift_Aid_for_WooCommerce
+ * @subpackage Gift_Aid_for_WooCommerce/public
  */
 
 /**
@@ -16,20 +16,20 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    WooCommerce_Gift_Aid
- * @subpackage WooCommerce_Gift_Aid/public
+ * @package    Gift_Aid_for_WooCommerce
+ * @subpackage Gift_Aid_for_WooCommerce/public
  * @author     Make Do <hello@makedo.in>
  */
-class WooCommerce_Gift_Aid_Public {
+class Gift_Aid_for_WooCommerce_Public {
 
 	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $woocommerce_gift_aid    The ID of this plugin.
+	 * @var      string    $gift_aid_for_woocommerce    The ID of this plugin.
 	 */
-	private $woocommerce_gift_aid;
+	private $gift_aid_for_woocommerce;
 
 	/**
 	 * The version of this plugin.
@@ -44,36 +44,35 @@ class WooCommerce_Gift_Aid_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string $woocommerce_gift_aid       The name of the plugin.
+	 * @param      string $gift_aid_for_woocommerce       The name of the plugin.
 	 * @param      string $version    The version of this plugin.
 	 */
-	public function __construct( $woocommerce_gift_aid, $version ) {
+	public function __construct( $gift_aid_for_woocommerce, $version ) {
 
-		$this->woocommerce_gift_aid = $woocommerce_gift_aid;
+		$this->gift_aid_for_woocommerce = $gift_aid_for_woocommerce;
 		$this->version = $version;
 	}
 
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
-	 *
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->woocommerce_gift_aid, plugin_dir_url( __FILE__ ) . 'css/woocommerce-gift-aid-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->gift_aid_for_woocommerce, plugin_dir_url( __FILE__ ) . 'css/woocommerce-gift-aid-public.css', array(), $this->version, 'all' );
 	}
 
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
-	 *
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->woocommerce_gift_aid, plugin_dir_url( __FILE__ ) . 'js/woocommerce-gift-aid-public.js', array( 'jquery' ), $this->version, true );
-		wp_localize_script( $this->woocommerce_gift_aid, 'giftaidhtml', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'security' => wp_create_nonce( 'giftaidnonce' ) ) );
+		wp_enqueue_script( $this->gift_aid_for_woocommerce, plugin_dir_url( __FILE__ ) . 'js/woocommerce-gift-aid-public.js', array( 'jquery' ), $this->version, true );
+		wp_localize_script( $this->gift_aid_for_woocommerce, 'giftaidhtml', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'security' => wp_create_nonce( 'giftaidnonce' ) ) );
 	}
 
 	/**
 	 * Add a checkbox to choose Gift Aid at the checkout
+	 * @since    1.0.0
 	 */
 	function add_to_checkout() {
 
@@ -134,9 +133,10 @@ class WooCommerce_Gift_Aid_Public {
 	/**
 	 * Update order post meta if the donor has chosen to reclaim Gift Aid
 	 * @param object $order_id The order ID.
+	 * @since    1.0.0
 	 */
 	public static function update_order_meta( $order_id ) {
-
+		// Check for our nonce to ensure we're processing a valid order submission.
 		$nonce = check_ajax_referer( 'giftaidnonce_order', 'security_order', false );
 
 		if ( isset( $_POST['gift_aid_reclaimed'] ) && $nonce ) {
@@ -157,6 +157,7 @@ class WooCommerce_Gift_Aid_Public {
 	/**
 	 * Add confirmation of the donor's choice to reclaim Gift Aid to the thank you page.
 	 * @param integer $order_id Order ID.
+	 * @since    1.0.0
 	 */
 	public static function add_to_thank_you( $order_id ) {
 		// Get the post meta containing the Gift Aid status.

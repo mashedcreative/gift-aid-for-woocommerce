@@ -41,6 +41,9 @@ Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correct
 
 == Changelog ==
 
+= 1.2.0 =
+* Minor refactoring and updated plugin to reflect new name to comply with wordpress.org plugin repo rules.
+* 
 = 1.1.0 = 
 * Gift Aid markup inserted via AJAX if switching to the UK from another country.
 

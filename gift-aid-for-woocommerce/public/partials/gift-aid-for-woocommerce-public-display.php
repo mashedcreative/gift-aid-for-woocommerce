@@ -8,8 +8,8 @@
  * @link       https://github.com/mkdo/woocommerce-gift-aid
  * @since      1.0.0
  *
- * @package    WooCommerce_Gift_Aid
- * @subpackage WooCommerce_Gift_Aid/public/partials
+ * @package    Gift_Aid_for_WooCommerce
+ * @subpackage Gift_Aid_for_WooCommerce/public/partials
  */
 ?>
 

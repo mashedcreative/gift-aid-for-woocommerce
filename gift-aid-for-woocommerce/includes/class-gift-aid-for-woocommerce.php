@@ -9,8 +9,8 @@
  * @link       https://github.com/mkdo/woocommerce-gift-aid
  * @since      1.0.0
  *
- * @package    WooCommerce_Gift_Aid
- * @subpackage WooCommerce_Gift_Aid/includes
+ * @package    Gift_Aid_for_WooCommerce
+ * @subpackage Gift_Aid_for_WooCommerce/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    WooCommerce_Gift_Aid
- * @subpackage WooCommerce_Gift_Aid/includes
+ * @package    Gift_Aid_for_WooCommerce
+ * @subpackage Gift_Aid_for_WooCommerce/includes
  * @author     Make Do <hello@makedo.in>
  */
-class WooCommerce_Gift_Aid {
+class Gift_Aid_for_WooCommerce {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class WooCommerce_Gift_Aid {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      WooCommerce_Gift_Aid_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Gift_Aid_for_WooCommerce_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -44,9 +44,9 @@ class WooCommerce_Gift_Aid {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $woocommerce_gift_aid    The string used to uniquely identify this plugin.
+	 * @var      string    $gift_aid_for_woocommerce    The string used to uniquely identify this plugin.
 	 */
-	protected $woocommerce_gift_aid;
+	protected $gift_aid_for_woocommerce;
 
 	/**
 	 * The current version of the plugin.
@@ -68,7 +68,7 @@ class WooCommerce_Gift_Aid {
 	 */
 	public function __construct() {
 
-		$this->woocommerce_gift_aid = WC_GIFTAID_TEXTDOMAIN;
+		$this->gift_aid_for_woocommerce = WC_GIFTAID_TEXTDOMAIN;
 		$this->version = '1.0.0';
 
 		$this->load_dependencies();
@@ -82,10 +82,10 @@ class WooCommerce_Gift_Aid {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - WooCommerce_Gift_Aid_Loader. Orchestrates the hooks of the plugin.
-	 * - WooCommerce_Gift_Aid_i18n. Defines internationalization functionality.
-	 * - WooCommerce_Gift_Aid_Admin. Defines all hooks for the admin area.
-	 * - WooCommerce_Gift_Aid_Public. Defines all hooks for the public side of the site.
+	 * - Gift_Aid_for_WooCommerce_Loader. Orchestrates the hooks of the plugin.
+	 * - Gift_Aid_for_WooCommerce_i18n. Defines internationalization functionality.
+	 * - Gift_Aid_for_WooCommerce_Admin. Defines all hooks for the admin area.
+	 * - Gift_Aid_for_WooCommerce_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -99,32 +99,32 @@ class WooCommerce_Gift_Aid {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-gift-aid-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-gift-aid-for-woocommerce-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-gift-aid-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-gift-aid-for-woocommerce-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce-gift-aid-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-gift-aid-for-woocommerce-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-woocommerce-gift-aid-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-gift-aid-for-woocommerce-public.php';
 
-		$this->loader = new WooCommerce_Gift_Aid_Loader();
+		$this->loader = new Gift_Aid_for_WooCommerce_Loader();
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the WooCommerce_Gift_Aid_i18n class in order to set the domain and to register the hook
+	 * Uses the Gift_Aid_for_WooCommerce_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -132,8 +132,8 @@ class WooCommerce_Gift_Aid {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new WooCommerce_Gift_Aid_i18n();
-		$plugin_i18n->set_domain( $this->get_woocommerce_gift_aid() );
+		$plugin_i18n = new Gift_Aid_for_WooCommerce_i18n();
+		$plugin_i18n->set_domain( $this->get_gift_aid_for_woocommerce() );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 	}
@@ -147,7 +147,7 @@ class WooCommerce_Gift_Aid {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new WooCommerce_Gift_Aid_Admin( $this->get_woocommerce_gift_aid(), $this->get_version() );
+		$plugin_admin = new Gift_Aid_for_WooCommerce_Admin( $this->get_gift_aid_for_woocommerce(), $this->get_version() );
 
 		// Enqueue CSS & JS assets.
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles', 10 );
@@ -188,7 +188,7 @@ class WooCommerce_Gift_Aid {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new WooCommerce_Gift_Aid_Public( $this->get_woocommerce_gift_aid(), $this->get_version() );
+		$plugin_public = new Gift_Aid_for_WooCommerce_Public( $this->get_gift_aid_for_woocommerce(), $this->get_version() );
 
 		// Enqueue CSS & JS assets.
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
@@ -224,15 +224,15 @@ class WooCommerce_Gift_Aid {
 	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_woocommerce_gift_aid() {
-		return $this->woocommerce_gift_aid;
+	public function get_gift_aid_for_woocommerce() {
+		return $this->gift_aid_for_woocommerce;
 	}
 
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    WooCommerce_Gift_Aid_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Gift_Aid_for_WooCommerce_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;
