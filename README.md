@@ -1,12 +1,12 @@
-# WooCommerce 'Gift Aid' plugin
+# Gift Aid for WooCommerce
 
-A plugin for WooCommerce that adds the option for donors to reclaim Gift Aid at the checkout.
+A plugin for WooCommerce that empowers donors to elect to reclaim Gift Aid at the checkout.
 
-## About
+## Description
 
-If you're a charitable organisation based in the UK using WooCommerce to accept donations, it is highly likely that you need to give your donors the option to reclaim [Gift Aid](https://www.gov.uk/donating-to-charity/gift-aid) so that you can claim an extra 25p for every £1 they give.
+If you're a charitable organisation based in the UK using WooCommerce to accept donations, it is highly likely that you need to provide your donors with the option to reclaim [Gift Aid](https://www.gov.uk/donating-to-charity/gift-aid) so that you can claim an extra 25p for every £1 they give.
 
-WooCommerce Gift Aid removes the need for any bespoke development to add this feature. Once installed, the plugin offers the following functionality:
+Gift Aid for WooCommerce removes the need for any bespoke development to add this feature. Once installed, the plugin offers the following functionality:
 
 - A new section is added to the checkout with a customisable Gift Aid explanation and accompanying checkbox empowering the donor to reclaim Gift Aid on their donation.
 - Gift Aid markup is inserted via AJAX if the user switches from a non-UK country to the UK.
@@ -18,19 +18,19 @@ WooCommerce Gift Aid removes the need for any bespoke development to add this fe
     - Description field to explain Gift Aid to the donor so that they can make a choice.
 - Gift Aid column added to the *Orders* screen with a simple Yes/No to reflect the donor's choice.
 - The donor's Gift Aid choice will be added to the order details section of the *Edit Order* screen.
-- Gift Aid column and associated data will be added automatically to CSV files exported using the WooCommerce [Order/Customer CSV Export](http://www.woothemes.com/products/ordercustomer-csv-export/) plugin.
+- A Gift Aid column containing a simple Yes/No will be added automatically to CSV files exported using the WooCommerce [Order/Customer CSV Export](http://www.woothemes.com/products/ordercustomer-csv-export/) plugin, as long as the 'Default' export setting is selected.
 
-WooCommerce Gift Aid is also fully translatable (both the admin area and front-end) and comes complete with the necessary language files (en_GB).
+Gift Aid for WooCommerce is also fully translatable (both the admin area and front-end) and comes complete with the necessary language files (en_GB).
 
 ![Example of the Gift Aid plugin in use](gift-aid.png?raw=true)
 
 ## Requirements
 
-WooCommerce Gift Aid requires at least WooCommerce 2.2.3 to function correctly.
+Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correctly.
 
 ## Installation
 
-1. Upload the `woocommerce-gift-aid` folder to the `/wp-content/plugins/` directory
+1. Upload the `gift-aid-for-woocommerce` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Configure the plugin in the 'Products' tab of the WooCommerce settings
 
