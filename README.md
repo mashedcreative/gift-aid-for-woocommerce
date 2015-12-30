@@ -44,7 +44,7 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 ## Changelog
 
-**1.2.0** - *30.12.2015* - Minor refactoring and updated plugin to reflect new name to comply with wordpress.org plugin repo rules.
+**1.2.0** - *30.12.2015* - Refactored to comply with WordPress.org repo rules.
 
 **1.1.0** - *16.11.2015* - Gift Aid markup inserted via AJAX if switching to the UK from another country.
 
