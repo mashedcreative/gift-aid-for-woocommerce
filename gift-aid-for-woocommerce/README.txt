@@ -57,3 +57,11 @@ Due to the fact that WooCommerce core is missing the ability to use the `woocomm
 Adding a dedicated tab just for this plugin's settings is overkill, so it's unlikely that this particular workaround will be implemented in the meantime.
 
 Any future update to the plugin that changes the tab in which the settings can be found will have no impact on your saved settings or any of the advertised functionality.
+
+== Roadmap ==
+
+=1.3.0 *~Jan 2016*=
+* Add a new section in WooCommerce->Reports with data providing a summary of total Gift Aid reclaimed over the specified time period.
+
+=1.4.0 *~Feb 2016*=
+ Add a dashboard widget to show the data made available in 1.3.0.

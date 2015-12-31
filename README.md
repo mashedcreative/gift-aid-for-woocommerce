@@ -44,8 +44,20 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 ## Changelog
 
-**1.2.0** - *30.12.2015* - Refactored to comply with WordPress.org repo rules.
+**1.2.0** - *30.12.2015*
+- Refactored to comply with WordPress.org repo rules.
 
-**1.1.0** - *16.11.2015* - Gift Aid markup inserted via AJAX if switching to the UK from another country.
+**1.1.0** - *16.11.2015*
+- Gift Aid markup inserted via AJAX if switching to the UK from another country.
 
-**1.0.0** - *14.09.2015* - First stable release.
+**1.0.0** - *14.09.2015*
+- First stable release.
+
+## Roadmap
+
+**1.3.0** - *~Jan 2016*
+- Add a new section in WooCommerce->Reports with data providing a summary of total Gift Aid reclaimed over the specified time period.
+
+**1.4.0** - *~Feb 2016*
+- Add a dashboard widget to show the data made available in 1.3.0.
+
