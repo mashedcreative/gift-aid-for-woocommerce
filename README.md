@@ -44,6 +44,9 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 ## Changelog
 
+**1.2.1** - *28.08.2016*
+- Fixed bugs raised in https://wordpress.org/support/topic/css-and-js-not-found?replies=3. Fixed 404s with front-end assets and removed zero added to the AJAX response when the country is changed back to UK at the checkout.
+ 
 **1.2.0** - *30.12.2015*
 - Refactored to comply with WordPress.org repo rules.
 
