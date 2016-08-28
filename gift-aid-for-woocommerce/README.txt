@@ -2,7 +2,7 @@
 Contributors: davetgreen, mkdo
 Tags: woocommerce, gift aid, charity, donations, donate, tax
 Requires at least: 4.3
-Tested up to: 4.4
+Tested up to: 4.6
 Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -31,7 +31,7 @@ Gift Aid for WooCommerce is also fully translatable in both the admin area and o
 
 == Requirements ==
 
-Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correctly.
+Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correctly. Tested up to 2.6.4.
 
 == Installation ==
 
@@ -40,6 +40,9 @@ Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correct
 3. Configure the plugin in the 'Products' tab of the WooCommerce settings
 
 == Changelog ==
+
+= 1.2.1 =
+* Fixed bugs raised in https://wordpress.org/support/topic/css-and-js-not-found?replies=3. Fixed 404s with front-end assets and removed zero added to the AJAX response when the country is changed back to UK at the checkout.
 
 = 1.2.0 =
 * Refactored to comply with WordPress.org repo rules.
