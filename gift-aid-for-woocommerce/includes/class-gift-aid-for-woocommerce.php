@@ -195,7 +195,7 @@ class Gift_Aid_for_WooCommerce {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		// Add the fields to the checkout.
-		$this->loader->add_action( 'woocommerce_after_order_notes', $plugin_public, 'add_to_checkout', 10 );
+		$this->loader->add_action( 'woocommerce_after_order_notes', $plugin_public, 'insert_html', 10 );
 
 		// Update the meta data for the order.
 		$this->loader->add_action( 'woocommerce_checkout_update_order_meta', $plugin_public, 'update_order_meta', 10 );
@@ -204,8 +204,8 @@ class Gift_Aid_for_WooCommerce {
 		$this->loader->add_action( 'woocommerce_thankyou', $plugin_public, 'add_to_thank_you', 10 );
 
 		// AJAX hooks for front-end HTML generation.
-		$this->loader->add_action( 'wp_ajax_gift_aid_html', $plugin_public, 'add_to_checkout', 10 );
-		$this->loader->add_action( 'wp_ajax_nopriv_gift_aid_html', $plugin_public, 'add_to_checkout', 10 );
+		$this->loader->add_action( 'wp_ajax_add_to_checkout', $plugin_public, 'add_to_checkout', 10 );
+		$this->loader->add_action( 'wp_ajax_nopriv_add_to_checkout', $plugin_public, 'add_to_checkout', 10 );
 	}
 
 	/**

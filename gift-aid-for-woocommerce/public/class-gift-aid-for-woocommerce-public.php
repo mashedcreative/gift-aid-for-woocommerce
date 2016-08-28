@@ -58,7 +58,7 @@ class Gift_Aid_for_WooCommerce_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->gift_aid_for_woocommerce, plugin_dir_url( __FILE__ ) . 'css/woocommerce-gift-aid-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->gift_aid_for_woocommerce, plugin_dir_url( __FILE__ ) . 'css/gift-aid-for-woocommerce-public.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -66,20 +66,40 @@ class Gift_Aid_for_WooCommerce_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->gift_aid_for_woocommerce, plugin_dir_url( __FILE__ ) . 'js/woocommerce-gift-aid-public.js', array( 'jquery' ), $this->version, true );
-		wp_localize_script( $this->gift_aid_for_woocommerce, 'giftaidhtml', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'security' => wp_create_nonce( 'giftaidnonce' ) ) );
+		wp_enqueue_script( $this->gift_aid_for_woocommerce, plugin_dir_url( __FILE__ ) . 'js/gift-aid-for-woocommerce-public.js', array( 'jquery' ), $this->version, true );
+		wp_localize_script( $this->gift_aid_for_woocommerce, 'gift_aid_html', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'security' => wp_create_nonce( 'giftaid_ajax_security' ) ) );
 	}
 
 	/**
-	 * Add a checkbox to choose Gift Aid at the checkout
+	 * Re-insert the checkbox when the country is changed back to UK.
 	 * @since    1.0.0
 	 */
 	function add_to_checkout() {
-
 		$checkout = WC()->checkout();
 
 		// Fetch the selected country from the checkout object.
 		$country = $checkout->get_value( 'billing_country' );
+
+		// If the country code is 'GB'.
+		if ( 'GB' === $country ) {
+
+			// Add the HTML.
+			$this->insert_html();
+
+			// Check the nonce.
+			check_ajax_referer( 'giftaid_ajax_security', 'security' );
+
+			exit();
+		}
+	}
+
+	/**
+	 * Add a checkbox to choose Gift Aid at the checkout
+	 * @since    1.2.1
+	 */
+	function insert_html() {
+
+		$checkout = WC()->checkout();
 
 		// Fetch our settings data.
 		$gift_aid_checkbox    = get_option( 'gift_aid_checkbox' );
@@ -88,7 +108,7 @@ class Gift_Aid_for_WooCommerce_Public {
 		$gift_aid_label       = get_option( 'gift_aid_label' );
 
 		// If the country code is 'GB' and all the settings have been configured.
-		if ( 'GB' === $country && ! empty( $gift_aid_checkbox ) && ! empty( $gift_aid_label ) && ! empty( $gift_aid_description ) ) {
+		if ( ! empty( $gift_aid_checkbox ) && ! empty( $gift_aid_label ) && ! empty( $gift_aid_description ) ) {
 
 			// If no heading has been set, we'll need a sensible default.
 			if ( empty( $gift_aid_heading ) ) {
@@ -118,15 +138,6 @@ class Gift_Aid_for_WooCommerce_Public {
 			wp_nonce_field( 'giftaidnonce_order', 'giftaid_order_security' );
 
 			echo '</section>';
-
-			// Check the nonce.
-			$nonce = check_ajax_referer( 'giftaidnonce', 'giftaid_ajax_security', false );
-
-			// If the nonce exists, it's an AJAX call
-			// and therefore we need to exit.
-			if ( $nonce ) {
-				exit();
-			}
 		}
 	}
 

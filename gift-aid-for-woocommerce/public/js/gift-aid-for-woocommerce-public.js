@@ -27,12 +27,12 @@
 				// Fetch and append the container if the country
 				// is GB and the container doesn't exist.
 				var data = {
-					action: 'gift_aid_html', // WP action suffix.
-					security: giftaidhtml.giftaid_ajax_security // Nonce string.
+					action: 'add_to_checkout', // WP action suffix.
+					security: gift_aid_html.security // Nonce string.
 				};
 
 				$.post(
-					giftaidhtml.ajax_url, // AJAX url for WP.
+					gift_aid_html.ajax_url, // AJAX url for WP.
 					data,
 					function( response ) {
 						if ( response !== 0 ) {
