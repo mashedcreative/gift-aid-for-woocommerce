@@ -55,7 +55,7 @@ class Gift_Aid_for_WooCommerce_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->gift_aid_for_woocommerce, plugin_dir_url( __FILE__ ) . 'css/woocommerce-gift-aid-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->gift_aid_for_woocommerce, plugin_dir_url( __FILE__ ) . 'css/gift-aid-for-woocommerce-admin.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Gift_Aid_for_WooCommerce_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->gift_aid_for_woocommerce, plugin_dir_url( __FILE__ ) . 'js/woocommerce-gift-aid-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->gift_aid_for_woocommerce, plugin_dir_url( __FILE__ ) . 'js/gift-aid-for-woocommerce-admin.js', array( 'jquery' ), $this->version, false );
 	}
 
 	/**
