@@ -2,8 +2,8 @@
 Contributors: davetgreen, mkdo
 Tags: woocommerce, gift aid, charity, donations, donate, tax
 Requires at least: 4.3
-Tested up to: 4.6
-Stable tag: 1.2.1
+Tested up to: 4.7
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,7 +31,7 @@ Gift Aid for WooCommerce is also fully translatable in both the admin area and o
 
 == Requirements ==
 
-Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correctly. Tested up to 2.6.4.
+Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correctly. Tested up to 2.6.11.
 
 == Installation ==
 
@@ -40,6 +40,12 @@ Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correct
 3. Configure the plugin in the 'Products' tab of the WooCommerce settings
 
 == Changelog ==
+
+= 1.2.3 =
+* Fixed issue where checkbox and text were being removed at the checkout on document ready. Changed JS event listener to fire on window load. Resolves https://wordpress.org/support/topic/stopped-working-209/#post-8617364 and other similar tickets.
+
+= 1.2.2 = 
+* Fixed 404s with admin area assets as highlighted in https://wordpress.org/support/topic/css-and-js-not-found?replies=3.
 
 = 1.2.1 =
 * Fixed bugs raised in https://wordpress.org/support/topic/css-and-js-not-found?replies=3. Fixed 404s with front-end assets and removed zero added to the AJAX response when the country is changed back to UK at the checkout.
@@ -63,8 +69,10 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 == Roadmap ==
 
-=1.3.0 *~Jan 2016*=
+=1.3.0 *~Jan 2017*=
 * Add a new section in WooCommerce->Reports with data providing a summary of total Gift Aid reclaimed over the specified time period.
+* Move the settings panel into the Checkout tab.
+* Convert the Gift Aid textarea in the plugin settings into a WYSIWYG.
 
-=1.4.0 *~Feb 2016*=
+=1.4.0 *~Feb 2017*=
  Add a dashboard widget to show the data made available in 1.3.0.
