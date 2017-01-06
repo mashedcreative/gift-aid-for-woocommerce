@@ -16,7 +16,7 @@
  * Plugin Name:       Gift Aid for WooCommerce
  * Plugin URI:        https://github.com/mkdo/gift-aid-for-woocommerce/
  * Description:       A plugin for WooCommerce that empowers donors to elect to reclaim Gift Aid at the checkout.
- * Version:           1.2.3
+ * Version:           1.2.4
  * Author:            Make Do <hello@makedo.in>
  * Author URI:        http://www.makedo.in
  * License:           GPL-2.0+
