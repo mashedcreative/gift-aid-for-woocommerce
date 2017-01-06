@@ -3,7 +3,7 @@ Contributors: davetgreen, mkdo
 Tags: woocommerce, gift aid, charity, donations, donate, tax
 Requires at least: 4.3
 Tested up to: 4.7
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,9 @@ Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correct
 3. Configure the plugin in the 'Products' tab of the WooCommerce settings
 
 == Changelog ==
+
+= 1.2.4 =
+* Refactored repository to work with Git to SVN deploy script.
 
 = 1.2.3 =
 * Fixed issue where checkbox and text were being removed at the checkout on document ready. Changed JS event listener to fire on window load. Resolves https://wordpress.org/support/topic/stopped-working-209/#post-8617364 and other similar tickets.

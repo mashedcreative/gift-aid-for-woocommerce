@@ -44,6 +44,9 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 ## Changelog
 
+**1.2.4** - *06.01.2017*
+- Refactored repository to work with Git to SVN deploy script.
+
 **1.2.3** - *04.01.2017* 
 - Fixed issue where checkbox and text were being removed at the checkout on document ready. Changed JS event listener to fire on window load. Resolves https://wordpress.org/support/topic/stopped-working-209/#post-8617364 and other similar tickets.
 
