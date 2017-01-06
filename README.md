@@ -47,7 +47,7 @@ Any future update to the plugin that changes the tab in which the settings can b
 **1.2.3** - *04.01.2017* 
 - Fixed issue where checkbox and text were being removed at the checkout on document ready. Changed JS event listener to fire on window load. Resolves https://wordpress.org/support/topic/stopped-working-209/#post-8617364 and other similar tickets.
 
-**1.2.2** - *05.09.2017* 
+**1.2.2** - *05.09.2016* 
 - Fixed 404s with admin area assets as highlighted in https://wordpress.org/support/topic/css-and-js-not-found?replies=3.
 
 **1.2.1** - *28.08.2016*
