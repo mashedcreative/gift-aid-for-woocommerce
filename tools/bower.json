@@ -1,0 +1,17 @@
+{
+	"name": "plugin-name",
+	"version": "0.1.0",
+	"authors": [
+		"davetgreen"
+	],
+	"license": "MIT",
+	"private": true,
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components"
+	],
+	"dependencies": {
+		"modernizr": "latest"
+	}
+}
