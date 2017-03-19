@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 				// The 'fancy' name for your plugin
 				// e.g. 'My First Plugin'.
 				// -------------------------------------
-				fancy_name: 'Plugin Name',
+				fancy_name: 'Gift Aid for WooCommerce',
 
 				// -------------------------------------
 				// Documentation path relative to the
