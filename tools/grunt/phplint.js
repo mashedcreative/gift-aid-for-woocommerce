@@ -2,5 +2,9 @@
 // ----------------------------------------------------------------------------
 module.exports = {
 	// Lint the plugin PHP.
-	plugin: [ 'php/**/*.php', 'views/**/*.php', 'plugin.php' ],
+	plugin: [
+		'php/**/*.php',
+		'views/**/*.php',
+		'plugin.php'
+	],
 };

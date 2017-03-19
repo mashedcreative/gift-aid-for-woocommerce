@@ -10,7 +10,7 @@
 namespace dtg\plugin_name;
 
 // Traits.
-require_once 'helpers/trait-render-view.php';
+require_once 'traits/trait-render-view.php';
 
 /**
  * Class Helpers.
