@@ -39,7 +39,9 @@
   [90mline 1098[39m  [90mcol 7[39m   [34m'testProp' is defined but never used.[39m
 
 [4m../../assets/dev/js/public.js[24m
-  [90mline 1[39m     [90mcol 13[39m  [34m'$' is defined but never used.[39m
+  [90mline 19[39m    [90mcol 64[39m  [34mStrings must use singlequote.[39m
+  [90mline 31[39m    [90mcol 31[39m  [34m'gift_aid_html' is not defined.[39m
+  [90mline 35[39m    [90mcol 21[39m  [34m'gift_aid_html' is not defined.[39m
 
-  [33m⚠[39m  34 warnings
+  [33m⚠[39m  36 warnings
 
