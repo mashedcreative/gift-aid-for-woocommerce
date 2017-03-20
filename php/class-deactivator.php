@@ -2,7 +2,7 @@
 /**
  * Deactivator Class.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -14,7 +14,7 @@ namespace dtg\gift_aid_for_woocommerce;
  *
  * Carry out actions when the plugin is activated.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -25,7 +25,7 @@ class Deactivator {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_root;
 
@@ -34,7 +34,7 @@ class Deactivator {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_name;
 
@@ -43,14 +43,14 @@ class Deactivator {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_prefix;
 
 	/**
 	 * Constructor.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function __construct() {
 		$this->plugin_root 		 = DTG_GIFT_AID_ROOT;
@@ -61,7 +61,7 @@ class Deactivator {
 	/**
 	 * Unleash Hell.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function run() {
 		// Register the deactivation callback.
@@ -71,7 +71,7 @@ class Deactivator {
 	/**
 	 * Deactivate the plugin.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function deactivate() {
 		// Set a transient to confirm activation.

@@ -2,7 +2,7 @@
 /**
  * CSV Export Class.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -12,9 +12,10 @@ namespace dtg\gift_aid_for_woocommerce;
 /**
  * Class CSV_Export
  *
- * Carry out actions when the plugin is activated.
+ * Provide functionality related to the
+ * WooCommerce Customer/Order CSV Export plugin.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -25,7 +26,7 @@ class CSV_Export {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_root;
 
@@ -34,7 +35,7 @@ class CSV_Export {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_name;
 
@@ -43,14 +44,14 @@ class CSV_Export {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_prefix;
 
 	/**
 	 * Constructor.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function __construct() {
 		$this->plugin_root 		 = DTG_GIFT_AID_ROOT;
@@ -61,7 +62,7 @@ class CSV_Export {
 	/**
 	 * Unleash Hell.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function run() {
 		// Add a Gift Aid column to the output of the WooCommerce CSV Export plugin if it is active.
@@ -75,7 +76,7 @@ class CSV_Export {
 	 * Create a WooCommerce Customer/Order CSV Export column for the Gift Aid status
 	 *
 	 * @param	array $column_headers Array of column headers.
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function wc_csv_export_modify_column_headers( $column_headers ) {
 		// Add the new Gift Aid column.
@@ -92,7 +93,7 @@ class CSV_Export {
 	 * @param	array  $order_data Array of column headers.
 	 * @param	array  $order Array of column headers.
 	 * @param	object $csv_generator Array of column headers.
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function wc_csv_export_modify_row_data( $order_data, $order, $csv_generator ) {
 		// Get the post meta containing the Gift Aid status.

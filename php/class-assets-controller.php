@@ -2,7 +2,7 @@
 /**
  * Assets Controller Class.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -14,7 +14,7 @@ namespace dtg\gift_aid_for_woocommerce;
  *
  * Enqueues JS and CSS dependencies.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -25,7 +25,7 @@ class Assets_Controller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_root;
 
@@ -34,7 +34,7 @@ class Assets_Controller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_name;
 
@@ -43,7 +43,7 @@ class Assets_Controller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_prefix;
 
@@ -52,7 +52,7 @@ class Assets_Controller {
 	 *
 	 * @var 	bool
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $debug_mode;
 
@@ -61,14 +61,14 @@ class Assets_Controller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $asset_suffix;
 
 	/**
 	 * Constructor.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function __construct() {
 		$this->plugin_root 		 = DTG_GIFT_AID_ROOT;
@@ -84,7 +84,7 @@ class Assets_Controller {
 	/**
 	 * Unleash Hell.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function run() {
 		// Enqueue Front-end JS.
@@ -100,7 +100,7 @@ class Assets_Controller {
 	/**
 	 * Enqueue Public Scripts.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function public_enqueue_scripts() {
 
@@ -140,7 +140,7 @@ class Assets_Controller {
 	/**
 	 * Enqueue Admin Scripts.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function admin_enqueue_scripts() {
 
@@ -178,7 +178,7 @@ class Assets_Controller {
 	/**
 	 * Enqueue live preview JS handlers.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	function customizer_preview_js() {
 		$do_customizer_js_enqueue  = apply_filters( $this->plugin_prefix . 'do_customizer_js_enqueue', true );

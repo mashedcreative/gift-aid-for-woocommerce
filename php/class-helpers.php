@@ -2,7 +2,7 @@
 /**
  * Helpers Class.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -17,7 +17,7 @@ require_once 'traits/trait-render-view.php';
  *
  * Helper class containing useful static methods.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */

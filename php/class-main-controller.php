@@ -2,7 +2,7 @@
 /**
  * Main Controller Class.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -12,7 +12,7 @@ namespace dtg\gift_aid_for_woocommerce;
 /**
  * Class Main_Controller
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -23,7 +23,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $activator;
 
@@ -32,7 +32,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $deactivator;
 
@@ -41,7 +41,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $uninstaller;
 
@@ -50,7 +50,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $assets_controller;
 
@@ -59,7 +59,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $settings;
 
@@ -68,7 +68,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $customizer;
 
@@ -77,7 +77,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $orders;
 
@@ -86,7 +86,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $csv_export;
 
@@ -95,7 +95,7 @@ class Main_Controller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_root;
 
@@ -104,7 +104,7 @@ class Main_Controller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_name;
 
@@ -113,7 +113,7 @@ class Main_Controller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_prefix;
 

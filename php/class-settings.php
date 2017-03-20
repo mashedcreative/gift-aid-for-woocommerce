@@ -2,7 +2,7 @@
 /**
  * Settings Class.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -12,7 +12,7 @@ namespace dtg\gift_aid_for_woocommerce;
 /**
  * Class Settings
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -23,7 +23,7 @@ class Settings {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_root;
 
@@ -32,7 +32,7 @@ class Settings {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_name;
 
@@ -41,14 +41,14 @@ class Settings {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_prefix;
 
 	/**
 	 * Constructor.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function __construct() {
 		$this->plugin_root 		 = DTG_GIFT_AID_ROOT;
@@ -59,7 +59,7 @@ class Settings {
 	/**
 	 * Unleash Hell.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function run() {
 		add_filter( 'woocommerce_get_sections_products', array( $this, 'add_section' ), 10 );
@@ -71,7 +71,7 @@ class Settings {
 	 * Create a Gift Aid section in the tab
 	 *
 	 * @param	array $sections An array of sections.
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public static function add_section( $sections ) {
 		$sections['gift_aid'] = apply_filters( $this->plugin_prefix . '_section_name', __( 'Gift Aid', 'gift-aid-for-woocommerce' ) );
@@ -83,7 +83,7 @@ class Settings {
 	 * Add settings to our section
 	 *
 	 * @param	array $settings An array of settings.
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public static function add_settings( $settings ) {
 		global $current_section;
@@ -149,7 +149,7 @@ class Settings {
 	 *
 	 * @param array $links An array of plugin action links.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	function add_setings_link( $links ) {
 		array_unshift( $links, '<a href="settings-general.php?page=' . esc_attr( $this->plugin_prefix ) . '">' . esc_html__( 'Settings', 'gift-aid-for-woocommerce' ) . '</a>' );

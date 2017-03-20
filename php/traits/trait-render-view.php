@@ -2,7 +2,7 @@
 /**
  * Trait Render_View
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -12,7 +12,7 @@ namespace dtg\gift_aid_for_woocommerce;
 /**
  * Helper_Render_View.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */

@@ -2,7 +2,7 @@
 /**
  * Notices Class.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -14,7 +14,7 @@ namespace dtg\gift_aid_for_woocommerce;
  *
  * Generates various plugin notices, including on activation.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -25,7 +25,7 @@ class Notices {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_root;
 
@@ -34,7 +34,7 @@ class Notices {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_name;
 
@@ -43,14 +43,14 @@ class Notices {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_prefix;
 
 	/**
 	 * Constructor
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	function __construct() {
 		$this->plugin_root 		 = DTG_GIFT_AID_ROOT;
@@ -61,7 +61,7 @@ class Notices {
 	/**
 	 * Unleash Hell.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function run() {
 		// Hook in specific functionality such as adding notices etc.
@@ -71,7 +71,7 @@ class Notices {
 	/**
 	 * Display notice(s) on plugin activation.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function display_activation_notices() {
 

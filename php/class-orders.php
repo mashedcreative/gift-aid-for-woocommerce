@@ -2,7 +2,7 @@
 /**
  * Orders Class.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -12,9 +12,9 @@ namespace dtg\gift_aid_for_woocommerce;
 /**
  * Class Orders
  *
- * Add columns to various post type views.
+ * Order related functionality.
  *
- * @since	1.3
+ * @since	1.3.0
  *
  * @package dtg\gift_aid_for_woocommerce
  */
@@ -25,7 +25,7 @@ class Orders {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_root;
 
@@ -34,7 +34,7 @@ class Orders {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_name;
 
@@ -43,14 +43,14 @@ class Orders {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	private $plugin_prefix;
 
 	/**
 	 * Constructor.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function __construct() {
 		$this->plugin_root 		 = DTG_GIFT_AID_ROOT;
@@ -61,7 +61,7 @@ class Orders {
 	/**
 	 * Unleash Hell.
 	 *
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function run() {
 		// Add a sortable Gift Aid column, populated with the status for each order.
@@ -83,7 +83,7 @@ class Orders {
 	 * Add a Gift Aid column to the order screen.
 	 *
 	 * @param	array $columns An array of column names.
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function add_orders_column( $columns ) {
 		// Add columns into our new array if $columns is an array.
@@ -105,7 +105,7 @@ class Orders {
 	 * Populate the Gift Aid column with the post meta.
 	 *
 	 * @param	string $column Column name.
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function add_column_data( $column ) {
 
@@ -127,7 +127,7 @@ class Orders {
 	 * Add the Gift Aid status for each order on the shop orders screen.
 	 *
 	 * @param	object $order Current order object.
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function add_order_details( $order ) {
 		// Get the post meta containing the Gift Aid status.
@@ -139,9 +139,7 @@ class Orders {
 
 		<div class="order_data_column">
 			<h4><?php esc_html_e( 'Gift Aid Details', 'gift-aid-for-woocommerce' ); ?></h4>
-			<?php
-				echo '<p><strong>' . esc_html( __( 'Reclaim Gift Aid', 'gift-aid-for-woocommerce' ) ) . ':</strong> ' . esc_html( $status ) . '</p>';
-			?>
+			<?php echo '<p><strong>' . esc_html( __( 'Reclaim Gift Aid', 'gift-aid-for-woocommerce' ) ) . ':</strong> ' . esc_html( $status ) . '</p>'; ?>
 		</div>
 
 		<?php
@@ -153,7 +151,7 @@ class Orders {
 	 * @param	object  $order The order object.
 	 * @param	boolean $sent_to_admin Whether the email is for the admin.
 	 * @param	boolean $plain_text Whether the email is plain text.
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function add_order_email_meta( $order, $sent_to_admin, $plain_text ) {
 
@@ -165,7 +163,7 @@ class Orders {
 			$message = apply_filters( $this->plugin_prefix . '_order_email_message', __( 'You have chosen to reclaim Gift Aid.', 'gift-aid-for-woocommerce' ) );
 
 			// If Gift Aid is to be reclaimed, confirm this in the email.
-			if ( 'Yes' === $status ) {
+			if ( ! empty( $status ) && 'Yes' === $status ) {
 				echo '<p class="gift-aid-order-email"><strong>' . esc_html( $message ) . '</strong></p>';
 			}
 		}
@@ -175,7 +173,7 @@ class Orders {
 	 * Update order post meta if the donor has chosen to reclaim Gift Aid.
 	 *
 	 * @param	object $order_id The order ID.
-	 * @since	1.3
+	 * @since	1.3.0
 	 */
 	public function update_order_meta( $order_id ) {
 		// Check for our nonce to ensure we're processing a valid order submission.
