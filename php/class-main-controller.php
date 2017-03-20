@@ -82,6 +82,15 @@ class Main_Controller {
 	private $orders;
 
 	/**
+	 * CSV Export functionality.
+	 *
+	 * @var 	object
+	 * @access	private
+	 * @since	1.3
+	 */
+	private $csv_export;
+
+	/**
 	 * Path to the root plugin file.
 	 *
 	 * @var 	string
@@ -119,6 +128,7 @@ class Main_Controller {
 	 * @param 	Assets_Controller $assets_controller Enqueue the public and admin assets.
 	 * @param 	Customizer		  $customizer        Define the customizer options.
 	 * @param 	Orders			  $orders        	 Order related functionality.
+	 * @param 	CSV_Export		  $csv_export        CSV Export functionality.
 	 *
 	 * @since 1.3
 	 */
@@ -130,7 +140,8 @@ class Main_Controller {
 		Notices $notices,
 		Assets_Controller $assets_controller,
 		Customizer $customizer,
-		Orders $orders
+		Orders $orders,
+		CSV_Export $csv_export
 		) {
 
 		$this->plugin_root 		 	= DTG_GIFT_AID_ROOT;
@@ -145,6 +156,7 @@ class Main_Controller {
 		$this->assets_controller	= $assets_controller;
 		$this->customizer			= $customizer;
 		$this->orders				= $orders;
+		$this->csv_export			= $csv_export;
 	}
 
 	/**
@@ -167,5 +179,6 @@ class Main_Controller {
 		$this->assets_controller->run();
 		$this->customizer->run();
 		$this->orders->run();
+		$this->csv_export->run();
 	}
 }
