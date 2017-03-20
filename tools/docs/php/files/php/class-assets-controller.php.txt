@@ -89,7 +89,7 @@ class Assets_Controller {
 	 */
 	public function run() {
 		// Enqueue Front-end JS.
-		add_action( 'public_enqueue_scripts', array( $this, 'public_enqueue_scripts' ), 10 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'public_enqueue_scripts' ), 10 );
 
 		// Enqueue Admin JS.
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10 );
