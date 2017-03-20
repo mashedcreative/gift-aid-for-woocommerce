@@ -13,9 +13,9 @@ module.exports = {
 		]
 	},
 	plugin_public: {
-		src: '<%= pluginInfo.assets_path_prod %>/<%= pluginInfo.css_dir %>/<%= pluginInfo.public_scss_file %>.css',
+		src: '<%= pluginInfo.assets_path_prod %>/<%= pluginInfo.css_dir %>/<%= pluginInfo.plugin_slug %>-<%= pluginInfo.public_scss_file %>.css',
 	},
 	plugin_admin: {
-		src: '<%= pluginInfo.assets_path_prod %>/<%= pluginInfo.css_dir %>/<%= pluginInfo.admin_scss_file %>.css',
+		src: '<%= pluginInfo.assets_path_prod %>/<%= pluginInfo.css_dir %>/<%= pluginInfo.plugin_slug %>-<%= pluginInfo.admin_scss_file %>.css',
 	},
 }

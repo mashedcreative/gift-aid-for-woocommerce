@@ -6,7 +6,7 @@ module.exports = {
 	build: {
 		options: {
 			title: 'Rebuild',
-			message: '<%= pluginInfo.fancy_name %> is ready to rock!'
+			message: '<%= pluginInfo.plugin_name %> is ready to rock!'
 		}
 	},
 	// Notify once plugin is linted.
@@ -14,7 +14,7 @@ module.exports = {
 	plugin: {
 		options: {
 			title: 'PHP',
-			message: '<%= pluginInfo.fancy_name %> PHP is error free!'
+			message: '<%= pluginInfo.plugin_name %> PHP is error free!'
 		}
 	},
 	// Notify once scripts are concatenated
@@ -23,7 +23,7 @@ module.exports = {
 	scripts: {
 		options: {
 			title: 'Scripts',
-			message: '<%= pluginInfo.fancy_name %> scripts processed!'
+			message: '<%= pluginInfo.plugin_name %> scripts processed!'
 		}
 	},
 	// Notify once styles are processed and
@@ -32,7 +32,7 @@ module.exports = {
 	styles: {
 		options: {
 			title: 'Styles',
-			message: '<%= pluginInfo.fancy_name %> styles processed!'
+			message: '<%= pluginInfo.plugin_name %> styles processed!'
 		}
 	},
 	// Notify once images are minified.
@@ -40,7 +40,7 @@ module.exports = {
 	images: {
 		options: {
 			title: 'Images',
-			message: '<%= pluginInfo.fancy_name %> images processed!'
+			message: '<%= pluginInfo.plugin_name %> images processed!'
 		}
 	},
 	// Notify once all documentation has
@@ -49,7 +49,7 @@ module.exports = {
 	docs: {
 		options: {
 			title: 'Docs',
-			message: '<%= pluginInfo.fancy_name %> docs generated!'
+			message: '<%= pluginInfo.plugin_name %> docs generated!'
 		}
 	},
 	// Notify once all code has been linted.
@@ -57,7 +57,7 @@ module.exports = {
 	linting: {
 		options: {
 			title: 'Linting',
-			message: '<%= pluginInfo.fancy_name %> files linted!'
+			message: '<%= pluginInfo.plugin_name %> files linted!'
 		}
 	},
 	// Notify once all images have been
@@ -66,7 +66,7 @@ module.exports = {
 	images: {
 		options: {
 			title: 'Images',
-			message: '<%= pluginInfo.fancy_name %> images minified!'
+			message: '<%= pluginInfo.plugin_name %> images minified!'
 		}
 	}
 };

@@ -26,7 +26,13 @@ module.exports = function(grunt) {
 				// The 'fancy' name for your plugin
 				// e.g. 'My First Plugin'.
 				// -------------------------------------
-				fancy_name: 'Gift Aid for WooCommerce',
+				plugin_name: 'Gift Aid for WooCommerce',
+
+				// -------------------------------------
+				// The 'slug' for your plugin
+				// e.g. 'my-first-plugin'.
+				// -------------------------------------
+				plugin_slug: 'gift-aid-for-woocommerce',
 
 				// -------------------------------------
 				// Documentation path relative to the
@@ -86,8 +92,8 @@ module.exports = function(grunt) {
 			// for PUBLIC enqueues.
 			// -------------------------------------
 			concatPublic: [
-				'<%= pluginInfo.assets_path_dev %>/<%= pluginInfo.js_dir %>/lib/_modernizr_custom.js',
-				'<%= pluginInfo.assets_path_dev %>/<%= pluginInfo.js_dir %>/public.js'
+				'<%= pluginInfo.assets_path_dev %>/<%= pluginInfo.js_dir %>/lib/_modernizr-custom.js',
+				'<%= pluginInfo.assets_path_dev %>/<%= pluginInfo.js_dir %>/<%= pluginInfo.plugin_slug %>-public.js'
 			],
 
 			// -------------------------------------
@@ -95,7 +101,7 @@ module.exports = function(grunt) {
 			// for ADMIN enqueues.
 			// -------------------------------------
 			concatAdmin: [
-				'<%= pluginInfo.assets_path_dev %>/<%= pluginInfo.js_dir %>/admin.js'
+				'<%= pluginInfo.assets_path_dev %>/<%= pluginInfo.js_dir %>/<%= pluginInfo.plugin_slug %>-admin.js'
 			],
 
 			// -------------------------------------
@@ -103,7 +109,7 @@ module.exports = function(grunt) {
 			// for CUSTOMIZER enqueues.
 			// -------------------------------------
 			concatCustomizer: [
-				'<%= pluginInfo.assets_path_dev %>/<%= pluginInfo.js_dir %>/customizer.js'
+				'<%= pluginInfo.assets_path_dev %>/<%= pluginInfo.js_dir %>/<%= pluginInfo.plugin_slug %>-customizer.js'
 			],
 
 			// -------------------------------------

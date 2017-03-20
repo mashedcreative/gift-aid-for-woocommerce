@@ -18,21 +18,21 @@ module.exports = {
 	// -------------------------------------
 	public: {
 		files: {
-			'<%= pluginInfo.assets_path_prod %>/<%= pluginInfo.js_dir %>/public.min.js': [ '<%= concat.public.dest %>' ]
+			'<%= pluginInfo.assets_path_prod %>/<%= pluginInfo.js_dir %>/<%= pluginInfo.plugin_slug %>-public.min.js': [ '<%= concat.public.dest %>' ]
 		}
 	},
 	// Admin JS.
 	// -------------------------------------
 	admin: {
 		files: {
-			'<%= pluginInfo.assets_path_prod %>/<%= pluginInfo.js_dir %>/admin.min.js': [ '<%= concat.admin.dest %>' ]
+			'<%= pluginInfo.assets_path_prod %>/<%= pluginInfo.js_dir %>/<%= pluginInfo.plugin_slug %>-admin.min.js': [ '<%= concat.admin.dest %>' ]
 		}
 	},
 	// Customizer JS.
  	// -------------------------------------
 	customizer: {
 		files: {
-			'<%= pluginInfo.assets_path_prod %>/<%= pluginInfo.js_dir %>/customizer.min.js': [ '<%= concat.customizer.dest %>' ]
+			'<%= pluginInfo.assets_path_prod %>/<%= pluginInfo.js_dir %>/<%= pluginInfo.plugin_slug %>-customizer.min.js': [ '<%= concat.customizer.dest %>' ]
 		}
 	},
 
