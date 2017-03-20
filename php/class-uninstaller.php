@@ -66,7 +66,6 @@ class Uninstaller {
 	public function __construct() {
 		$this->plugin_root 		 = DTG_GIFT_AID_ROOT;
 		$this->plugin_name		 = DTG_GIFT_AID_NAME;
-		'gift-aid-for-woocommerce' = DTG_PLUGIN_NAME_TEXT_DOMAIN;
 		$this->plugin_prefix     = DTG_GIFT_AID_PREFIX;
 	}
 
@@ -77,8 +76,8 @@ class Uninstaller {
 	 */
 	public function run() {
 		// Exit if WordPress hasn't requested the uninstall.
-		if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-			exit();
-		}
+		// if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+		// 	exit();
+		// }
 	}
 }

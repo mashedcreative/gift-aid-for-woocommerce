@@ -74,6 +74,7 @@ class Assets_Controller {
 		$this->plugin_root 		 = DTG_GIFT_AID_ROOT;
 		$this->plugin_name		 = DTG_GIFT_AID_NAME;
 		$this->plugin_prefix     = DTG_GIFT_AID_PREFIX;
+		$this->plugin_slug		 = DTG_GIFT_AID_SLUG;
 
 		// Determine whether we're in debug mode, and what the
 		// asset suffix should be.
@@ -110,11 +111,11 @@ class Assets_Controller {
 
 		// Public CSS.
 		if ( $do_public_enqueue && $do_public_css_enqueue ) {
-			$public_css_url  = plugins_url( '/assets/prod/css/public' . $this->asset_suffix . '.css', $this->plugin_root );
-			$public_css_path = dirname( $this->plugin_root ) . '/assets/prod/public' . $this->asset_suffix . '.css';
+			$public_css_url  = plugins_url( '/assets/prod/css/' . $this->plugin_slug . '-public' . $this->asset_suffix . '.css', $this->plugin_root );
+			$public_css_path = dirname( $this->plugin_root ) . '/assets/prod/' . $this->plugin_slug . '-public' . $this->asset_suffix . '.css';
 
 			wp_enqueue_style(
-				'gift-aid-for-woocommerce' . '-public-css',
+				$this->plugin_slug . '-public-css',
 				$public_css_url,
 				array(),
 				filemtime( $public_css_path ),
@@ -124,17 +125,27 @@ class Assets_Controller {
 
 		// Public JS.
 		if ( $do_public_enqueue && $do_public_js_enqueue ) {
-			$public_js_url   = plugins_url( '/assets/prod/js/public' . $this->asset_suffix . '.js', $this->plugin_root );
-			$public_js_path  = dirname( $this->plugin_root ) . '/assets/prod/js/public' . $this->asset_suffix . '.js';
+			$public_js_url   = plugins_url( '/assets/prod/js/' . $this->plugin_slug . '-public' . $this->asset_suffix . '.js', $this->plugin_root );
+			$public_js_path  = dirname( $this->plugin_root ) . '/assets/prod/js/' . $this->plugin_slug . '-public' . $this->asset_suffix . '.js';
 
 			wp_enqueue_script(
-				'gift-aid-for-woocommerce' . '-public-js',
+				$this->plugin_slug . '-public-js',
 				$public_js_url,
 				array( 'jquery' ),
 				filemtime( $public_js_path ),
 				true
 			);
 		}
+
+		// Localize the Public JS.
+		wp_localize_script(
+			$this->plugin_slug . '-public-js',
+			'gift_aid_html',
+			array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'security' => wp_create_nonce( 'giftaid_ajax_security' ),
+			)
+		);
 	}
 
 	/**
@@ -149,11 +160,11 @@ class Assets_Controller {
 		$do_admin_js_enqueue  = apply_filters( $this->plugin_prefix . 'do_admin_js_enqueue', true );
 
 		if ( $do_admin_enqueue && $do_admin_css_enqueue ) {
-			$admin_css_url  = plugins_url( '/assets/prod/css/admin' . $this->asset_suffix . '.css', $this->plugin_root );
-			$admin_css_path = dirname( $this->plugin_root ) . '/assets/prod/css/admin' . $this->asset_suffix . '.css';
+			$admin_css_url  = plugins_url( '/assets/prod/css/' . $this->plugin_slug . '-admin' . $this->asset_suffix . '.css', $this->plugin_root );
+			$admin_css_path = dirname( $this->plugin_root ) . '/assets/prod/css/' . $this->plugin_slug . '-admin' . $this->asset_suffix . '.css';
 
 			wp_enqueue_style(
-				'gift-aid-for-woocommerce' . '-admin-css',
+				$this->plugin_slug . '-admin-css',
 				$admin_css_url,
 				array(),
 				filemtime( $admin_css_path ),
@@ -162,11 +173,11 @@ class Assets_Controller {
 		}
 
 		if ( $do_admin_enqueue && $do_admin_js_enqueue ) {
-			$admin_js_url   = plugins_url( '/assets/prod/js/admin' . $this->asset_suffix . '.js', $this->plugin_root );
-			$admin_js_path  = dirname( $this->plugin_root ) . '/assets/prod/js/admin' . $this->asset_suffix . '.js';
+			$admin_js_url   = plugins_url( '/assets/prod/js/' . $this->plugin_slug . '-admin' . $this->asset_suffix . '.js', $this->plugin_root );
+			$admin_js_path  = dirname( $this->plugin_root ) . '/assets/prod/js/' . $this->plugin_slug . '-admin' . $this->asset_suffix . '.js';
 
 			wp_enqueue_script(
-				'gift-aid-for-woocommerce' . '-admin-js',
+				$this->plugin_slug . '-admin-js',
 				$admin_js_url,
 				array( 'jquery' ),
 				filemtime( $admin_js_path ),
@@ -184,10 +195,10 @@ class Assets_Controller {
 		$do_customizer_js_enqueue  = apply_filters( $this->plugin_prefix . 'do_customizer_js_enqueue', true );
 
 		if ( $do_customizer_js_enqueue ) {
-			$customizer_js_url  = plugins_url( '/assets/prod/js/customizer' . $this->asset_suffix . '.js', $this->plugin_root );
-			$customizer_js_path = dirname( $this->plugin_root ) . '/assets/prod/js/customizer' . $this->asset_suffix . '.js';
+			$customizer_js_url  = plugins_url( '/assets/prod/js/' . $this->plugin_slug . '-customizer' . $this->asset_suffix . '.js', $this->plugin_root );
+			$customizer_js_path = dirname( $this->plugin_root ) . '/assets/prod/js/' . $this->plugin_slug . '-customizer' . $this->asset_suffix . '.js';
 
-			wp_enqueue_script( 'gift-aid-for-woocommerce' . '-customizer', $customizer_js_url, array( 'customize-preview' ), filemtime( $customizer_js_path ), true );
+			wp_enqueue_script( $this->plugin_slug . '-customizer', $customizer_js_url, array( 'customize-preview' ), filemtime( $customizer_js_path ), true );
 		}
 	}
 }

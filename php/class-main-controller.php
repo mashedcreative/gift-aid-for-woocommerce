@@ -130,7 +130,7 @@ class Main_Controller {
 	 * @param 	Orders			  $orders        	 Order related functionality.
 	 * @param 	CSV_Export		  $csv_export        CSV Export functionality.
 	 *
-	 * @since 1.3
+	 * @since 1.3.0
 	 */
 	public function __construct(
 		Settings $settings,
@@ -162,7 +162,7 @@ class Main_Controller {
 	/**
 	 * Unleash Hell.
 	 *
-	 * @since		1.3
+	 * @since	1.3.0
 	 */
 	public function run() {
 		load_plugin_textdomain(
