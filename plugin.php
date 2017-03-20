@@ -42,6 +42,7 @@ require_once 'php/class-notices.php';
 require_once 'php/class-assets-controller.php';
 require_once 'php/class-customizer.php';
 require_once 'php/class-orders.php';
+require_once 'php/class-checkout.php';
 require_once 'php/class-csv-export.php';
 require_once 'php/class-main-controller.php';
 
@@ -55,6 +56,7 @@ use dtg\gift_aid_for_woocommerce\Notices;
 use dtg\gift_aid_for_woocommerce\Assets_Controller;
 use dtg\gift_aid_for_woocommerce\Customizer;
 use dtg\gift_aid_for_woocommerce\Orders;
+use dtg\gift_aid_for_woocommerce\Checkout;
 use dtg\gift_aid_for_woocommerce\CSV_Export;
 use dtg\gift_aid_for_woocommerce\Main_Controller;
 
@@ -71,6 +73,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	$assets_controller  	  = new Assets_Controller();
 	$customizer               = new Customizer();
 	$orders            		  = new Orders();
+	$checkout            	  = new Checkout();
 	$csv_export				  = new CSV_Export();
 	$main_controller          = new Main_Controller(
 		$settings,
@@ -81,6 +84,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		$assets_controller,
 		$customizer,
 		$orders,
+		$checkout,
 		$csv_export
 	);
 

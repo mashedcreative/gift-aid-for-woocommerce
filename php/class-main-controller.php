@@ -82,6 +82,15 @@ class Main_Controller {
 	private $orders;
 
 	/**
+	 * Checkout related functionality.
+	 *
+	 * @var 	object
+	 * @access	private
+	 * @since	1.3.0
+	 */
+	private $checkout;
+
+	/**
 	 * CSV Export functionality.
 	 *
 	 * @var 	object
@@ -128,6 +137,7 @@ class Main_Controller {
 	 * @param 	Assets_Controller $assets_controller Enqueue the public and admin assets.
 	 * @param 	Customizer		  $customizer        Define the customizer options.
 	 * @param 	Orders			  $orders        	 Order related functionality.
+	 * @param 	Checkout		  $checkout        	 Checkout related functionality.
 	 * @param 	CSV_Export		  $csv_export        CSV Export functionality.
 	 *
 	 * @since 1.3.0
@@ -141,6 +151,7 @@ class Main_Controller {
 		Assets_Controller $assets_controller,
 		Customizer $customizer,
 		Orders $orders,
+		Checkout $checkout,
 		CSV_Export $csv_export
 		) {
 
@@ -156,6 +167,7 @@ class Main_Controller {
 		$this->assets_controller	= $assets_controller;
 		$this->customizer			= $customizer;
 		$this->orders				= $orders;
+		$this->checkout				= $checkout;
 		$this->csv_export			= $csv_export;
 	}
 
@@ -179,6 +191,7 @@ class Main_Controller {
 		$this->assets_controller->run();
 		$this->customizer->run();
 		$this->orders->run();
+		$this->checkout->run();
 		$this->csv_export->run();
 	}
 }
