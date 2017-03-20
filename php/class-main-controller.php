@@ -2,19 +2,19 @@
 /**
  * Main Controller Class.
  *
- * @since	0.1.0
+ * @since	1.3
  *
- * @package dtg\plugin_name
+ * @package dtg\gift_aid_for_woocommerce
  */
 
-namespace dtg\plugin_name;
+namespace dtg\gift_aid_for_woocommerce;
 
 /**
  * Class Main_Controller
  *
- * @since	0.1.0
+ * @since	1.3
  *
- * @package dtg\plugin_name
+ * @package dtg\gift_aid_for_woocommerce
  */
 class Main_Controller {
 
@@ -23,7 +23,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $activator;
 
@@ -32,7 +32,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $deactivator;
 
@@ -41,7 +41,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $uninstaller;
 
@@ -50,7 +50,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $assets_controller;
 
@@ -59,7 +59,7 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $settings;
 
@@ -68,16 +68,25 @@ class Main_Controller {
 	 *
 	 * @var 	object
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $customizer;
+
+	/**
+	 * Order related functionality.
+	 *
+	 * @var 	object
+	 * @access	private
+	 * @since	1.3
+	 */
+	private $orders;
 
 	/**
 	 * Path to the root plugin file.
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_root;
 
@@ -86,25 +95,16 @@ class Main_Controller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_name;
-
-	/**
-	 * Plugin text-domain.
-	 *
-	 * @var 	string
-	 * @access	private
-	 * @since	0.1.0
-	 */
-	private $plugin_textdomain;
 
 	/**
 	 * Plugin prefix.
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_prefix;
 
@@ -118,8 +118,9 @@ class Main_Controller {
 	 * @param 	Notices			  $notices           Display notices in various conditions.
 	 * @param 	Assets_Controller $assets_controller Enqueue the public and admin assets.
 	 * @param 	Customizer		  $customizer        Define the customizer options.
+	 * @param 	Orders			  $orders        	 Order related functionality.
 	 *
-	 * @since 0.1.0
+	 * @since 1.3
 	 */
 	public function __construct(
 		Settings $settings,
@@ -128,13 +129,13 @@ class Main_Controller {
 		Uninstaller $uninstaller,
 		Notices $notices,
 		Assets_Controller $assets_controller,
-		Customizer $customizer
+		Customizer $customizer,
+		Orders $orders
 		) {
 
-		$this->plugin_root 		 	= DTG_PLUGIN_NAME_ROOT;
-		$this->plugin_name		 	= DTG_PLUGIN_NAME_NAME;
-		$this->plugin_textdomain 	= DTG_PLUGIN_NAME_TEXT_DOMAIN;
-		$this->plugin_prefix     	= DTG_PLUGIN_NAME_PREFIX;
+		$this->plugin_root 		 	= DTG_GIFT_AID_ROOT;
+		$this->plugin_name		 	= DTG_GIFT_AID_NAME;
+		$this->plugin_prefix     	= DTG_GIFT_AID_PREFIX;
 
 		$this->settings				= $settings;
 		$this->activator			= $activator;
@@ -143,16 +144,17 @@ class Main_Controller {
 		$this->notices				= $notices;
 		$this->assets_controller	= $assets_controller;
 		$this->customizer			= $customizer;
+		$this->orders				= $orders;
 	}
 
 	/**
 	 * Unleash Hell.
 	 *
-	 * @since		0.1.0
+	 * @since		1.3
 	 */
 	public function run() {
 		load_plugin_textdomain(
-			$this->plugin_textdomain,
+			'gift-aid-for-woocommerce',
 			false,
 			$this->plugin_root . '/../languages'
 		);
@@ -164,5 +166,6 @@ class Main_Controller {
 		$this->notices->run();
 		$this->assets_controller->run();
 		$this->customizer->run();
+		$this->orders->run();
 	}
 }

@@ -2,19 +2,19 @@
 /**
  * Settings Class.
  *
- * @since	0.1.0
+ * @since	1.3
  *
- * @package dtg\plugin_name
+ * @package dtg\gift_aid_for_woocommerce
  */
 
-namespace dtg\plugin_name;
+namespace dtg\gift_aid_for_woocommerce;
 
 /**
  * Class Settings
  *
- * @since	0.1.0
+ * @since	1.3
  *
- * @package dtg\plugin_name
+ * @package dtg\gift_aid_for_woocommerce
  */
 class Settings {
 
@@ -23,7 +23,7 @@ class Settings {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_root;
 
@@ -32,154 +32,127 @@ class Settings {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_name;
-
-	/**
-	 * Plugin text-domain.
-	 *
-	 * @var 	string
-	 * @access	private
-	 * @since	0.1.0
-	 */
-	private $plugin_textdomain;
 
 	/**
 	 * Plugin prefix.
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_prefix;
 
 	/**
 	 * Constructor.
 	 *
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	public function __construct() {
-		$this->plugin_root 		 = DTG_PLUGIN_NAME_ROOT;
-		$this->plugin_name		 = DTG_PLUGIN_NAME_NAME;
-		$this->plugin_textdomain = DTG_PLUGIN_NAME_TEXT_DOMAIN;
-		$this->plugin_prefix     = DTG_PLUGIN_NAME_PREFIX;
+		$this->plugin_root 		 = DTG_GIFT_AID_ROOT;
+		$this->plugin_name		 = DTG_GIFT_AID_NAME;
+		$this->plugin_prefix     = DTG_GIFT_AID_PREFIX;
 	}
 
 	/**
-	 * Do Work
+	 * Unleash Hell.
 	 *
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	public function run() {
-		add_action( 'admin_init', array( $this, 'init_settings_page' ) );
-		add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
+		add_filter( 'woocommerce_get_sections_products', array( $this, 'add_section' ), 10 );
+		add_filter( 'woocommerce_get_settings_products', array( $this, 'add_settings' ), 10, 2 );
 		add_action( 'plugin_action_links_' . plugin_basename( $this->plugin_root ) , array( $this, 'add_setings_link' ) );
 	}
 
 	/**
-	 * Initialise the Settings Page.
+	 * Create a Gift Aid section in the tab
 	 *
-	 * @since	0.1.0
+	 * @param	array $sections An array of sections.
+	 * @since	1.3
 	 */
-	public function init_settings_page() {
+	public static function add_section( $sections ) {
+		$sections['gift_aid'] = apply_filters( $this->plugin_prefix . '_section_name', __( 'Gift Aid', 'gift-aid-for-woocommerce' ) );
 
-		// Register settings.
-		register_setting( $this->plugin_prefix . '_settings_group', $this->plugin_prefix . '_example_setting' );
-
-		// Add sections.
-		add_settings_section( $this->plugin_prefix . '_example_section',
-			esc_html__( 'Example Section Heading', $this->plugin_textdomain ),
-			array( $this, $this->plugin_prefix . '_example_section_cb' ),
-			$this->plugin_prefix . '_settings'
-		);
-
-		// Add fields to a section.
-		add_settings_field( $this->plugin_prefix . '_example_field',
-			esc_html__( 'Example Field Label:', $this->plugin_textdomain ),
-			array( $this, $this->plugin_prefix . '_example_field_cb' ),
-			$this->plugin_prefix . '_settings',
-			$this->plugin_prefix . '_example_section'
-		);
+		return $sections;
 	}
 
 	/**
-	 * Call back for the example section.
+	 * Add settings to our section
 	 *
-	 * @since	0.1.0
+	 * @param	array $settings An array of settings.
+	 * @since	1.3
 	 */
-	public function plugin_name_example_section_cb() {
-		echo '<p>' . esc_html( 'Example description for this section.', $this->plugin_textdomain ) . '</p>';
-	}
+	public static function add_settings( $settings ) {
+		global $current_section;
 
-	/**
-	 * Call back for the example field.
-	 *
-	 * @since	0.1.0
-	 */
-	public function plugin_name_example_field_cb() {
-		$example_option = get_option( $this->plugin_prefix . '_example_option', 'Default text...' );
-		?>
+		if ( ! empty( $current_section ) && 'gift_aid' === $current_section ) {
 
-		<div class="field field-example">
-			<p class="field-description">
-				<?php esc_html_e( 'This is an example field.', $this->plugin_textdomain );?>
-			</p>
-			<ul class="field-input">
-				<li>
-					<label>
-						<input type="text" name="<?php echo esc_attr( $this->plugin_prefix . '_example_field' ); ?>" value="<?php echo esc_attr( $example_option ); ?>" />
-					</label>
-				</li>
-			</ul>
-		</div>
+			$settings_gift_aid = array();
 
-		<?php
-	}
+			$settings_gift_aid[] = array(
+				'name'  => __( 'Gift Aid', 'gift-aid-for-woocommerce' ),
+				'type'  => 'title',
+				'desc'  => __( 'If you\'re a charitable organisation based in the UK using WooCommerce to accept donations, it is highly likely that you need to give your donors the option to reclaim Gift Aid so that you can claim an extra 25p for every £1 they give. Once configured, this plugin will empower your donors to reclaim Gift Aid on their donations.', 'gift-aid-for-woocommerce' ),
+				'id'    => 'gift_aid_section_title',
+			);
 
-	/**
-	 * Add the settings page.
-	 *
-	 * @since	0.1.0
-	 */
-	public function add_settings_page() {
-		add_submenu_page( 'settings-general.php',
-			esc_html__( 'Example Settings', $this->plugin_textdomain ),
-			esc_html__( 'Plugin Name', $this->plugin_textdomain ),
-			'manage_settings',
-			$this->plugin_prefix,
-			array( $this, 'render_settings_page' )
-		);
-	}
+			$settings_gift_aid[] = array(
+				'name'  => __( 'Enable Gift Aid', 'gift-aid-for-woocommerce' ),
+				'type'  => 'checkbox',
+				'desc'  => __( 'Whether or not to enable Gift Aid at the checkout.', 'gift-aid-for-woocommerce' ),
+				'id'    => 'gift_aid_checkbox',
+				'class' => 'gift-aid-checkbox',
+			);
 
-	/**
-	 * Render the settings page.
-	 *
-	 * @since	0.1.0
-	 */
-	public function render_settings_page() {
-		?>
-		<div class="wrap">
-			<h2><?php esc_html_e( 'Plugin Name', $this->plugin_textdomain );?></h2>
+			$settings_gift_aid[] = array(
+				'name'  => __( 'Section Heading', 'gift-aid-for-woocommerce' ),
+				'type'  => 'text',
+				'desc'  => __( 'Optional heading for the Gift Aid section at the checkout. Defaults to "Reclaim Gift Aid".', 'gift-aid-for-woocommerce' ),
+				'id'    => 'gift_aid_heading',
+				'class' => 'gift-aid-heading',
+			);
 
-			<form action="settings.php" method="POST">
-				<?php settings_fields( $this->plugin_prefix . '_settings_group' ); ?>
-				<?php do_settings_sections( $this->plugin_prefix . '_settings' ); ?>
-				<?php submit_button(); ?>
-			</form>
-		</div>
-	<?php
+			$settings_gift_aid[] = array(
+				'name'  => __( 'Checkbox Label', 'gift-aid-for-woocommerce' ),
+				'type'  => 'text',
+				'desc'  => __( 'Label for the checkbox. Must be populated in order for the Gift Aid option to appear at the checkout.', 'gift-aid-for-woocommerce' ),
+				'id'    => 'gift_aid_label',
+				'class' => 'gift-aid-label',
+			);
+
+			$settings_gift_aid[] = array(
+				'name'  => __( 'Description', 'gift-aid-for-woocommerce' ),
+				'type'  => 'textarea',
+				'desc'  => __( 'Text explaining Gift Aid to the donor. Must be populated in order for the Gift Aid option to appear at the checkout.', 'gift-aid-for-woocommerce' ),
+				'id'    => 'gift_aid_info',
+				'class' => 'gift-aid-info',
+			);
+
+			$settings_gift_aid[] = array(
+				'type' => 'sectionend',
+				'id'   => 'gift_aid_section_end',
+			);
+
+			return apply_filters( $this->plugin_prefix . '_settings', $settings_gift_aid );
+		} else {
+			return apply_filters( $this->plugin_prefix . '_settings', $settings );
+		}
 	}
 
 	/**
 	 * Add 'Settings' action on installed plugin list.
 	 *
+	 * @todo Link to the proper URL for the products tab.
+	 *
 	 * @param array $links An array of plugin action links.
 	 *
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	function add_setings_link( $links ) {
-		array_unshift( $links, '<a href="settings-general.php?page=' . esc_attr( $this->plugin_prefix ) . '">' . esc_html__( 'Settings', $this->plugin_textdomain ) . '</a>' );
+		array_unshift( $links, '<a href="settings-general.php?page=' . esc_attr( $this->plugin_prefix ) . '">' . esc_html__( 'Settings', 'gift-aid-for-woocommerce' ) . '</a>' );
 
 		return $links;
 	}

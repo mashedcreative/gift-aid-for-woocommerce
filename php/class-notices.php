@@ -2,21 +2,21 @@
 /**
  * Notices Class.
  *
- * @since	0.1.0
+ * @since	1.3
  *
- * @package dtg\plugin_name
+ * @package dtg\gift_aid_for_woocommerce
  */
 
-namespace dtg\plugin_name;
+namespace dtg\gift_aid_for_woocommerce;
 
 /**
  * Class Notices
  *
  * Generates various plugin notices, including on activation.
  *
- * @since	0.1.0
+ * @since	1.3
  *
- * @package dtg\plugin_name
+ * @package dtg\gift_aid_for_woocommerce
  */
 class Notices {
 
@@ -25,7 +25,7 @@ class Notices {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_root;
 
@@ -34,44 +34,34 @@ class Notices {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_name;
-
-	/**
-	 * Plugin text-domain.
-	 *
-	 * @var 	string
-	 * @access	private
-	 * @since	0.1.0
-	 */
-	private $plugin_textdomain;
 
 	/**
 	 * Plugin prefix.
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_prefix;
 
 	/**
 	 * Constructor
 	 *
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	function __construct() {
-		$this->plugin_root 		 = DTG_PLUGIN_NAME_ROOT;
-		$this->plugin_name		 = DTG_PLUGIN_NAME_NAME;
-		$this->plugin_textdomain = DTG_PLUGIN_NAME_TEXT_DOMAIN;
-		$this->plugin_prefix     = DTG_PLUGIN_NAME_PREFIX;
+		$this->plugin_root 		 = DTG_GIFT_AID_ROOT;
+		$this->plugin_name		 = DTG_GIFT_AID_NAME;
+		$this->plugin_prefix     = DTG_GIFT_AID_PREFIX;
 	}
 
 	/**
 	 * Unleash Hell.
 	 *
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	public function run() {
 		// Hook in specific functionality such as adding notices etc.
@@ -81,7 +71,7 @@ class Notices {
 	/**
 	 * Display notice(s) on plugin activation.
 	 *
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	public function display_activation_notices() {
 
@@ -91,7 +81,7 @@ class Notices {
 			$activation_notices = array();
 
 			// Add a successful activation notice.
-			$activation_text      = __( sprintf( '%s has been successfully activated.', $this->plugin_name ), $this->plugin_textdomain );
+			$activation_text      = __( sprintf( '%s is now active and can be configured in the Products tab of your WooCommerce settings.', $this->plugin_name ), 'gift-aid-for-woocommerce' );
 			$activation_notice    = apply_filters( $this->plugin_prefix . '_activation_notice', $activation_text );
 			$activation_notices[] = $activation_notice;
 

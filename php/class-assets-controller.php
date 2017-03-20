@@ -2,21 +2,21 @@
 /**
  * Assets Controller Class.
  *
- * @since	0.1.0
+ * @since	1.3
  *
- * @package dtg\plugin_name
+ * @package dtg\gift_aid_for_woocommerce
  */
 
-namespace dtg\plugin_name;
+namespace dtg\gift_aid_for_woocommerce;
 
 /**
  * Class Assets_Controller
  *
  * Enqueues JS and CSS dependencies.
  *
- * @since	0.1.0
+ * @since	1.3
  *
- * @package dtg\plugin_name
+ * @package dtg\gift_aid_for_woocommerce
  */
 class Assets_Controller {
 
@@ -25,7 +25,7 @@ class Assets_Controller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_root;
 
@@ -34,25 +34,16 @@ class Assets_Controller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_name;
-
-	/**
-	 * Plugin text-domain.
-	 *
-	 * @var 	string
-	 * @access	private
-	 * @since	0.1.0
-	 */
-	private $plugin_textdomain;
 
 	/**
 	 * Plugin prefix.
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_prefix;
 
@@ -61,7 +52,7 @@ class Assets_Controller {
 	 *
 	 * @var 	bool
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $debug_mode;
 
@@ -70,20 +61,19 @@ class Assets_Controller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $asset_suffix;
 
 	/**
 	 * Constructor.
 	 *
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	public function __construct() {
-		$this->plugin_root 		 = DTG_PLUGIN_NAME_ROOT;
-		$this->plugin_name		 = DTG_PLUGIN_NAME_NAME;
-		$this->plugin_textdomain = DTG_PLUGIN_NAME_TEXT_DOMAIN;
-		$this->plugin_prefix     = DTG_PLUGIN_NAME_PREFIX;
+		$this->plugin_root 		 = DTG_GIFT_AID_ROOT;
+		$this->plugin_name		 = DTG_GIFT_AID_NAME;
+		$this->plugin_prefix     = DTG_GIFT_AID_PREFIX;
 
 		// Determine whether we're in debug mode, and what the
 		// asset suffix should be.
@@ -94,7 +84,7 @@ class Assets_Controller {
 	/**
 	 * Unleash Hell.
 	 *
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	public function run() {
 		// Enqueue Front-end JS.
@@ -110,7 +100,7 @@ class Assets_Controller {
 	/**
 	 * Enqueue Public Scripts.
 	 *
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	public function public_enqueue_scripts() {
 
@@ -124,7 +114,7 @@ class Assets_Controller {
 			$public_css_path = dirname( $this->plugin_root ) . '/assets/prod/public' . $this->asset_suffix . '.css';
 
 			wp_enqueue_style(
-				$this->plugin_textdomain . '-public-css',
+				'gift-aid-for-woocommerce' . '-public-css',
 				$public_css_url,
 				array(),
 				filemtime( $public_css_path ),
@@ -138,7 +128,7 @@ class Assets_Controller {
 			$public_js_path  = dirname( $this->plugin_root ) . '/assets/prod/js/public' . $this->asset_suffix . '.js';
 
 			wp_enqueue_script(
-				$this->plugin_textdomain . '-public-js',
+				'gift-aid-for-woocommerce' . '-public-js',
 				$public_js_url,
 				array( 'jquery' ),
 				filemtime( $public_js_path ),
@@ -150,7 +140,7 @@ class Assets_Controller {
 	/**
 	 * Enqueue Admin Scripts.
 	 *
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	public function admin_enqueue_scripts() {
 
@@ -163,7 +153,7 @@ class Assets_Controller {
 			$admin_css_path = dirname( $this->plugin_root ) . '/assets/prod/css/admin' . $this->asset_suffix . '.css';
 
 			wp_enqueue_style(
-				$this->plugin_textdomain . '-admin-css',
+				'gift-aid-for-woocommerce' . '-admin-css',
 				$admin_css_url,
 				array(),
 				filemtime( $admin_css_path ),
@@ -176,7 +166,7 @@ class Assets_Controller {
 			$admin_js_path  = dirname( $this->plugin_root ) . '/assets/prod/js/admin' . $this->asset_suffix . '.js';
 
 			wp_enqueue_script(
-				$this->plugin_textdomain . '-admin-js',
+				'gift-aid-for-woocommerce' . '-admin-js',
 				$admin_js_url,
 				array( 'jquery' ),
 				filemtime( $admin_js_path ),
@@ -188,7 +178,7 @@ class Assets_Controller {
 	/**
 	 * Enqueue live preview JS handlers.
 	 *
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	function customizer_preview_js() {
 		$do_customizer_js_enqueue  = apply_filters( $this->plugin_prefix . 'do_customizer_js_enqueue', true );
@@ -197,7 +187,7 @@ class Assets_Controller {
 			$customizer_js_url  = plugins_url( '/assets/prod/js/customizer' . $this->asset_suffix . '.js', $this->plugin_root );
 			$customizer_js_path = dirname( $this->plugin_root ) . '/assets/prod/js/customizer' . $this->asset_suffix . '.js';
 
-			wp_enqueue_script( $this->plugin_textdomain . '-customizer', $customizer_js_url, array( 'customize-preview' ), filemtime( $customizer_js_path ), true );
+			wp_enqueue_script( 'gift-aid-for-woocommerce' . '-customizer', $customizer_js_url, array( 'customize-preview' ), filemtime( $customizer_js_path ), true );
 		}
 	}
 }

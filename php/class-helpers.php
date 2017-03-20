@@ -2,12 +2,12 @@
 /**
  * Helpers Class.
  *
- * @since	0.1.0
+ * @since	1.3
  *
- * @package dtg\plugin_name
+ * @package dtg\gift_aid_for_woocommerce
  */
 
-namespace dtg\plugin_name;
+namespace dtg\gift_aid_for_woocommerce;
 
 // Traits.
 require_once 'traits/trait-render-view.php';
@@ -17,9 +17,9 @@ require_once 'traits/trait-render-view.php';
  *
  * Helper class containing useful static methods.
  *
- * @since	0.1.0
+ * @since	1.3
  *
- * @package dtg\plugin_name
+ * @package dtg\gift_aid_for_woocommerce
  */
 class Helpers {
 	use Helper_Render_View;

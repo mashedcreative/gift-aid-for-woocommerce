@@ -2,14 +2,14 @@
 /**
  * Uninstaller Class.
  *
- * @since	0.1.0
+ * @since	1.3
  *
- * @package dtg\plugin_name
+ * @package dtg\gift_aid_for_woocommerce
  *
  * @todo - Needs work to provide proper validation ahead of an uninstall.
  */
 
-namespace dtg\plugin_name;
+namespace dtg\gift_aid_for_woocommerce;
 
 /**
  * Class Uninstaller
@@ -25,9 +25,9 @@ namespace dtg\plugin_name;
  * - Repeat with other user roles. Best directly by using the links/query string parameters.
  * - Repeat things for multisite. Once for a single site in the network, once sitewide.
  *
- * @since		0.1.0
+ * @since		1.3
  *
- * @package dtg\plugin_name
+ * @package dtg\gift_aid_for_woocommerce
  */
 class Uninstaller {
 
@@ -36,7 +36,7 @@ class Uninstaller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_root;
 
@@ -45,44 +45,35 @@ class Uninstaller {
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_name;
-
-	/**
-	 * Plugin text-domain.
-	 *
-	 * @var 	string
-	 * @access	private
-	 * @since	0.1.0
-	 */
-	private $plugin_textdomain;
 
 	/**
 	 * Plugin prefix.
 	 *
 	 * @var 	string
 	 * @access	private
-	 * @since	0.1.0
+	 * @since	1.3
 	 */
 	private $plugin_prefix;
 
 	/**
 	 * Constructor.
 	 *
-	 * @since		0.1.0
+	 * @since		1.3
 	 */
 	public function __construct() {
-		$this->plugin_root 		 = DTG_PLUGIN_NAME_ROOT;
-		$this->plugin_name		 = DTG_PLUGIN_NAME_NAME;
-		$this->plugin_textdomain = DTG_PLUGIN_NAME_TEXT_DOMAIN;
-		$this->plugin_prefix     = DTG_PLUGIN_NAME_PREFIX;
+		$this->plugin_root 		 = DTG_GIFT_AID_ROOT;
+		$this->plugin_name		 = DTG_GIFT_AID_NAME;
+		'gift-aid-for-woocommerce' = DTG_PLUGIN_NAME_TEXT_DOMAIN;
+		$this->plugin_prefix     = DTG_GIFT_AID_PREFIX;
 	}
 
 	/**
 	 * Unleash Hell.
 	 *
-	 * @since		0.1.0
+	 * @since		1.3
 	 */
 	public function run() {
 		// Exit if WordPress hasn't requested the uninstall.

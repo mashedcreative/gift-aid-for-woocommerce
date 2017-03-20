@@ -1,23 +1,23 @@
 <?php
 /**
- * Plugin Name
+ * Gift Aid for WooCommerce
  *
- * @link              https://github.com/davetgreen/plugin-name
+ * @link              https://github.com/davetgreen/gift-aid-for-woocommerce
  *
- * @since	0.1.0
+ * @since	1.3
  *
- * @package           dtg\plugin-name
+ * @package           dtg\gift-aid-for-woocommerce
  *
- * Plugin Name:       Plugin Name
- * Plugin URI:        https://github.com/davetgreen/plugin-name
- * Description:       A brief description of the plugin.
- * Version:           0.1.0
+ * Plugin Name:       Gift Aid for WooCommerce
+ * Plugin URI:        https://github.com/davetgreen/gift-aid-for-woocommerce
+ * Description:       A plugin for WooCommerce that empowers donors to elect to reclaim Gift Aid at the checkout.
+ * Version:           1.3
  * Contributors:	  davetgreen, mkdo
  * Author:            Dave Green <hello@davetgreen.me>
  * Author URI:        http://www.davetgreen.me
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       plugin-name
+ * Text Domain:       gift-aid-for-woocommerce
  * Domain Path:       /languages
  */
 
@@ -26,52 +26,59 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-// Constants.
-define( 'DTG_PLUGIN_NAME_ROOT', __FILE__ );
-define( 'DTG_PLUGIN_NAME_NAME', 'Plugin Name' );
-define( 'DTG_PLUGIN_NAME_TEXT_DOMAIN', 'plugin-name' );
-define( 'DTG_PLUGIN_NAME_PREFIX', 'plugin_name' );
+// Bootstrap the plugin if WooCommerce is active.
+if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 
-// Classes.
-require_once 'php/class-settings.php';
-require_once 'php/class-helpers.php';
-require_once 'php/class-activator.php';
-require_once 'php/class-deactivator.php';
-require_once 'php/class-uninstaller.php';
-require_once 'php/class-notices.php';
-require_once 'php/class-assets-controller.php';
-require_once 'php/class-customizer.php';
-require_once 'php/class-main-controller.php';
+	// Constants.
+	define( 'DTG_GIFT_AID_ROOT', __FILE__ );
+	define( 'DTG_GIFT_AID_NAME', 'Gift Aid for WooCommerce' );
+	define( 'DTG_GIFT_AID_PREFIX', 'gift_aid_for_woocommerce' );
 
-// Namespaces.
-use dtg\plugin_name\Settings;
-use dtg\plugin_name\Helpers;
-use dtg\plugin_name\Activator;
-use dtg\plugin_name\Deactivator;
-use dtg\plugin_name\Uninstaller;
-use dtg\plugin_name\Notices;
-use dtg\plugin_name\Assets_Controller;
-use dtg\plugin_name\Customizer;
-use dtg\plugin_name\Main_Controller;
+	// Classes.
+	require_once 'php/class-settings.php';
+	require_once 'php/class-helpers.php';
+	require_once 'php/class-activator.php';
+	require_once 'php/class-deactivator.php';
+	require_once 'php/class-uninstaller.php';
+	require_once 'php/class-notices.php';
+	require_once 'php/class-assets-controller.php';
+	require_once 'php/class-customizer.php';
+	require_once 'php/class-orders.php';
+	require_once 'php/class-main-controller.php';
 
-// Instances.
-$settings                 = new Settings();
-$helpers				  = new Helpers();
-$activator    			  = new Activator();
-$deactivator  			  = new Deactivator();
-$uninstaller  			  = new Uninstaller();
-$notices	  			  = new Notices();
-$assets_controller  	  = new Assets_Controller();
-$customizer               = new Customizer();
-$main_controller          = new Main_Controller(
-	$settings,
-	$activator,
-	$deactivator,
-	$uninstaller,
-	$notices,
-	$assets_controller,
-	$customizer
-);
+	// Namespaces.
+	use dtg\gift_aid_for_woocommerce\Settings;
+	use dtg\gift_aid_for_woocommerce\Helpers;
+	use dtg\gift_aid_for_woocommerce\Activator;
+	use dtg\gift_aid_for_woocommerce\Deactivator;
+	use dtg\gift_aid_for_woocommerce\Uninstaller;
+	use dtg\gift_aid_for_woocommerce\Notices;
+	use dtg\gift_aid_for_woocommerce\Assets_Controller;
+	use dtg\gift_aid_for_woocommerce\Customizer;
+	use dtg\gift_aid_for_woocommerce\Orders;
+	use dtg\gift_aid_for_woocommerce\Main_Controller;
 
-// Go.
-$main_controller->run();
+	// Instances.
+	$settings                 = new Settings();
+	$helpers				  = new Helpers();
+	$activator    			  = new Activator();
+	$deactivator  			  = new Deactivator();
+	$uninstaller  			  = new Uninstaller();
+	$notices	  			  = new Notices();
+	$assets_controller  	  = new Assets_Controller();
+	$customizer               = new Customizer();
+	$orders            		  = new Orders();
+	$main_controller          = new Main_Controller(
+		$settings,
+		$activator,
+		$deactivator,
+		$uninstaller,
+		$notices,
+		$assets_controller,
+		$customizer,
+		$orders,
+	);
+
+	// Go.
+	$main_controller->run();
+}
