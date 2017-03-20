@@ -73,6 +73,10 @@ class Orders {
 
 		// Add the Gift Aid meta to the order confirmation email.
 		add_action( 'woocommerce_email_before_order_table', array( $this, 'add_order_email_meta' ), 10, 3 );
+
+		// Update the meta data for the order.
+		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'update_order_meta' ), 10 );
+
 	}
 
 	/**
@@ -120,7 +124,7 @@ class Orders {
 	}
 
 	/**
-	 * Add the Gift Aid status for each order on the shop orders screen
+	 * Add the Gift Aid status for each order on the shop orders screen.
 	 *
 	 * @param	object $order Current order object.
 	 * @since	1.3
@@ -144,11 +148,12 @@ class Orders {
 	}
 
 	/**
-	 * Add the Gift Aid meta to order emails
+	 * Add the Gift Aid meta to order emails.
 	 *
-	 * @param object  $order The order object.
-	 * @param boolean $sent_to_admin Whether the email is for the admin.
-	 * @param boolean $plain_text Whether the email is plain text.
+	 * @param	object  $order The order object.
+	 * @param	boolean $sent_to_admin Whether the email is for the admin.
+	 * @param	boolean $plain_text Whether the email is plain text.
+	 * @since	1.3
 	 */
 	public function add_order_email_meta( $order, $sent_to_admin, $plain_text ) {
 
@@ -162,6 +167,31 @@ class Orders {
 			// If Gift Aid is to be reclaimed, confirm this in the email.
 			if ( 'Yes' === $status ) {
 				echo '<p class="gift-aid-order-email"><strong>' . esc_html( $message ) . '</strong></p>';
+			}
+		}
+	}
+
+	/**
+	 * Update order post meta if the donor has chosen to reclaim Gift Aid.
+	 *
+	 * @param	object $order_id The order ID.
+	 * @since	1.3
+	 */
+	public function update_order_meta( $order_id ) {
+		// Check for our nonce to ensure we're processing a valid order submission.
+		$nonce = check_ajax_referer( 'giftaidnonce_order', 'giftaid_order_security', false );
+
+		if ( isset( $_POST['gift_aid_reclaimed'] ) && ! empty( $nonce ) ) {
+
+			// Get our checkbox value.
+			$reclaimed = sanitize_text_field( wp_unslash( $_POST['gift_aid_reclaimed'] ) );
+
+			if ( ! empty( $reclaimed ) ) {
+				// Convert the default checkbox value to something more readable.
+				$status = ( '1' === $reclaimed ) ? __( 'Yes', 'gift-aid-for-woocommerce' ) : __( 'No', 'gift-aid-for-woocommerce' );
+
+				// Update the order post meta.
+				update_post_meta( $order_id, 'gift_aid_reclaimed', esc_attr( $status ) );
 			}
 		}
 	}
