@@ -1,10 +1,8 @@
 .gift-aid-heading,
 .gift-aid-label {
   display: block;
-  margin-bottom: 16px;
   min-width: 350px; }
 
 .gift-aid-info {
   min-height: 200px;
-  margin-top: 16px;
   width: 80%; }
