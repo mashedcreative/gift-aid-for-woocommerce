@@ -117,9 +117,8 @@ class Assets_Controller {
 			wp_enqueue_style(
 				$this->plugin_slug . '-public-css',
 				$public_css_url,
-				array(),
-				filemtime( $public_css_path ),
-				true
+				false,
+				filemtime( $public_css_path )
 			);
 		}
 
@@ -166,9 +165,8 @@ class Assets_Controller {
 			wp_enqueue_style(
 				$this->plugin_slug . '-admin-css',
 				$admin_css_url,
-				array(),
-				filemtime( $admin_css_path ),
-				true
+				false,
+				filemtime( $admin_css_path )
 			);
 		}
 
