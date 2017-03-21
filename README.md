@@ -26,7 +26,7 @@ Gift Aid for WooCommerce is also fully translatable in both the admin area and o
 
 ## Requirements
 
-Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correctly.
+Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correctly. Tested up to 2.6.4.
 
 ## Installation
 
@@ -43,6 +43,9 @@ Adding a dedicated tab just for this plugin's settings is overkill, so it's unli
 Any future update to the plugin that changes the tab in which the settings can be found will have no impact on your saved settings or any of the advertised functionality.
 
 ## Changelog
+
+**1.3.0** - *21.03.2017*
+- Completed a full refactor of the underlying plugin structure, including some minor tweaks and the addition of several more developer filters.
 
 **1.2.4** - *06.01.2017*
 - Refactored repository to work with Git to SVN deploy script.
@@ -67,11 +70,12 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 ## Roadmap
 
-**1.3.0** - *~Jan 2017*
+**1.4.0** - *~April 2017*
 - Add a new section in WooCommerce->Reports with data providing a summary of total Gift Aid reclaimed over the specified time period.
+- Add the total amount of Gift Aid that can be reclaimed to the checkout, thank you page and order emails.
 - Move the settings panel into the Checkout tab.
 - Convert the Gift Aid textarea in the plugin settings into a WYSIWYG.
 
-**1.4.0** - *~Feb 2017*
+**1.5.0** - *~May 2017*
  - Add a dashboard widget to show the data made available in 1.3.0.
 
