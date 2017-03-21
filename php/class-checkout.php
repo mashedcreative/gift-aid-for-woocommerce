@@ -106,7 +106,7 @@ class Checkout {
 
 			// Output the information.
 			if ( ! empty( $gift_aid_description ) ) {
-				echo '<p id="gift-aid-description">' . esc_html( $gift_aid_description ) . '</p>';
+				echo '<div id="gift-aid-description">' . wp_kses_post( wpautop( $gift_aid_description ) ) . '</div>';
 			}
 
 			// Echo the checkbox field with label text.
