@@ -152,7 +152,7 @@ class Settings {
 	 * @since	1.3.0
 	 */
 	function add_setings_link( $links ) {
-		array_unshift( $links, '<a href="settings-general.php?page=' . esc_attr( $this->plugin_prefix ) . '">' . esc_html__( 'Settings', 'gift-aid-for-woocommerce' ) . '</a>' );
+		array_unshift( $links, '<a href="' . admin_url() . 'admin.php?page=wc-settings&tab=products&section=gift_aid">' . esc_html__( 'Settings', 'gift-aid-for-woocommerce' ) . '</a>' );
 
 		return $links;
 	}
