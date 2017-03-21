@@ -154,13 +154,12 @@ echo "Moving assets"
 # Make the directory if it doesn't already exist
 mkdir -p $SVNPATH/assets/
 mv $SVNPATH/trunk/assets/wporg/* $SVNPATH/assets/
-mv $SVNPATH/trunk/assets/prod/** $SVNPATH/assets/
+mv $SVNPATH/trunk/assets/** $SVNPATH/assets/
 svn add --force $SVNPATH/assets/
 # We dont want all of our toys in the SVN repo, so lets remove them:
 echo "Deleting unwanted assets"
 svn delete --force $SVNPATH/trunk/assets/wporg
-svn delete --force $SVNPATH/trunk/assets/dev
-svn delete --force $SVNPATH/trunk/assets/prod
+svn delete --force $SVNPATH/trunk/assets/development
 svn delete --force $SVNPATH/trunk/examples
 svn delete --force $SVNPATH/trunk/tools
 svn delete --force $SVNPATH/trunk/.DS_Store

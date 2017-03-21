@@ -1,6 +1,6 @@
 === Gift Aid for WooCommerce ===
 Contributors: davetgreen, mkdo
-Tags: woocommerce, gift aid, charity, donations, donate, tax
+Tags: woocommerce, gift aid, charity, donations, donate
 Requires at least: 4.3
 Tested up to: 4.7.3
 Stable tag: 1.3.0

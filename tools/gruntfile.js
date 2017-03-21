@@ -56,8 +56,8 @@ module.exports = function(grunt) {
 				// Assets path relative to the plugin
 				// root - NO trailing slash.
 				// -------------------------------------
-				assets_path_dev: 'assets/dev',
-				assets_path_prod: 'assets/prod',
+				assets_path_dev: 'assets/development',
+				assets_path_prod: 'assets',
 
 				// -------------------------------------
 				// Image assets directory.

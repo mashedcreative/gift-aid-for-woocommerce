@@ -15,7 +15,7 @@ module.exports = function( grunt ) {
 		"newer:svgmin",
 		"newer:imagemin",
 		"clean",
-		"document",
+		// "document",
 		"notify:build"
 	] );
 };
