@@ -158,11 +158,11 @@ mv $SVNPATH/trunk/assets/** $SVNPATH/assets/
 svn add --force $SVNPATH/assets/
 # We dont want all of our toys in the SVN repo, so lets remove them:
 echo "Deleting unwanted assets"
-svn delete --force $SVNPATH/trunk/assets/wporg
-svn delete --force $SVNPATH/trunk/assets/development
-svn delete --force $SVNPATH/trunk/examples
-svn delete --force $SVNPATH/trunk/tools
-svn delete --force $SVNPATH/trunk/.DS_Store
+svn delete --force --quiet $SVNPATH/trunk/assets/wporg
+svn delete --force --quiet $SVNPATH/trunk/assets/development
+svn delete --force --quiet $SVNPATH/trunk/examples
+svn delete --force --quiet $SVNPATH/trunk/tools
+svn delete --force --quiet $SVNPATH/trunk/.DS_Store
 
 echo "Changing directory to SVN and committing to trunk"
 cd $SVNPATH/trunk/
@@ -186,7 +186,6 @@ cd $SVNPATH
 svn update --quiet $SVNPATH/tags/$PLUGINVERSION
 svn copy --quiet trunk/ tags/$PLUGINVERSION/
 # Remove assets and trunk directories from tag directory
-svn delete --force --quiet $SVNPATH/tags/$PLUGINVERSION/assets
 svn delete --force --quiet $SVNPATH/tags/$PLUGINVERSION/trunk
 cd $SVNPATH/tags/$PLUGINVERSION
 svn commit --username=$SVNUSER -m "Tagging version $PLUGINVERSION"
