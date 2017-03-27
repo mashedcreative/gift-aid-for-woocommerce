@@ -24,7 +24,7 @@ default_svnurl="https://plugins.svn.wordpress.org/$PLUGINSLUG"
 default_svnuser="davetgreen"
 default_plugindir="$CURRENTDIR"
 default_mainfile="woocommerce-gift-aid.php"
-MAINFILE="plugin.php"
+MAINFILE="woocommerce-gift-aid.php"
 SVNUSER="davetgreen"
 SVNPATH="/tmp/$PLUGINSLUG"
 
