@@ -23,7 +23,7 @@ default_svnpath="/tmp/$PLUGINSLUG"
 default_svnurl="https://plugins.svn.wordpress.org/$PLUGINSLUG"
 default_svnuser="davetgreen"
 default_plugindir="$CURRENTDIR"
-default_mainfile="plugin.php"
+default_mainfile="woocommerce-gift-aid.php"
 MAINFILE="plugin.php"
 SVNUSER="davetgreen"
 SVNPATH="/tmp/$PLUGINSLUG"
@@ -58,15 +58,31 @@ echo "OK to proceed?"
 echo "y - proceed"
 echo "n - abort"
 echo "g - deploy to GitHub only"
+echo "t - deploy to SVN Sandbox only"
 read -e input
 PROCEED="${input:-y}"
 echo
 
 # Allow user cancellation
-if [ "$PROCEED" != "y" || "$PROCEED" != "g" ]; then echo "Aborting..."; exit 1; fi
+if [ "$PROCEED" != "y" || "$PROCEED" != "g" || "$PROCEED" != "t" ]; then echo "Aborting..."; exit 1; fi
 
 # git config
 GITPATH="$PLUGINDIR/" # this file should be in the base of your git repository
+
+if [ "$PROCEED" == "t" ];
+	then
+
+	echo "Configuring for Sandbox..."
+
+	SVNURL="https://svn2.sliksvn.com/makedo_mkdo/$PLUGINSLUG"
+	SVNUSER="mkdo"
+
+	echo "Sandbox URL: $SVNURL"
+	echo "Sandbox User: $SVNUSER"
+
+	echo "Configured for Sandbox!"
+
+fi;
 
 # Let's begin...
 echo ".........................................."
@@ -76,47 +92,53 @@ echo
 echo ".........................................."
 echo
 
-# Check version in readme.txt is the same as plugin file after translating both to unix line breaks to work around grep's failure to identify mac line breaks
-PLUGINVERSION=`grep "Version:" $GITPATH/$MAINFILE | awk -F' ' '{print $NF}' | tr -d '\r'`
-echo "$MAINFILE version: $PLUGINVERSION"
-READMEVERSION=`grep "^Stable tag:" $GITPATH/readme.txt | awk -F' ' '{print $NF}' | tr -d '\r'`
-echo "readme.txt version: $READMEVERSION"
-
-if [ "$READMEVERSION" = "trunk" ]; then
-	echo "Version in readme.txt & $MAINFILE don't match, but Stable tag is trunk. Let's proceed..."
-elif [ "$PLUGINVERSION" != "$READMEVERSION" ]; then
-	echo "Version in readme.txt & $MAINFILE don't match. Exiting...."
-	exit 1;
-elif [ "$PLUGINVERSION" = "$READMEVERSION" ]; then
-	echo "Versions match in readme.txt and $MAINFILE. Let's proceed..."
-fi
-
-if git show-ref --tags --quiet --verify -- "refs/tags/$PLUGINVERSION"
+# GITHUB
+if [ "$PROCEED" != "t" ];
 	then
-		echo "Version $PLUGINVERSION already exists as git tag. Exiting....";
+
+	# Check version in readme.txt is the same as plugin file after translating both to unix line breaks to work around grep's failure to identify mac line breaks
+	PLUGINVERSION=`grep "Version:" $GITPATH/$MAINFILE | awk -F' ' '{print $NF}' | tr -d '\r'`
+	echo "$MAINFILE version: $PLUGINVERSION"
+	READMEVERSION=`grep "^Stable tag:" $GITPATH/readme.txt | awk -F' ' '{print $NF}' | tr -d '\r'`
+	echo "readme.txt version: $READMEVERSION"
+
+	if [ "$READMEVERSION" = "trunk" ]; then
+		echo "Version in readme.txt & $MAINFILE don't match, but Stable tag is trunk. Let's proceed..."
+	elif [ "$PLUGINVERSION" != "$READMEVERSION" ]; then
+		echo "Version in readme.txt & $MAINFILE don't match. Exiting...."
 		exit 1;
-	else
-		echo "Git version does not exist. Let's proceed..."
-fi
+	elif [ "$PLUGINVERSION" = "$READMEVERSION" ]; then
+		echo "Versions match in readme.txt and $MAINFILE. Let's proceed..."
+	fi
 
-echo "Changing to $GITPATH"
-cd $GITPATH
+	if git show-ref --tags --quiet --verify -- "refs/tags/$PLUGINVERSION"
+		then
+			echo "Version $PLUGINVERSION already exists as git tag. Exiting....";
+			exit 1;
+		else
+			echo "Git version does not exist. Let's proceed..."
+	fi
 
-echo -e "Enter a commit message for this new version: \c"
-read COMMITMSG
+	echo "Changing to $GITPATH"
+	cd $GITPATH
 
-git add -A
-git commit -m "$COMMITMSG"
+	echo -e "Enter a commit message for this new version: \c"
+	read COMMITMSG
 
-echo "Tagging new version in git"
-git tag -a "$PLUGINVERSION" -m "Tagging version $PLUGINVERSION"
+	git add -A
+	git commit -m "$COMMITMSG"
 
-echo "Pushing git master to origin, with tags"
-git push origin master
-git push origin master --tags
+	echo "Tagging new version in git"
+	git tag -a "$PLUGINVERSION" -m "Tagging version $PLUGINVERSION"
 
-if [ "$PROCEED" != "y" ]; then echo "GitHub deploy complete, now aborting before we do the SVN deploy."; exit 1; fi
+	echo "Pushing git master to origin, with tags"
+	git push origin master
+	git push origin master --tags
 
+	if [ "$PROCEED" != "y" ]; then echo "GitHub deploy complete, now aborting before we do the SVN deploy."; exit 1; fi
+fi;
+
+#SVN
 echo
 echo "Creating local copy of SVN repo trunk ..."
 svn checkout $SVNURL $SVNPATH --depth immediates
@@ -154,7 +176,6 @@ echo "Moving assets"
 # Make the directory if it doesn't already exist
 mkdir -p $SVNPATH/assets/
 mv $SVNPATH/trunk/assets/wporg/* $SVNPATH/assets/
-mv $SVNPATH/trunk/assets/** $SVNPATH/assets/
 svn add --force $SVNPATH/assets/
 # We dont want all of our toys in the SVN repo, so lets remove them:
 echo "Deleting unwanted assets"
