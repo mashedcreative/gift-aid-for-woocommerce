@@ -11,7 +11,7 @@
  * Plugin Name:       Gift Aid for WooCommerce
  * Plugin URI:        https://github.com/davetgreen/gift-aid-for-woocommerce
  * Description:       A plugin for WooCommerce that empowers donors to elect to reclaim Gift Aid at the checkout.
- * Version:           1.3.0
+ * Version:           1.3.1
  * Contributors:	  davetgreen, mkdo
  * Author:            Dave Green <hello@davetgreen.me>
  * Author URI:        http://www.davetgreen.me
@@ -65,7 +65,6 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 	// Instances.
 	$settings                 = new Settings();
-	$helpers				  = new Helpers();
 	$activator    			  = new Activator();
 	$deactivator  			  = new Deactivator();
 	$uninstaller  			  = new Uninstaller();
