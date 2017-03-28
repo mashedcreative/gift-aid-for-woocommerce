@@ -10,7 +10,7 @@
 namespace dtg\gift_aid_for_woocommerce;
 
 // Traits.
-require_once 'traits/trait-render-view.php';
+// require_once 'traits/trait-render-view.php';
 
 /**
  * Class Helpers.
@@ -22,5 +22,5 @@ require_once 'traits/trait-render-view.php';
  * @package dtg\gift_aid_for_woocommerce
  */
 class Helpers {
-	use Helper_Render_View;
+	//use Helper_Render_View;
 }

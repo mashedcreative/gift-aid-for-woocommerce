@@ -44,6 +44,9 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 ## Changelog
 
+**1.3.1** - *28.03.2017*
+- Bug fixes.
+
 **1.3.0** - *21.03.2017*
 - Completed a full refactor of the underlying plugin structure, including some minor tweaks and the addition of several more developer filters.
 
