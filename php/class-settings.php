@@ -73,7 +73,7 @@ class Settings {
 	 * @param	array $sections An array of sections.
 	 * @since	1.3.0
 	 */
-	public static function add_section( $sections ) {
+	public function add_section( $sections ) {
 		$sections['gift_aid'] = apply_filters( $this->plugin_prefix . '_section_name', __( 'Gift Aid', 'gift-aid-for-woocommerce' ) );
 
 		return $sections;
@@ -85,7 +85,7 @@ class Settings {
 	 * @param	array $settings An array of settings.
 	 * @since	1.3.0
 	 */
-	public static function add_settings( $settings ) {
+	public function add_settings( $settings ) {
 		global $current_section;
 
 		if ( ! empty( $current_section ) && 'gift_aid' === $current_section ) {
@@ -148,13 +148,11 @@ class Settings {
 	/**
 	 * Add 'Settings' action on installed plugin list.
 	 *
-	 * @todo Link to the proper URL for the products tab.
-	 *
 	 * @param array $links An array of plugin action links.
 	 *
 	 * @since	1.3.0
 	 */
-	function add_setings_link( $links ) {
+	public function add_setings_link( $links ) {
 		array_unshift( $links, '<a href="' . admin_url() . 'admin.php?page=wc-settings&tab=products&section=gift_aid">' . esc_html__( 'Settings', 'gift-aid-for-woocommerce' ) . '</a>' );
 
 		return $links;
