@@ -44,6 +44,9 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 ## Changelog
 
+**1.3.2** - *05.05.2017*
+- Fixed settings issue that was causing a fatal error for some users.
+
 **1.3.1** - *28.03.2017*
 - Bug fixes.
 

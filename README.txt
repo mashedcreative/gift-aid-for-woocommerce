@@ -3,7 +3,7 @@ Contributors: davetgreen, mkdo
 Tags: woocommerce, gift aid, charity, donations, donate
 Requires at least: 4.3
 Tested up to: 4.7.3
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,9 @@ Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correct
 3. Configure the plugin in the 'Products' tab of the WooCommerce settings
 
 == Changelog ==
+
+= 1.3.2 =
+* Fixed settings issue that was causing a fatal error for some users.
 
 = 1.3.1 =
 * Bug fixes.
