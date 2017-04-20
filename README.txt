@@ -11,6 +11,8 @@ A plugin for WooCommerce that empowers donors to elect to reclaim Gift Aid at th
 
 == Description ==
 
+*Note:* Your web server needs to be running PHP version 5.4 in order to use this plugin.
+
 If you're a charitable organisation based in the UK using WooCommerce to accept donations, it is highly likely that you need to give your donors the option to reclaim [Gift Aid](https://www.gov.uk/donating-to-charity/gift-aid) so that you can claim an extra 25p for every £1 they give.
 
 Gift Aid for WooCommerce removes the need for any bespoke development to add this feature. Once installed, the plugin offers the following functionality:
@@ -31,7 +33,7 @@ Gift Aid for WooCommerce is also fully translatable in both the admin area and o
 
 == Requirements ==
 
-Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correctly. Tested up to 2.6.4.
+Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correctly. Tested up to 2.6.4. PHP version 5.4 is also required.
 
 == Installation ==
 
@@ -40,6 +42,9 @@ Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correct
 3. Configure the plugin in the 'Products' tab of the WooCommerce settings
 
 == Changelog ==
+
+= 1.3.3 =
+* Added minimum PHP version notice to README.
 
 = 1.3.2 =
 * Fixed settings issue that was causing a fatal error for some users.
