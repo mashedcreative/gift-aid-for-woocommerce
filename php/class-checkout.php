@@ -156,7 +156,7 @@ class Checkout {
 	 * @param	integer $order_id Order ID.
 	 * @since	1.3.0
 	 */
-	public static function add_to_thank_you( $order_id ) {
+	public function add_to_thank_you( $order_id ) {
 		// Get the post meta containing the Gift Aid status.
 		$status = get_post_meta( $order_id, 'gift_aid_reclaimed', true );
 
