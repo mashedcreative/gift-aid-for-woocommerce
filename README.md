@@ -28,7 +28,7 @@ Gift Aid for WooCommerce is also fully translatable in both the admin area and o
 
 ## Requirements
 
-Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correctly. Tested up to 2.6.4. PHP version 5.4 is also required.
+Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correctly. Tested up to 3.0.8. PHP version 5.4 is also required, recommend version 5.6 or higher.
 
 ## Installation
 
