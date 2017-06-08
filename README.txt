@@ -2,8 +2,8 @@
 Contributors: davetgreen, mkdo
 Tags: woocommerce, gift aid, charity, donations, donate
 Requires at least: 4.3
-Tested up to: 4.7.3
-Stable tag: 1.3.3
+Tested up to: 4.7.5
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correct
 
 == Changelog ==
 
+= 1.3.4 =
+* Bug fix: incorrect use of static keyword in checkout class causing fatal errors.
+
 = 1.3.3 =
 * Added minimum PHP version notice to README.
 
@@ -61,7 +64,7 @@ Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correct
 = 1.2.3 =
 * Fixed issue where checkbox and text were being removed at the checkout on document ready. Changed JS event listener to fire on window load. Resolves https://wordpress.org/support/topic/stopped-working-209/#post-8617364 and other similar tickets.
 
-= 1.2.2 = 
+= 1.2.2 =
 * Fixed 404s with admin area assets as highlighted in https://wordpress.org/support/topic/css-and-js-not-found?replies=3.
 
 = 1.2.1 =
@@ -70,7 +73,7 @@ Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correct
 = 1.2.0 =
 * Refactored to comply with WordPress.org repo rules.
 
-= 1.1.0 = 
+= 1.1.0 =
 * Gift Aid markup inserted via AJAX if switching to the UK from another country.
 
 = 1.0.0 =
@@ -78,7 +81,7 @@ Gift Aid for WooCommerce requires at least WooCommerce 2.2.3 to function correct
 
 == Known Issues ==
 
-Due to the fact that WooCommerce core is missing the ability to use the `woocommerce_get_settings_` filter to add settings to either the *checkout* or *tax* tabs we're having to put them in the *Products* tab for now. 
+Due to the fact that WooCommerce core is missing the ability to use the `woocommerce_get_settings_` filter to add settings to either the *checkout* or *tax* tabs we're having to put them in the *Products* tab for now.
 
 Adding a dedicated tab just for this plugin's settings is overkill, so it's unlikely that this particular workaround will be implemented in the meantime.
 
@@ -86,11 +89,11 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 == Roadmap ==
 
-=1.4.0= *~April 2017*=
+=1.4.0= *~June 2017*=
 * Add a new section in WooCommerce->Reports with data providing a summary of total Gift Aid reclaimed over the specified time period.
 * Add the total amount of Gift Aid that can be reclaimed to the checkout, thank you page and order emails.
 * Move the settings panel into the Checkout tab.
 * Convert the Gift Aid textarea in the plugin settings into a WYSIWYG.
 
-=1.5.0= *~May 2017*=
+=1.5.0= *~July 2017*=
 * Add a dashboard widget to show the data made available in 1.4.0.
