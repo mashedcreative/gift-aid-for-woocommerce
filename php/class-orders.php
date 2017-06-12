@@ -160,10 +160,10 @@ class Orders {
 
 		if ( ! $sent_to_admin ) {
 			// Set our confirmation message for the customer.
-			$message = apply_filters( $this->plugin_prefix . '_order_email_message', __( 'You have chosen to reclaim Gift Aid.', 'gift-aid-for-woocommerce' ) );
+			$message = apply_filters( $this->plugin_prefix . '_order_email_message_customer', __( 'You have chosen to reclaim Gift Aid.', 'gift-aid-for-woocommerce' ) );
 		} else {
 			// Set our confirmation message for the administrator.
-			$message = apply_filters( $this->plugin_prefix . '_order_email_message', __( 'Customer has chosen to reclaim Gift Aid.', 'gift-aid-for-woocommerce' ) );
+			$message = apply_filters( $this->plugin_prefix . '_order_email_message_admin', __( 'Customer has chosen to reclaim Gift Aid.', 'gift-aid-for-woocommerce' ) );
 		}
 
 		// If Gift Aid is to be reclaimed, confirm this in the email.
