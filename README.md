@@ -46,6 +46,9 @@ Any future update to the plugin that changes the tab in which the settings can b
 
 ## Changelog
 
+**1.3.5** - *12.06.2017*
+- Bug fix: corrected logic issue affecting admin order email Gift Aid text.
+
 **1.3.4** - *08.06.2017*
 - Bug fix: incorrect use of static keyword in checkout class causing fatal errors.
 

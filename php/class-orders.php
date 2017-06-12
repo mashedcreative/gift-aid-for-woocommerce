@@ -155,17 +155,20 @@ class Orders {
 	 */
 	public function add_order_email_meta( $order, $sent_to_admin, $plain_text ) {
 
+		// Get the post meta containing the Gift Aid status.
+		$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
+
 		if ( ! $sent_to_admin ) {
-			// Get the post meta containing the Gift Aid status.
-			$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
-
-			// Set our confirmation message for the email.
+			// Set our confirmation message for the customer.
 			$message = apply_filters( $this->plugin_prefix . '_order_email_message', __( 'You have chosen to reclaim Gift Aid.', 'gift-aid-for-woocommerce' ) );
+		} else {
+			// Set our confirmation message for the administrator.
+			$message = apply_filters( $this->plugin_prefix . '_order_email_message', __( 'Customer has chosen to reclaim Gift Aid.', 'gift-aid-for-woocommerce' ) );
+		}
 
-			// If Gift Aid is to be reclaimed, confirm this in the email.
-			if ( ! empty( $status ) && 'Yes' === $status ) {
-				echo '<p class="gift-aid-order-email"><strong>' . esc_html( $message ) . '</strong></p>';
-			}
+		// If Gift Aid is to be reclaimed, confirm this in the email.
+		if ( ! empty( $status ) && 'Yes' === $status ) {
+			echo '<p class="gift-aid-order-email"><strong>' . esc_html( $message ) . '</strong></p>';
 		}
 	}
 
