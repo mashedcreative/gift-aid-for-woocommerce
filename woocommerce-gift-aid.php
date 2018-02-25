@@ -4,15 +4,15 @@
  *
  * @link              https://github.com/davetgreen/gift-aid-for-woocommerce
  *
- * @since			  1.3.0
+ * @since             1.3.0
  *
  * @package           dtg\gift-aid-for-woocommerce
  *
  * Plugin Name:       Gift Aid for WooCommerce
  * Plugin URI:        https://github.com/davetgreen/gift-aid-for-woocommerce
  * Description:       A plugin for WooCommerce that empowers donors to elect to reclaim Gift Aid at the checkout.
- * Version:           1.3.5
- * Contributors:	  davetgreen, mkdo
+ * Version:           1.4.0
+ * Contributors:      davetgreen, mkdo
  * Author:            Dave Green <hello@davetgreen.me>
  * Author URI:        http://www.davetgreen.me
  * License:           GPL-2.0+
@@ -44,6 +44,7 @@ require_once 'php/class-customizer.php';
 require_once 'php/class-orders.php';
 require_once 'php/class-checkout.php';
 require_once 'php/class-csv-export.php';
+require_once 'php/class-hmrc-report.php';
 require_once 'php/class-main-controller.php';
 
 // Namespaces.
@@ -58,22 +59,24 @@ use dtg\gift_aid_for_woocommerce\Customizer;
 use dtg\gift_aid_for_woocommerce\Orders;
 use dtg\gift_aid_for_woocommerce\Checkout;
 use dtg\gift_aid_for_woocommerce\CSV_Export;
+use dtg\gift_aid_for_woocommerce\HMRC_Report;
 use dtg\gift_aid_for_woocommerce\Main_Controller;
 
 // Bootstrap the plugin if WooCommerce is active.
-if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
 
 	// Instances.
 	$settings                 = new Settings();
-	$activator    			  = new Activator();
-	$deactivator  			  = new Deactivator();
-	$uninstaller  			  = new Uninstaller();
-	$notices	  			  = new Notices();
-	$assets_controller  	  = new Assets_Controller();
+	$activator                = new Activator();
+	$deactivator              = new Deactivator();
+	$uninstaller              = new Uninstaller();
+	$notices                  = new Notices();
+	$assets_controller        = new Assets_Controller();
 	$customizer               = new Customizer();
-	$orders            		  = new Orders();
-	$checkout            	  = new Checkout();
-	$csv_export				  = new CSV_Export();
+	$orders                   = new Orders();
+	$checkout                 = new Checkout();
+	$csv_export               = new CSV_Export();
+	$hmrc_report              = new HMRC_Report();
 	$main_controller          = new Main_Controller(
 		$settings,
 		$activator,
@@ -84,7 +87,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		$customizer,
 		$orders,
 		$checkout,
-		$csv_export
+		$csv_export,
+		$hmrc_report
 	);
 
 	// Go.
