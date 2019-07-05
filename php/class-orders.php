@@ -131,7 +131,7 @@ class Orders {
 	 */
 	public function add_order_details( $order ) {
 		// Get the post meta containing the Gift Aid status.
-		$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
+		$status = get_post_meta( $order->get_id(), 'gift_aid_reclaimed', true );
 
 		// Add a fallback of "No" if no source is available.
 		$status = ( ! empty( $status ) ? $status : __( 'No', 'gift-aid-for-woocommerce' ) );
@@ -156,7 +156,7 @@ class Orders {
 	public function add_order_email_meta( $order, $sent_to_admin, $plain_text ) {
 
 		// Get the post meta containing the Gift Aid status.
-		$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
+		$status = get_post_meta( $order->get_id(), 'gift_aid_reclaimed', true );
 
 		if ( ! $sent_to_admin ) {
 			// Set our confirmation message for the customer.

@@ -97,7 +97,7 @@ class CSV_Export {
 	 */
 	public function wc_csv_export_modify_row_data( $order_data, $order, $csv_generator ) {
 		// Get the post meta containing the Gift Aid status.
-		$status = get_post_meta( $order->id, 'gift_aid_reclaimed', true );
+		$status = get_post_meta( $order->get_id(), 'gift_aid_reclaimed', true );
 
 		// Add a fallback of "No" if no source is available.
 		$status = ( ! empty( $status ) ? $status : __( 'No', 'gift-aid-for-woocommerce' ) );
